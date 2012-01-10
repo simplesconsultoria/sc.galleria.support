@@ -1,0 +1,23 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser"
+           i18n_domain="sc.galleria">
+
+  <browser:resourceDirectory
+    name="galleria-scripts"
+    directory="scripts"
+    layer="sc.galleria.interfaces.IGalleriaLayer"
+    />
+
+  <browser:resourceDirectory
+    name="galleria-styles"
+    directory="styles"
+    layer="sc.galleria.interfaces.IGalleriaLayer"
+    />
+
+  <browser:resourceDirectory
+    name="galleria-images"
+    directory="images"
+    layer="sc.galleria.interfaces.IGalleriaLayer"
+    />
+
+</configure>

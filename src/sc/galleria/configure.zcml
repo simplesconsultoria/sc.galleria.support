@@ -1,0 +1,39 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="sc.galleria">
+
+    <five:registerPackage package="." initialize=".initialize" />
+
+    <genericsetup:registerProfile
+        name="default"
+        title="sc.galleria: Install"
+        directory="profiles/default"
+        description="sc.galleria"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        i18n:attributes="title; description"
+        />
+
+    <genericsetup:registerProfile
+        name="uninstall"
+        title="Uninstall sc.galleria"
+        directory="profiles/uninstall"
+        description="Uninstall sc.galleria"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        i18n:attributes="title; description"
+        />
+
+
+    <genericsetup:importStep
+        name="sc.galleria-upgrades"
+        title="sc.galleria: Upgrades"
+        description="Run available upgrades for this package."
+        handler="sc.galleria.setuphandlers.run_upgrades">
+    </genericsetup:importStep>
+
+    <include package=".upgrades" />
+    <include package=".browser"/>
+    
+</configure>

@@ -1,0 +1,8 @@
+Changelog
+----------
+
+0.5dev (unreleased)
+^^^^^^^^^^^^^^^^^^^
+
+ *  Package created using templer
+    [Simples Consultoria]
