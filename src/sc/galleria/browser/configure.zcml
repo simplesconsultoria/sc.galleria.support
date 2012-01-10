@@ -9,14 +9,8 @@
     />
 
   <browser:resourceDirectory
-    name="galleria-styles"
-    directory="styles"
-    layer="sc.galleria.interfaces.IGalleriaLayer"
-    />
-
-  <browser:resourceDirectory
-    name="galleria-images"
-    directory="images"
+    name="galleria-themes"
+    directory="themes"
     layer="sc.galleria.interfaces.IGalleriaLayer"
     />
 
