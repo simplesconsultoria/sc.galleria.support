@@ -713,12 +713,13 @@ var undef,
                     length;
 
                 // look for manual css
-                $('link[rel=stylesheet]').each(function() {
-                    if ( new RegExp( href ).test( this.href ) ) {
-                        link = this;
-                        return false;
-                    }
-                });
+                //$('link[rel=stylesheet]').each(function() {
+                //    if ( new RegExp(href).test(this.href) ) {
+                //        console.log(href);
+                //        link = this;
+                //        return false;
+                //    }
+                //});
 
                 if ( typeof id === 'function' ) {
                     callback = id;
