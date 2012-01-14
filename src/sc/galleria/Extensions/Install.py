@@ -7,7 +7,7 @@ def uninstall(portal, reinstall=False):
     if not reinstall:
         # normal uninstall
         setup_tool = getToolByName(portal, 'portal_setup')
-        profile = 'profile-+namespace_package+.+namespace_package2+.+package+:uninstall'
+        profile = 'profile-sc.galleria:uninstall'
         setup_tool.runAllImportStepsFromProfile(profile)
 
         return "Ran all uninstall steps."
