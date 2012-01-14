@@ -1,6 +1,11 @@
 <configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:zcml="http://namespaces.zope.org/zcml"
+           xmlns:i18n="http://namespaces.zope.org/i18n"
            xmlns:browser="http://namespaces.zope.org/browser"
            i18n_domain="sc.galleria">
+
+  <include package="plone.app.registry" />
+  <include zcml:condition="have plone-4" package="Products.CMFCore" file="permissions.zcml" />
 
   <browser:resourceDirectory
     name="galleria-scripts"
@@ -13,5 +18,15 @@
     directory="themes"
     layer="sc.galleria.interfaces.IGalleriaLayer"
     />
+
+
+  <!-- Control panel -->
+  <browser:page
+    name="galleria-settings"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    class=".galleria.GalleriaSettingsControlPanel"
+    permission="cmf.ManagePortal"
+    />
+
 
 </configure>
