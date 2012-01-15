@@ -65,8 +65,7 @@ class Galleria(BrowserView):
                    showCounter: %s,
                    showImagenav: %s,
                    swipe: %s,
-                   thumbCrop: %s,
-                   dummy: %s,
+                   dummy: '%s',
                    debug: %s,}) """ %(int(self.settings.image_width),
                                      int(self.settings.image_height),
                                      str(self.settings.autoplay).lower(),
@@ -76,9 +75,8 @@ class Galleria(BrowserView):
                                      int(self.settings.transitionSpeed),
                                      str(self.settings.lightbox).lower(),
                                      str(self.settings.showCounting).lower(),
-                                     str(self.settings.showImagenav).lower(),
+                                     str(self.settings.showimagenav).lower(),
                                      str(self.settings.swipe).lower(),
-                                     str(self.settings.thumbCrop).lower(),
-                                     str(self.portal_url + '/++resource++dummy_galleria.png'),
-                                     str(self.settings.debug).lower(),)
+                                     str(self.portal_url() + '/++resource++dummy_galleria.png'),
+                                     str(self.settings.debug).lower())
 

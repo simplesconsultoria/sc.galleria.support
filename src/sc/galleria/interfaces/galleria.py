@@ -60,11 +60,11 @@ class IGalleriaSettings(Interface):
                               required=True,)
 
     imagePosition = schema.TextLine(title=u"Image css position",
-                                    description="Eg. 'top right' or '20% 100%'",
-                                    default='center',
+                                    description=u"Eg. 'top right' or '20% 100%'",
+                                    default=u'center',
                                     required=True,)
 
-    lightbox = schema.Bool(title=u"Enabel lightbox",
+    lightbox = schema.Bool(title=u"Enable lightbox",
                                default=False,
                                required=True,)
 
@@ -76,7 +76,7 @@ class IGalleriaSettings(Interface):
 
     transitions = schema.Choice(title=u"Transitions",
                           description=u"Defines what transition to use.",
-                          default='fade',
+                          default=u'fade',
                           vocabulary=transitions,
                           required=True,)
 
@@ -85,12 +85,12 @@ class IGalleriaSettings(Interface):
                                  default=400,
                                  required=True,)
 
-    showimagenav = schema.bool(title=u"show image navigation",
+    showimagenav = schema.Bool(title=u"show image navigation",
                                description=u"toggles the image navigation arrows.",
                                default=True,
                                required=True,)
 
-    swipe = schema.bool(title=u"swipe",
+    swipe = schema.Bool(title=u"swipe",
                                description=u"Enables a swipe movement for flicking through images on touch devices.",
                                default=True,
                                required=True,)
