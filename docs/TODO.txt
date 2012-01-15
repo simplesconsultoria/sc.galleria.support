@@ -1,3 +1,6 @@
+TODO
+----
+
 * Rename product
 * Galleria icon in ControlPanel
 * Enable plugins support
