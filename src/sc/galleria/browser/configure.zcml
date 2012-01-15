@@ -4,8 +4,20 @@
            xmlns:browser="http://namespaces.zope.org/browser"
            i18n_domain="sc.galleria">
 
-  <include package="plone.app.registry" />
+  <!-- Permissions in Plone 4 -->
   <include zcml:condition="have plone-4" package="Products.CMFCore" file="permissions.zcml" />
+
+  <!-- Dependencies -->
+  <include package="plone.app.contentmenu" />
+  <include package="plone.app.registry"/>
+
+  <!-- Resources -->
+
+  <browser:resource
+    name="dummy_galleria.png"
+    file="dummy.png"
+    layer="sc.galleria.interfaces.IGalleriaLayer"
+    />
 
   <browser:resourceDirectory
     name="galleria-scripts"
@@ -28,5 +40,38 @@
     permission="cmf.ManagePortal"
     />
 
+  <!-- Viewlets and Menu view methods -->
+  <browser:page
+    name="galleria_view"
+    for="sc.galleria.interfaces.IFolder"
+    class=".galleria.Galleria"
+    menu="plone_displayviews"
+    title="Galleria"
+    permission="zope.Public"
+    template="templates/galleria_view.pt"
+    layer="sc.galleria.interfaces.IGalleriaLayer"
+    />
+
+  <browser:page
+    name="galleria_view"
+    for="sc.galleria.interfaces.ITopic"
+    class=".galleria.Galleria"
+    menu="plone_displayviews"
+    title="Galleria"
+    permission="zope.Public"
+    template="templates/galleria_view.pt"
+    layer="sc.galleria.interfaces.IGalleriaLayer"
+    />
+
+  <browser:page
+    name="galleria_view"
+    for="sc.galleria.interfaces.ILink"
+    class=".galleria.Galleria"
+    menu="plone_displayviews"
+    title="Galleria"
+    permission="zope.Public"
+    template="templates/galleria_view.pt"
+    layer="sc.galleria.interfaces.IGalleriaLayer"
+    />
 
 </configure>
