@@ -88,25 +88,16 @@
     <metal:subtopics use-macro="here/atct_topic_view/macros/folderlisting_macro" />
 
     <metal:galleriaslotjs define-slot="galleria_js">
-       <!--
-       <script type="text/javascript" tal:content="view/settings_javascripts"></script>-->
 
-       <!-- Como automatizar os temas??? -->
+       <!-- Como automatizar os temas??? --> 
        <script type="text/javascript">
          jQuery(document).ready(function(){
              Galleria.loadTheme("++resource++galleria-themes/classic/galleria.classic.js");
          })
        </script>
-       <script type="text/javascript">
-         jQuery('#content-core').galleria({
-                width: 500,
-                height: 500,
-                autoplay:true,
-                showInfo: true,
-         });
-       </script>
+       <script type="text/javascript" tal:content="view/setting">
+     </script>
     </metal:galleriaslotjs>
-
 
  </metal:main_macro>
 </metal:content-core>
