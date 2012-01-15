@@ -61,7 +61,7 @@ class IGalleriaSettings(Interface):
 
     imagePosition = schema.TextLine(title=u"Image css position",
                                     description="Eg. 'top right' or '20% 100%'",
-                                    default='center'
+                                    default='center',
                                     required=True,)
 
     lightbox = schema.Bool(title=u"Enabel lightbox",
