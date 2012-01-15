@@ -31,6 +31,12 @@
     layer="sc.galleria.interfaces.IGalleriaLayer"
     />
 
+  <browser:resourceDirectory
+    name="galleria-plugins"
+    directory="plugins"
+    layer="sc.galleria.interfaces.IGalleriaLayer"
+    />
+
 
   <!-- Control panel -->
   <browser:page
