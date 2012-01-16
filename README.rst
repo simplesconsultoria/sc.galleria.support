@@ -67,3 +67,5 @@ Credits
     
     * Cleber Santos (cleber at simplesconsultoria dot com dot br) - Idea and 
       implementation.
+
+    * Aino (http://galleria.aino.se) - JavaScript galleria

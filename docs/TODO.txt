@@ -1,0 +1,13 @@
+TODO
+----
+
+* Rename product
+* Galleria icon in ControlPanel
+* Enable plugins support
+    * Plugin configurations in Control Panel
+* Option to disabled thumbnails
+* Use portal_resources to add and manage new themes
+* Translations
+* Css adjust if necessary
+* Documentation
+* Tests

@@ -1,6 +1,23 @@
 <configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:zcml="http://namespaces.zope.org/zcml"
+           xmlns:i18n="http://namespaces.zope.org/i18n"
            xmlns:browser="http://namespaces.zope.org/browser"
            i18n_domain="sc.galleria">
+
+  <!-- Permissions in Plone 4 -->
+  <include zcml:condition="have plone-4" package="Products.CMFCore" file="permissions.zcml" />
+
+  <!-- Dependencies -->
+  <include package="plone.app.contentmenu" />
+  <include package="plone.app.registry"/>
+
+  <!-- Resources -->
+
+  <browser:resource
+    name="dummy_galleria.png"
+    file="dummy.png"
+    layer="sc.galleria.interfaces.IGalleriaLayer"
+    />
 
   <browser:resourceDirectory
     name="galleria-scripts"
@@ -11,6 +28,55 @@
   <browser:resourceDirectory
     name="galleria-themes"
     directory="themes"
+    layer="sc.galleria.interfaces.IGalleriaLayer"
+    />
+
+  <browser:resourceDirectory
+    name="galleria-plugins"
+    directory="plugins"
+    layer="sc.galleria.interfaces.IGalleriaLayer"
+    />
+
+
+  <!-- Control panel -->
+  <browser:page
+    name="galleria-settings"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    class=".galleria.GalleriaSettingsControlPanel"
+    permission="cmf.ManagePortal"
+    />
+
+  <!-- Viewlets and Menu view methods -->
+  <browser:page
+    name="galleria_view"
+    for="sc.galleria.interfaces.IFolder"
+    class=".galleria.Galleria"
+    menu="plone_displayviews"
+    title="Galleria"
+    permission="zope.Public"
+    template="templates/galleria_view.pt"
+    layer="sc.galleria.interfaces.IGalleriaLayer"
+    />
+
+  <browser:page
+    name="galleria_view"
+    for="sc.galleria.interfaces.ITopic"
+    class=".galleria.Galleria"
+    menu="plone_displayviews"
+    title="Galleria"
+    permission="zope.Public"
+    template="templates/galleria_view.pt"
+    layer="sc.galleria.interfaces.IGalleriaLayer"
+    />
+
+  <browser:page
+    name="galleria_view"
+    for="sc.galleria.interfaces.ILink"
+    class=".galleria.Galleria"
+    menu="plone_displayviews"
+    title="Galleria"
+    permission="zope.Public"
+    template="templates/galleria_view.pt"
     layer="sc.galleria.interfaces.IGalleriaLayer"
     />
 

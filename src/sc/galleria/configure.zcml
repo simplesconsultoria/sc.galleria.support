@@ -35,5 +35,11 @@
 
     <include package=".upgrades" />
     <include package=".browser"/>
-    
+
+    <adapter
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        provides="sc.galleria.interfaces.IGalleriaSettings"
+        factory=".browser.galleria.Galleria"
+        />
+ 
 </configure>
