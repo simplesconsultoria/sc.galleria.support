@@ -27,9 +27,16 @@ To enable this product, on a buildout based installation:
        to the list of eggs to install ::
 
         [buildout]
+
+        #If Plone 3.3.x, uncomment this line
+        #extends =
+        #    http://good-py.appspot.com/release/plone.app.registry/1.0b2?plone=3.3.6
+
         ...
         eggs = 
             sc.galleria
+
+
 
 .. note:: Since Plone 3.3 is not is necessary to explictly inform 
           plone.recipe.zope2instance recipe to install the ZCML slug
