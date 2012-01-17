@@ -21,16 +21,16 @@ except:
 
 
 transitionsvoc = SimpleVocabulary(
-    [SimpleTerm(value='fade', title=_(u'fade')),
-     SimpleTerm(value='flash', title=_(u'flash')),
-     SimpleTerm(value='pulse', title=_(u'pulse')),
-     SimpleTerm(value='slide', title=_(u'slide')),
-     SimpleTerm(value='fadeslide', title=_(u'fadeslide')), ]
+    [SimpleTerm(value='fade', title=_(u'Fade')),
+     SimpleTerm(value='flash', title=_(u'Flash')),
+     SimpleTerm(value='pulse', title=_(u'Pulse')),
+     SimpleTerm(value='slide', title=_(u'Slide')),
+     SimpleTerm(value='fadeslide', title=_(u'FadeSlide')), ]
     )
 
 thumbnailsvoc = SimpleVocabulary(
     [SimpleTerm(value='show', title=_(u"Show thumbnails")),
-     SimpleTerm(value='empty', title=_(u"Don't show Thumbnails")),]
+     SimpleTerm(value='empty', title=_(u"Don't show thumbnails")),]
     )
 
 if HAS_PLONE30:
