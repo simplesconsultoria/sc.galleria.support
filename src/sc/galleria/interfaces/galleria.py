@@ -4,14 +4,40 @@ from zope import schema
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from sc.galleria import MessageFactory as _
 
+from plone.app.imaging.utils import getAllowedSizes
 
-transitions = SimpleVocabulary(
+try:
+    from Products.CMFPlone.migrations import v3_0
+except ImportError:
+    HAS_PLONE30 = False
+else:
+    HAS_PLONE30 = True
+   
+try:
+    from plone.app.upgrade import v40
+    HAS_PLONE4 = True
+except:
+    HAS_PLONE4 = False
+
+
+transitionsvoc = SimpleVocabulary(
     [SimpleTerm(value='fade', title=_(u'fade')),
      SimpleTerm(value='flash', title=_(u'flash')),
      SimpleTerm(value='pulse', title=_(u'pulse')),
      SimpleTerm(value='slide', title=_(u'slide')),
      SimpleTerm(value='fadeslide', title=_(u'fadeslide')), ]
     )
+
+thumbnailsvoc = SimpleVocabulary(
+    [SimpleTerm(value='show', title=_(u"Show thumbnails")),
+     SimpleTerm(value='empty', title=_(u"Don't show Thumbnails")),]
+    )
+
+if HAS_PLONE30:
+   selectorPlone = u'#content'
+elif HAS_PLONE4:
+   selectorPlone = u'#content-core'
+
 
 class IGalleriaLayer(Interface):
     """
@@ -49,12 +75,12 @@ class IGalleriaSettings(Interface):
                           default=True,
                           required=True,)
 
-    image_width = schema.Int(title=u"Image width",
+    gallery_width = schema.Int(title=u"Gallery width",
                              description=u"Manually set a gallery width.",
                              default=500,
                              required=True,)
 
-    image_height = schema.Int(title=u"Image height",
+    gallery_height = schema.Int(title=u"Gallery height",
                               description=u"Manually set a gallery height.",
                               default=500,
                               required=True,)
@@ -77,7 +103,7 @@ class IGalleriaSettings(Interface):
     transitions = schema.Choice(title=u"Transitions",
                           description=u"Defines what transition to use.",
                           default=u'fade',
-                          vocabulary=transitions,
+                          vocabulary=transitionsvoc,
                           required=True,)
 
     transitionSpeed = schema.Int(title=u"Transition Speed", 
@@ -93,6 +119,17 @@ class IGalleriaSettings(Interface):
     swipe = schema.Bool(title=u"swipe",
                                description=u"Enables a swipe movement for flicking through images on touch devices.",
                                default=True,
+                               required=True,)
+
+    selector = schema.TextLine(title=u"Selector jQuery",
+                                    description=u"Eg. '#content-core' or '#content' or '.galleria'. Do not change if you do not know what I mean.",
+                                    default=selectorPlone,
+                                    required=True,)
+
+    thumbnails = schema.Choice(title=u"Show Thumbnails",
+                               description=u"Sets the creation of thumbnails",
+                               default=u'show',
+                               vocabulary=thumbnailsvoc,
                                required=True,)
 
     debug = schema.Bool(title=u"Enable debug mode",
