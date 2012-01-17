@@ -25,6 +25,8 @@ setup(name='sc.galleria',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'plone.app.registry',
+          'plone.app.imaging',
       ],
       extras_require={
         'test': ['plone.app.testing'],
