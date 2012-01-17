@@ -4,22 +4,6 @@ from zope import schema
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from sc.galleria import MessageFactory as _
 
-from plone.app.imaging.utils import getAllowedSizes
-
-try:
-    from Products.CMFPlone.migrations import v3_0
-except ImportError:
-    HAS_PLONE30 = False
-else:
-    HAS_PLONE30 = True
-   
-try:
-    from plone.app.upgrade import v40
-    HAS_PLONE4 = True
-except:
-    HAS_PLONE4 = False
-
-
 transitionsvoc = SimpleVocabulary(
     [SimpleTerm(value='fade', title=_(u'Fade')),
      SimpleTerm(value='flash', title=_(u'Flash')),
@@ -32,12 +16,6 @@ thumbnailsvoc = SimpleVocabulary(
     [SimpleTerm(value='show', title=_(u"Show thumbnails")),
      SimpleTerm(value='empty', title=_(u"Don't show thumbnails")),]
     )
-
-if HAS_PLONE30:
-   selectorPlone = u'#content'
-elif HAS_PLONE4:
-   selectorPlone = u'#content-core'
-
 
 class IGalleriaLayer(Interface):
     """
@@ -123,7 +101,7 @@ class IGalleriaSettings(Interface):
 
     selector = schema.TextLine(title=u"Selector jQuery",
                                     description=u"Eg. '#content-core' or '#content' or '.galleria'. Do not change if you do not know what I mean.",
-                                    default=selectorPlone,
+                                    default=u"#content",
                                     required=True,)
 
     thumbnails = schema.Choice(title=u"Show Thumbnails",
