@@ -12,7 +12,6 @@ from Products.CMFCore.utils import getToolByName
 from zope.interface import implements
 from zope import component
 from zope.interface import Interface
-#from zope.component import getUtility
 from zope.component._api import getUtility
 
 from sc.galleria.interfaces import IGalleria, IGalleriaSettings
@@ -52,8 +51,14 @@ class Galleria(BrowserView):
                                                  name="plone_portal_state")
         return portal_state.portal_url()
 
+    def getThumbnails(self):
+        if self.settings.thumbnails == 'show':
+            return str(True).lower()
+        else:
+            return "'%s'" %(self.settings.thumbnails)
+
     def setting(self):
-        return """jQuery('#content-core').galleria({
+        return """jQuery('%s').galleria({
                    width: %s,
                    height: %s,
                    autoplay: %s,
@@ -66,8 +71,10 @@ class Galleria(BrowserView):
                    showImagenav: %s,
                    swipe: %s,
                    dummy: '%s',
-                   debug: %s,}) """ %(int(self.settings.image_width),
-                                     int(self.settings.image_height),
+                   thumbnails: %s,
+                   debug: %s,}) """ %(str(self.settings.selector),
+                                     int(self.settings.gallery_width),
+                                     int(self.settings.gallery_height),
                                      str(self.settings.autoplay).lower(),
                                      str(self.settings.showInf).lower(),
                                      str(self.settings.imagePosition),
@@ -78,5 +85,6 @@ class Galleria(BrowserView):
                                      str(self.settings.showimagenav).lower(),
                                      str(self.settings.swipe).lower(),
                                      str(self.portal_url() + '/++resource++dummy_galleria.png'),
+                                     self.getThumbnails(),
                                      str(self.settings.debug).lower())
 
