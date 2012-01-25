@@ -13,9 +13,9 @@
 
   <!-- Resources -->
 
-  <browser:resource
-    name="dummy_galleria.png"
-    file="dummy.png"
+  <browser:resourceDirectory
+    name="galleria-images"
+    directory="images"
     layer="sc.galleria.interfaces.IGalleriaLayer"
     />
 

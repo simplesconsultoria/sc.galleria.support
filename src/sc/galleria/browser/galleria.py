@@ -84,7 +84,6 @@ class Galleria(BrowserView):
                                      str(self.settings.showCounting).lower(),
                                      str(self.settings.showimagenav).lower(),
                                      str(self.settings.swipe).lower(),
-                                     str(self.portal_url() + '/++resource++dummy_galleria.png'),
+                                     str(self.portal_url() + '/++resource++galleria-images/dummy.png'),
                                      self.getThumbnails(),
                                      str(self.settings.debug).lower())
-
