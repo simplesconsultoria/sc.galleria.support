@@ -1,5 +1,6 @@
 from zope.interface import Interface
 from zope import schema
+import os
 
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from sc.galleria import MessageFactory as _
@@ -16,6 +17,13 @@ thumbnailsvoc = SimpleVocabulary(
     [SimpleTerm(value='show', title=_(u"Show thumbnails")),
      SimpleTerm(value='empty', title=_(u"Don't show thumbnails")),]
     )
+
+
+pluginsdir = os.path.join(os.path.dirname(__file__).strip('interfaces'),'browser','plugins')
+filesplugins = []
+import pdb; pdb.set_trace()
+
+
 
 class IGalleriaLayer(Interface):
     """
