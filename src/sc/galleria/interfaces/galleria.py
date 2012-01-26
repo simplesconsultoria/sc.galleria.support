@@ -1,6 +1,7 @@
 from zope.interface import Interface
 from zope import schema
 import os
+import glob
 
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from sc.galleria import MessageFactory as _
@@ -20,7 +21,7 @@ thumbnailsvoc = SimpleVocabulary(
 
 
 pluginsdir = os.path.join(os.path.dirname(__file__).strip('interfaces'),'browser','plugins')
-filesplugins = []
+filesplugins = glob.glob(os.path.join(os.path.dirname(__file__).strip('interfaces'),'browser','plugins','*'))
 import pdb; pdb.set_trace()
 
 
