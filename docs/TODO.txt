@@ -4,7 +4,6 @@ TODO
 * Rename product
 * Enable plugins support
     * Plugin configurations in Control Panel
-* Use portal_resources to add and manage new themes
 * Translations
 * Documentation
 * Tests
