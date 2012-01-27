@@ -6,6 +6,10 @@ from plone.app.registry.browser import controlpanel
 from plone.registry.interfaces import IRegistry
 from plone.registry import Registry
 
+from plone.z3cform import layout
+
+from z3c.form import field
+
 from Products.Five import BrowserView
 from Products.CMFCore.utils import getToolByName
 
@@ -13,13 +17,23 @@ from zope.interface import implements
 from zope import component
 from zope.interface import Interface
 from zope.component._api import getUtility
+from zope.interface import alsoProvides
 
-from sc.galleria.support.interfaces import IGalleria, IGalleriaSettings
+from sc.galleria.support.interfaces import IGalleria,\
+                                            IGalleriaSettings,\
+                                            IGeneralSettings,\
+                                            FormGroup1,\
+                                            FormGroup2,\
+                                            FormGroup3
+
 from sc.galleria.support import MessageFactory as _
+
 
 class GalleriaSettingsEditForm(controlpanel.RegistryEditForm):
     """ Control Panel """
     schema = IGalleriaSettings
+    fields = field.Fields(IGeneralSettings)
+    groups = FormGroup1, FormGroup2, FormGroup3
     label = _(u"Galleria settings")
     description = _(u"""""")
 
@@ -29,9 +43,55 @@ class GalleriaSettingsEditForm(controlpanel.RegistryEditForm):
     def updateWidgets(self):
         super(GalleriaSettingsEditForm, self).updateWidgets()
 
+    def getContent(self):
+        return AbstractRecordsProxy(self.schema)
+
+
 class GalleriaSettingsControlPanel(controlpanel.ControlPanelFormWrapper):
     form = GalleriaSettingsEditForm 
 
+
+class AbstractRecordsProxy(object):
+    """Multiple registry schema proxy.
+
+    This class supports schemas that contain derived fields. The
+    settings will be stored with respect to the individual field
+    interfaces.
+    """
+
+    def __init__(self, schema):
+        state = self.__dict__
+        state["__registry__"] = getUtility(IRegistry)
+        state["__proxies__"] = {}
+        state["__schema__"] = schema
+        alsoProvides(self, schema)
+
+    def __getattr__(self, name):
+        try:
+            field = self.__schema__[name]
+        except KeyError:
+            raise AttributeError(name)
+        else:
+            proxy = self._get_proxy(field.interface)
+            return getattr(proxy, name)
+
+    def __setattr__(self, name, value):
+        try:
+            field = self.__schema__[name]
+        except KeyError:
+            self.__dict__[name] = value
+        else:
+            proxy = self._get_proxy(field.interface)
+            return setattr(proxy, name, value)
+
+    def __repr__(self):
+        return "<AbstractRecordsProxy for %s>" % self.__schema__.__identifier__
+
+    def _get_proxy(self, interface):
+        proxies = self.__proxies__
+        return proxies.get(interface) or \
+               proxies.setdefault(interface, self.__registry__.\
+                                  forInterface(interface))
 
 class Galleria(BrowserView):
     """ Used by browser view
@@ -43,7 +103,7 @@ class Galleria(BrowserView):
         context = aq_inner(context)
         self.context = context
         self.registry = getUtility(IRegistry)
-        self.settings = self.registry.forInterface(IGalleriaSettings)
+        self.settings = self.registry.forInterface(IGeneralSettings)
 
 
     def portal_url(self):
