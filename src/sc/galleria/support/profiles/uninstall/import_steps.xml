@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<import-steps>
+  <import-step id="sc.galleria.support.uninstall"
+               version="20120125-01"
+               handler="sc.galleria.support.setuphandlers.uninstall"
+               title="sc.galleria.support: miscellaneous import steps for uninstall package">
+    Various import steps that are not handled by GS import/export
+    handlers.
+  </import-step>
+</import-steps>
+

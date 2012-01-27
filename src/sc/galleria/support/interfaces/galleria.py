@@ -1,17 +1,30 @@
 from zope.interface import Interface
 from zope import schema
+import os
+import glob
 
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
-from sc.galleria import MessageFactory as _
+from sc.galleria.support import MessageFactory as _
 
-
-transitions = SimpleVocabulary(
-    [SimpleTerm(value='fade', title=_(u'fade')),
-     SimpleTerm(value='flash', title=_(u'flash')),
-     SimpleTerm(value='pulse', title=_(u'pulse')),
-     SimpleTerm(value='slide', title=_(u'slide')),
-     SimpleTerm(value='fadeslide', title=_(u'fadeslide')), ]
+transitionsvoc = SimpleVocabulary(
+    [SimpleTerm(value='fade', title=_(u'Fade')),
+     SimpleTerm(value='flash', title=_(u'Flash')),
+     SimpleTerm(value='pulse', title=_(u'Pulse')),
+     SimpleTerm(value='slide', title=_(u'Slide')),
+     SimpleTerm(value='fadeslide', title=_(u'FadeSlide')), ]
     )
+
+thumbnailsvoc = SimpleVocabulary(
+    [SimpleTerm(value='show', title=_(u"Show thumbnails")),
+     SimpleTerm(value='empty', title=_(u"Don't show thumbnails")),]
+    )
+
+
+pluginsdir = os.path.join(os.path.dirname(__file__).strip('interfaces'),'browser','plugins')
+filesplugins = glob.glob(os.path.join(os.path.dirname(__file__).strip('interfaces'),'browser','plugins','*'))
+import pdb; pdb.set_trace()
+
+
 
 class IGalleriaLayer(Interface):
     """
@@ -49,12 +62,12 @@ class IGalleriaSettings(Interface):
                           default=True,
                           required=True,)
 
-    image_width = schema.Int(title=u"Image width",
+    gallery_width = schema.Int(title=u"Gallery width",
                              description=u"Manually set a gallery width.",
                              default=500,
                              required=True,)
 
-    image_height = schema.Int(title=u"Image height",
+    gallery_height = schema.Int(title=u"Gallery height",
                               description=u"Manually set a gallery height.",
                               default=500,
                               required=True,)
@@ -77,7 +90,7 @@ class IGalleriaSettings(Interface):
     transitions = schema.Choice(title=u"Transitions",
                           description=u"Defines what transition to use.",
                           default=u'fade',
-                          vocabulary=transitions,
+                          vocabulary=transitionsvoc,
                           required=True,)
 
     transitionSpeed = schema.Int(title=u"Transition Speed", 
@@ -93,6 +106,17 @@ class IGalleriaSettings(Interface):
     swipe = schema.Bool(title=u"swipe",
                                description=u"Enables a swipe movement for flicking through images on touch devices.",
                                default=True,
+                               required=True,)
+
+    selector = schema.TextLine(title=u"Selector jQuery",
+                                    description=u"Eg. '#content-core' or '#content' or '.galleria'. Do not change if you do not know what I mean.",
+                                    default=u"#content",
+                                    required=True,)
+
+    thumbnails = schema.Choice(title=u"Show Thumbnails",
+                               description=u"Sets the creation of thumbnails",
+                               default=u'show',
+                               vocabulary=thumbnailsvoc,
                                required=True,)
 
     debug = schema.Bool(title=u"Enable debug mode",

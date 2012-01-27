@@ -1,6 +1,8 @@
 from galleria import IGalleriaLayer
 from galleria import IGalleriaSettings
 from galleria import IGalleria 
+import logging
+logger = logging.getLogger('sc.galleria.support')
 
 # dependencies
 # Thanks: collective.gallery
@@ -12,13 +14,9 @@ try:
     from Products.ATContentTypes.interfaces.image import IATImage as IImage
     from Products.ZCatalog.interfaces import ICatalogBrain
 except ImportError, e:
-    from collective.gallery import logger
-    logger.info('BBB: switch to plone3 %s'%e)
+    logger.info('switch to plone3 %s'%e)
     #plone3
     from Products.ATContentTypes.interface import IATFolder as IFolder
     from Products.ATContentTypes.interface import IATLink   as ILink
     from Products.ATContentTypes.interface import IATTopic  as ITopic
     from Products.ATContentTypes.interface import IATImage  as IImage
-
-    class ICatalogBrain(interface.Interface):
-        pass

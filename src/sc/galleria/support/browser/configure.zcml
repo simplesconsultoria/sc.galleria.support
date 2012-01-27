@@ -2,7 +2,7 @@
            xmlns:zcml="http://namespaces.zope.org/zcml"
            xmlns:i18n="http://namespaces.zope.org/i18n"
            xmlns:browser="http://namespaces.zope.org/browser"
-           i18n_domain="sc.galleria">
+           i18n_domain="sc.galleria.support">
 
   <!-- Permissions in Plone 4 -->
   <include zcml:condition="have plone-4" package="Products.CMFCore" file="permissions.zcml" />
@@ -13,28 +13,28 @@
 
   <!-- Resources -->
 
-  <browser:resource
-    name="dummy_galleria.png"
-    file="dummy.png"
-    layer="sc.galleria.interfaces.IGalleriaLayer"
+  <browser:resourceDirectory
+    name="galleria-images"
+    directory="images"
+    layer="sc.galleria.support.interfaces.IGalleriaLayer"
     />
 
   <browser:resourceDirectory
     name="galleria-scripts"
     directory="scripts"
-    layer="sc.galleria.interfaces.IGalleriaLayer"
+    layer="sc.galleria.support.interfaces.IGalleriaLayer"
     />
 
   <browser:resourceDirectory
     name="galleria-themes"
     directory="themes"
-    layer="sc.galleria.interfaces.IGalleriaLayer"
+    layer="sc.galleria.support.interfaces.IGalleriaLayer"
     />
 
   <browser:resourceDirectory
     name="galleria-plugins"
     directory="plugins"
-    layer="sc.galleria.interfaces.IGalleriaLayer"
+    layer="sc.galleria.support.interfaces.IGalleriaLayer"
     />
 
 
@@ -49,35 +49,35 @@
   <!-- Viewlets and Menu view methods -->
   <browser:page
     name="galleria_view"
-    for="sc.galleria.interfaces.IFolder"
+    for="sc.galleria.support.interfaces.IFolder"
     class=".galleria.Galleria"
     menu="plone_displayviews"
     title="Galleria"
     permission="zope.Public"
     template="templates/galleria_view.pt"
-    layer="sc.galleria.interfaces.IGalleriaLayer"
+    layer="sc.galleria.support.interfaces.IGalleriaLayer"
     />
 
   <browser:page
     name="galleria_view"
-    for="sc.galleria.interfaces.ITopic"
+    for="sc.galleria.support.interfaces.ITopic"
     class=".galleria.Galleria"
     menu="plone_displayviews"
     title="Galleria"
     permission="zope.Public"
     template="templates/galleria_view.pt"
-    layer="sc.galleria.interfaces.IGalleriaLayer"
+    layer="sc.galleria.support.interfaces.IGalleriaLayer"
     />
 
   <browser:page
     name="galleria_view"
-    for="sc.galleria.interfaces.ILink"
+    for="sc.galleria.support.interfaces.ILink"
     class=".galleria.Galleria"
     menu="plone_displayviews"
     title="Galleria"
     permission="zope.Public"
     template="templates/galleria_view.pt"
-    layer="sc.galleria.interfaces.IGalleriaLayer"
+    layer="sc.galleria.support.interfaces.IGalleriaLayer"
     />
 
 </configure>

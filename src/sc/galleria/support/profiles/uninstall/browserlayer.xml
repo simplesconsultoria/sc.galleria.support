@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<layers>
+    <layer name="GalleriaLayer"
+        interface="sc.galleria.support.interfaces.IGalleriaLayer"
+        remove="True"
+    />
+</layers>

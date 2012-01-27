@@ -5,8 +5,8 @@
 
 <body>
 
-<metal:content-core fill-slot="content-core">
- <metal:main_macro define-macro="content-core"
+<metal:main fill-slot="main">
+ <metal:main_macro define-macro="main"
      tal:define="result python:here.atctListAlbum(images=1, folders=1, subimages=0, others=1);
                  images result/images;
                  albums result/folders;
@@ -100,7 +100,7 @@
     </metal:galleriaslotjs>
 
  </metal:main_macro>
-</metal:content-core>
+</metal:main>
 
 </body>
 

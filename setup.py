@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 version = '0.5'
 
-setup(name='sc.galleria',
+setup(name='sc.galleria.support',
       version=version,
       description="Simple gallery for plone based in http://galleria.io",
       long_description=open("README.rst").read() + "\n" +
@@ -19,12 +19,15 @@ setup(name='sc.galleria',
       license='gpl',
       packages=find_packages('src'),
       package_dir = {'': 'src'},
-      namespace_packages=['sc'],
+      namespace_packages=['sc',
+                         'sc.galleria'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'plone.app.registry',
+          'plone.app.imaging',
       ],
       extras_require={
         'test': ['plone.app.testing'],

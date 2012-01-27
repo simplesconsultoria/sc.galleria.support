@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<import-steps>
+  <import-step id="sc.galleria.support.install"
+               version="20120125-01"
+               handler="sc.galleria.support.setuphandlers.install"
+               title="sc.galleria.support: miscellaneous import steps for install package">
+    Various import steps that are not handled by GS import/export
+    handlers.
+  </import-step>
+</import-steps>
