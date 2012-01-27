@@ -4,6 +4,7 @@
 
  <dependencies>
   <dependency>profile-plone.app.registry:default</dependency>
+  <dependency>profile-plone.app.imaging:default</dependency>
  </dependencies>
 
 </metadata>

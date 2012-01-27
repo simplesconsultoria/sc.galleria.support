@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<action-icons xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="sc.galleria.support">
+ <action-icon category="controlpanel"
+              action_id="galleria"
+              remove="True"/>
+</action-icons>
+

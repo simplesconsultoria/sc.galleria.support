@@ -3,34 +3,35 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:five="http://namespaces.zope.org/five"
-    i18n_domain="sc.galleria">
+    i18n_domain="sc.galleria.support">
 
     <five:registerPackage package="." initialize=".initialize" />
+    <i18n:registerTranslations directory="locales" />
 
     <genericsetup:registerProfile
         name="default"
-        title="sc.galleria: Install"
+        title="sc.galleria.support: Install"
         directory="profiles/default"
-        description="sc.galleria"
+        description="sc.galleria.support"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         i18n:attributes="title; description"
         />
 
     <genericsetup:registerProfile
         name="uninstall"
-        title="Uninstall sc.galleria"
+        title="Uninstall sc.galleria.support"
         directory="profiles/uninstall"
-        description="Uninstall sc.galleria"
+        description="Uninstall sc.galleria.support"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         i18n:attributes="title; description"
         />
 
 
     <genericsetup:importStep
-        name="sc.galleria-upgrades"
-        title="sc.galleria: Upgrades"
+        name="sc.galleria.support-upgrades"
+        title="sc.galleria.support: Upgrades"
         description="Run available upgrades for this package."
-        handler="sc.galleria.setuphandlers.run_upgrades">
+        handler="sc.galleria.support.setuphandlers.run_upgrades">
     </genericsetup:importStep>
 
     <include package=".upgrades" />
@@ -38,7 +39,7 @@
 
     <adapter
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        provides="sc.galleria.interfaces.IGalleriaSettings"
+        provides="sc.galleria.support.interfaces.IGalleriaSettings"
         factory=".browser.galleria.Galleria"
         />
  
