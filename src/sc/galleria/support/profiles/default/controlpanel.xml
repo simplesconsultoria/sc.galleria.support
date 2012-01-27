@@ -2,13 +2,13 @@
 <object
     name="portal_controlpanel"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    i18n:domain="sc.galleria"
+    i18n:domain="sc.galleria.support"
     purge="False">
 
     <configlet
         title="Galleria"
         action_id="galleria"
-        appId="sc.galleria"
+        appId="sc.galleria.support"
         category="Products"
         condition_expr=""
         url_expr="string:${portal_url}/@@galleria-settings"

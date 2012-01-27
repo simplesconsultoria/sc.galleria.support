@@ -1,7 +1,7 @@
 #! /bin/sh
 
-I18NDOMAIN="sc.galleria"
-BASE_DIRECTORY="src/sc/galleria"
+I18NDOMAIN="sc.galleria.support"
+BASE_DIRECTORY="src/sc.galleria.support"
 
 # Synchronise the templates and scripts with the .pot.
 bin/i18ndude rebuild-pot --pot ${BASE_DIRECTORY}/locales/${I18NDOMAIN}.pot \

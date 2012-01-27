@@ -6,8 +6,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.GenericSetup.upgrade import listUpgradeSteps
 
 
-_PROJECT = 'sc.galleria'
-_PROFILE_ID = 'sc.galleria:default'
+_PROJECT = 'sc.galleria.support'
+_PROFILE_ID = 'sc.galleria.support:default'
 
 
 def install(context):
@@ -17,14 +17,14 @@ def install(context):
     # flag to check that we actually meant for this import step to be run.
     # The file is found in profiles/default.
 
-    if context.readDataFile('sc.galleria_default.txt') is None:
+    if context.readDataFile('sc.galleria.support_default.txt') is None:
         return
 
 
 def run_upgrades(context):
     ''' Run Upgrade steps
     '''
-    if context.readDataFile('sc.galleria_default.txt') is None:
+    if context.readDataFile('sc.galleria.support_default.txt') is None:
         return
     logger = logging.getLogger(_PROJECT)
     site = context.getSite()
@@ -46,7 +46,7 @@ def uninstall(context):
     ''' Run uninstall steps
     '''
 
-    if context.readDataFile('sc.galleria_uninstall.txt') is None:
+    if context.readDataFile('sc.galleria.support_uninstall.txt') is None:
         return
 
     portal = context.getSite()

@@ -3,4 +3,4 @@
 __author__ = """'Simples Consultoria'"""
 __docformat__ = 'plaintext'
 
-PROJECTNAME = 'sc.galleria'
+PROJECTNAME = 'sc.galleria.support'

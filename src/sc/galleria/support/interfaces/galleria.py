@@ -4,7 +4,7 @@ import os
 import glob
 
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
-from sc.galleria import MessageFactory as _
+from sc.galleria.support import MessageFactory as _
 
 transitionsvoc = SimpleVocabulary(
     [SimpleTerm(value='fade', title=_(u'Fade')),

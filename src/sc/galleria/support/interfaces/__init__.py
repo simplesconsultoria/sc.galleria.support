@@ -2,7 +2,7 @@ from galleria import IGalleriaLayer
 from galleria import IGalleriaSettings
 from galleria import IGalleria 
 import logging
-logger = logging.getLogger('sc.galleria')
+logger = logging.getLogger('sc.galleria.support')
 
 # dependencies
 # Thanks: collective.gallery

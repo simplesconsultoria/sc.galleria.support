@@ -14,8 +14,8 @@ from zope import component
 from zope.interface import Interface
 from zope.component._api import getUtility
 
-from sc.galleria.interfaces import IGalleria, IGalleriaSettings
-from sc.galleria import MessageFactory as _
+from sc.galleria.support.interfaces import IGalleria, IGalleriaSettings
+from sc.galleria.support import MessageFactory as _
 
 class GalleriaSettingsEditForm(controlpanel.RegistryEditForm):
     """ Control Panel """

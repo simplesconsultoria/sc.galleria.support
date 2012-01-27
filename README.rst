@@ -1,5 +1,5 @@
 ===============
-sc.galleria
+sc.galleria.support
 ===============
 
 .. contents:: Table of Contents
@@ -9,7 +9,7 @@ sc.galleria
 Overview
 --------
 
-**sc.galleria** is a Plone package (add-on) providing simple gallery integration for Plone.
+**sc.galleria.support** is a Plone package (add-on) providing simple gallery integration for Plone.
 
 Requirements
 ------------
@@ -23,7 +23,7 @@ Installation
 
 To enable this product, on a buildout based installation:
 
-    1. Edit your buildout.cfg and add ``sc.galleria``
+    1. Edit your buildout.cfg and add ``sc.galleria.support``
        to the list of eggs to install ::
 
         [buildout]
@@ -34,7 +34,7 @@ To enable this product, on a buildout based installation:
 
         ...
         eggs = 
-            sc.galleria
+            sc.galleria.support
 
 
 
@@ -53,7 +53,7 @@ Step 1: Activate it
 Go to the 'Site Setup' page in the Plone interface and click on the
 'Add/Remove Products' link.
 
-Choose the product **sc.galleria** (check checkbox at its left side)
+Choose the product **sc.galleria.support** (check checkbox at its left side)
 and click the 'Activate' button.
 
 
@@ -63,7 +63,7 @@ Uninstall
 Go to the 'Site Setup' page in the Plone interface and click on the
 'Add/Remove Products' link.
 
-Choose the product **sc.galleria**, which should be under *Activated
+Choose the product **sc.galleria.support**, which should be under *Activated
 add-ons*, (check checkbox at its left side) and click the 'Deactivate' button.
 
 .. note:: You may have to empty your browser cache and save your resource 
