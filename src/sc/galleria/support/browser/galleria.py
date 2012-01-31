@@ -102,8 +102,22 @@ class Galleria(BrowserView):
         super(Galleria, self).__init__(context, request,*args,**kwargs)
         context = aq_inner(context)
         self.context = context
+        self.ptype = self.context.portal_type
         self.registry = getUtility(IRegistry)
         self.settings = self.registry.forInterface(IGeneralSettings)
+
+
+
+    def galleria_id(self):
+        if self.ptype == 'Link':
+            positionsets = int(str(self.context.remote_url()).find('sets'))
+            id_list = self.context.remote_url()[positionsets:].split('/')
+            if len(id_list) == 3:
+                galleriaid = id_list[-2]
+            else:
+                galleriaid = id_list[-1]
+
+            return galleriaid
 
 
     def portal_url(self):
