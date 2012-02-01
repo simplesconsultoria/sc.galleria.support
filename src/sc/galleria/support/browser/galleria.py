@@ -116,10 +116,15 @@ class Galleria(BrowserView):
         if self.ptype == 'Link':
             positionsets = int(str(self.context.remote_url()).find('sets'))
             id_list = self.context.remote_url()[positionsets:].split('/')
-            if len(id_list) == 3:
-                galleriaid = id_list[-2]
-            else:
-                galleriaid = id_list[-1]
+            try:
+               if len(id_list) == 3:
+                   galleriaid = id_list[-2]
+               elif len(id_list) == 2:
+                   galleriaid = id_list[-1]
+               else:
+                    galleriaid = None
+            except:
+                galleriaid = None
 
             return galleriaid
 
@@ -168,7 +173,7 @@ class Galleria(BrowserView):
                                               self.getThumbnails(),
                                               str(self.settings.debug).lower())
 
-        elif self.ptype == 'Link' and self.flickrplugin.flickr:
+        elif self.ptype == 'Link' and self.flickrplugin.flickr and self.galleria_id():
             """ Load Flickr plugin """
             return """jQuery(document).ready(function(){
                           var flickr = new Galleria.Flickr();
