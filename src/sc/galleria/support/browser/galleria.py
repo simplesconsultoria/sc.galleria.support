@@ -24,7 +24,10 @@ from sc.galleria.support.interfaces import IGalleria,\
                                             IGeneralSettings,\
                                             FormGroup1,\
                                             FormGroup2,\
-                                            FormGroup3
+                                            FormGroup3,\
+                                            IFlickrPlugin,\
+                                            IPicasaPlugin,\
+                                            IHistoryPlugin
 
 from sc.galleria.support import MessageFactory as _
 
@@ -105,8 +108,9 @@ class Galleria(BrowserView):
         self.ptype = self.context.portal_type
         self.registry = getUtility(IRegistry)
         self.settings = self.registry.forInterface(IGeneralSettings)
-
-
+        self.flickrplugin = self.registry.forInterface(IFlickrPlugin)
+        self.picasaplugin = self.registry.forInterface(IPicasaPlugin)
+        self.historyplugin = self.registry.forInterface(IHistoryPlugin)
 
     def galleria_id(self):
         if self.ptype == 'Link':
@@ -119,7 +123,6 @@ class Galleria(BrowserView):
 
             return galleriaid
 
-
     def portal_url(self):
         portal_state = component.getMultiAdapter((self.context, self.request),
                                                  name="plone_portal_state")
@@ -131,36 +134,71 @@ class Galleria(BrowserView):
         else:
             return "'%s'" %(self.settings.thumbnails)
 
-    def setting(self):
+    def galleriajs(self):
+        """ Load default gallery """
         if self.ptype != 'Link':
-            return """jQuery('%s').galleria({
-                       width: %s,
-                       height: %s,
-                       autoplay: %s,
-                       showInfo: %s,
-                       imagePosition: '%s',
-                       transition: '%s',
-                       transitionSpeed: %s,
-                       lightbox: %s,
-                       showCounter: %s,
-                       showImagenav: %s,
-                       swipe: %s,
-                       dummy: '%s',
-                       thumbnails: %s,
-                       debug: %s,}) """ %(str(self.settings.selector),
-                                         int(self.settings.gallery_width),
-                                         int(self.settings.gallery_height),
-                                         str(self.settings.autoplay).lower(),
-                                         str(self.settings.showInf).lower(),
-                                         str(self.settings.imagePosition),
-                                         self.settings.transitions,
-                                         int(self.settings.transitionSpeed),
-                                         str(self.settings.lightbox).lower(),
-                                         str(self.settings.showCounting).lower(),
-                                         str(self.settings.showimagenav).lower(),
-                                         str(self.settings.swipe).lower(),
-                                         str(self.portal_url() + '/++resource++galleria-images/dummy.png'),
-                                         self.getThumbnails(),
-                                         str(self.settings.debug).lower())
-        elif self.ptype == 'Link':
-            return """ """
+            return """jQuery(document).ready(function(){
+                         jQuery('%s').galleria({
+                             width: %s,
+                             height: %s,
+                             autoplay: %s,
+                             showInfo: %s,
+                             imagePosition: '%s',
+                             transition: '%s',
+                             transitionSpeed: %s,
+                             lightbox: %s,
+                             showCounter: %s,
+                             showImagenav: %s,
+                             swipe: %s,
+                             dummy: '%s',
+                             thumbnails: %s,
+                             debug: %s,}) }) """ %(str(self.settings.selector),
+                                              int(self.settings.gallery_width),
+                                              int(self.settings.gallery_height),
+                                              str(self.settings.autoplay).lower(),
+                                              str(self.settings.showInf).lower(),
+                                              str(self.settings.imagePosition),
+                                              self.settings.transitions,
+                                              int(self.settings.transitionSpeed),
+                                              str(self.settings.lightbox).lower(),
+                                              str(self.settings.showCounting).lower(),
+                                              str(self.settings.showimagenav).lower(),
+                                              str(self.settings.swipe).lower(),
+                                              str(self.portal_url() + '/++resource++galleria-images/dummy.png'),
+                                              self.getThumbnails(),
+                                              str(self.settings.debug).lower())
+
+        elif self.ptype == 'Link' and self.flickrplugin.flickr:
+            """ Load Flickr plugin """
+            return """jQuery(document).ready(function(){
+                          var flickr = new Galleria.Flickr();
+                          var elem = jQuery('%s');
+                          var set = '%s';
+
+                          flickr.setOptions({
+                              max: %s,
+                              description: %s,
+                          })
+
+                          flickr.set(set, function(data) {
+                             if(jQuery('.galleria-container notouch').length){
+                                 Galleria.get(0).load(data);
+                             } else{
+                                 elem.galleria({
+                                     width: %s,
+                                     height: %s,
+                                     autoplay: %s,
+                                     dataSource: data,
+                                 });
+
+                                 Galleria.get(0).load(data);
+                             }
+
+                          })
+                      }) """ %(str(self.settings.selector),
+                               str(self.galleria_id()),
+                               int(self.flickrplugin.flickr_max),
+                               str(self.flickrplugin.flickr_desc).lower(),
+                               int(self.settings.gallery_width),
+                               int(self.settings.gallery_height),
+                               str(self.settings.autoplay).lower())

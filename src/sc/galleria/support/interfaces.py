@@ -42,13 +42,6 @@ thumbnailsvoc = SimpleVocabulary(
      SimpleTerm(value='empty', title=_(u"Don't show thumbnails")),]
     )
 
-flickrthumbnailsvoc = SimpleVocabulary(
-    [SimpleTerm(value='small', title=_(u"square 75x75")),
-     SimpleTerm(value='thumb', title=_(u"100 on longest side")),
-     SimpleTerm(value='medium', title=_(u"640 on longest side (if available, or it will take the closest match)")),]
-    )
-
-
 class IGalleriaLayer(Interface):
     """
     Marker Default browser layer this product.
@@ -61,7 +54,10 @@ class IGalleria(Interface):
     def __init__(self, context, request,*args,**kwargs):
         """ """
 
-    def settings(self):
+    def galleriajs(self):
+        """ """
+
+    def getThumbnails(self):
         """ """
 
     def get_theme(self):
@@ -165,13 +161,7 @@ class IFlickrPlugin(Interface):
                              default=20,
                              required=True,)
 
-    flickr_thumbSize = schema.Choice(title=u"Thumbnail image",
-                               description=u"The size to fetch for the thumbnail image.",
-                               default=u'medium',
-                               vocabulary=flickrthumbnailsvoc,
-                               required=True,)
-
-    flickr_sort = schema.Bool(title=u"Show Description",
+    flickr_desc = schema.Bool(title=u"Show Description",
                                description=u"The plugin fetches the title per default. If you also wish to fetch the description, set this option to true.",
                                default=False)
 
@@ -191,7 +181,7 @@ class IHistoryPlugin(Interface):
 
     history = schema.Bool(title=u"Enable history plugin",
                         description=u"",
-                        default=True,)
+                        default=False,)
 
 class IGalleriaSettings(IGeneralSettings, IFlickrPlugin, IPicasaPlugin, IHistoryPlugin):
     """The form schema contains all settings."""
