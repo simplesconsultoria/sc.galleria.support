@@ -8,6 +8,10 @@
     <five:registerPackage package="." initialize=".initialize" />
     <i18n:registerTranslations directory="locales" />
 
+    <!-- Dependencies -->
+    <include package="plone.app.contentmenu" />
+    <include package="plone.app.registry"/>
+
     <genericsetup:registerProfile
         name="default"
         title="sc.galleria.support: Install"
