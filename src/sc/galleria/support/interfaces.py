@@ -1,9 +1,32 @@
 from zope.interface import Interface
 from zope import schema
 import os
-import glob
+
+from z3c.form import field
+from z3c.form import group
 
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
+
+import logging
+logger = logging.getLogger('sc.galleria.support')
+
+# dependencies
+# Thanks: collective.gallery
+try:
+    #plone4
+    from plone.app.folder.folder import IATUnifiedFolder as IFolder
+    from Products.ATContentTypes.interfaces.link import IATLink as ILink
+    from Products.ATContentTypes.interfaces.topic import IATTopic as ITopic
+    from Products.ATContentTypes.interfaces.image import IATImage as IImage
+    from Products.ZCatalog.interfaces import ICatalogBrain
+except ImportError, e:
+    logger.info('switch to plone3 %s'%e)
+    #plone3
+    from Products.ATContentTypes.interface import IATFolder as IFolder
+    from Products.ATContentTypes.interface import IATLink   as ILink
+    from Products.ATContentTypes.interface import IATTopic  as ITopic
+    from Products.ATContentTypes.interface import IATImage  as IImage
+
 from sc.galleria.support import MessageFactory as _
 
 transitionsvoc = SimpleVocabulary(
@@ -19,13 +42,6 @@ thumbnailsvoc = SimpleVocabulary(
      SimpleTerm(value='empty', title=_(u"Don't show thumbnails")),]
     )
 
-
-pluginsdir = os.path.join(os.path.dirname(__file__).strip('interfaces'),'browser','plugins')
-filesplugins = glob.glob(os.path.join(os.path.dirname(__file__).strip('interfaces'),'browser','plugins','*'))
-import pdb; pdb.set_trace()
-
-
-
 class IGalleriaLayer(Interface):
     """
     Marker Default browser layer this product.
@@ -38,7 +54,10 @@ class IGalleria(Interface):
     def __init__(self, context, request,*args,**kwargs):
         """ """
 
-    def settings(self):
+    def galleriajs(self):
+        """ """
+
+    def getThumbnails(self):
         """ """
 
     def get_theme(self):
@@ -47,11 +66,18 @@ class IGalleria(Interface):
     def portal_url(self):
         """ """
 
+    def galleria_flickrid(self):
+        """ """
 
-class IGalleriaSettings(Interface):
+    def galleria_picasauserandid(self):
+        """ """
+
+class IGeneralSettings(Interface):
+    """Some general settings.
+       These fields will appear on the 'Default' tab.
+       Option informations: http://galleria.io/docs/1.2/options/
     """
-     Option informations: http://galleria.io/docs/1.2/options/
-    """
+
     autoplay = schema.Bool(title=u"Auto Play.",
                            description=u"Sets Galleria to play slidehow when initialized.",
                            default=True,
@@ -123,3 +149,63 @@ class IGalleriaSettings(Interface):
                         description=u"Set this to false to prevent debug messages.",
                         default=False,
                         required=True,)
+
+class IFlickrPlugin(Interface):
+    """ Enable/Disable Flickr plugin
+        http://galleria.io/docs/1.2/plugins/flickr/
+    """
+
+    flickr = schema.Bool(title=u"Enable flickr plugin",
+                        description=u"",
+                        default=False,)
+
+    flickr_max = schema.Int(title=u"Maximum number of photos.",
+                             description=u"Maximum number of photos to return (maximum value 100).",
+                             default=20,
+                             required=True,)
+
+    flickr_desc = schema.Bool(title=u"Show Description",
+                               description=u"The plugin fetches the title per default. If you also wish to fetch the description, set this option to true.",
+                               default=False)
+
+class IPicasaPlugin(Interface):
+    """ Enable/Disable Picasa plugin
+        http://galleria.io/docs/1.2/plugins/picasa/
+    """
+
+    picasa = schema.Bool(title=u"Enable picasa plugin",
+                        description=u"",
+                        default=False,)
+
+    picasa_max = schema.Int(title=u"Maximum number of photos.",
+                             description=u"Maximum number of photos to return (maximum value 100).",
+                             default=20,
+                             required=True,)
+
+    picasa_desc = schema.Bool(title=u"Show Description",
+                               description=u"The plugin fetches the title per default. If you also wish to fetch the description, set this option to true.",
+                               default=False)
+
+class IHistoryPlugin(Interface):
+    """ Enable/Disable History plugin
+        http://galleria.io/docs/1.2/plugins/picasa/
+    """
+
+    history = schema.Bool(title=u"Enable history plugin",
+                        description=u"",
+                        default=False,)
+
+class IGalleriaSettings(IGeneralSettings, IFlickrPlugin, IPicasaPlugin, IHistoryPlugin):
+    """The form schema contains all settings."""
+
+class FormGroup1(group.Group):
+    label = u"Flickr Plugin"
+    fields = field.Fields(IFlickrPlugin)
+
+class FormGroup2(group.Group):
+    label = u"Picasa Plugin"
+    fields = field.Fields(IPicasaPlugin)
+
+class FormGroup3(group.Group):
+    label = u"History Plugin"
+    fields = field.Fields(IHistoryPlugin)

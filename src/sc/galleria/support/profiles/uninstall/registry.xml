@@ -1,4 +1,7 @@
 <?xml version="1.0"?>
 <registry>
- <records interface="sc.galleria.support.interfaces.IGalleriaSettings" remove="True"/>
+ <records interface="sc.galleria.support.interfaces.IGeneralSettings" remove="True"/>
+ <records interface="sc.galleria.support.interfaces.IFlickrPlugin" remove="True"/>
+ <records interface="sc.galleria.support.interfaces.IPicasaPlugin" remove="True"/>
+ <records interface="sc.galleria.support.interfaces.IHistoryPlugin" remove="True"/>
 </registry>

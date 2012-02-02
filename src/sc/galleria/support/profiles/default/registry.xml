@@ -1,4 +1,7 @@
 <?xml version="1.0"?>
 <registry>
- <records interface="sc.galleria.support.interfaces.IGalleriaSettings" />
+ <records interface="sc.galleria.support.interfaces.IGeneralSettings" />
+ <records interface="sc.galleria.support.interfaces.IFlickrPlugin" />
+ <records interface="sc.galleria.support.interfaces.IPicasaPlugin" />
+ <records interface="sc.galleria.support.interfaces.IHistoryPlugin" />
 </registry>

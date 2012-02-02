@@ -28,7 +28,7 @@ To enable this product, on a buildout based installation:
 
         [buildout]
 
-        #If Plone 3.3.x, uncomment this line
+        #If Plone 3.3.6, uncomment this line
         #extends =
         #    http://good-py.appspot.com/release/plone.app.registry/1.0b2?plone=3.3.6
 
