@@ -112,14 +112,29 @@ class Galleria(BrowserView):
         self.picasaplugin = self.registry.forInterface(IPicasaPlugin)
         self.historyplugin = self.registry.forInterface(IHistoryPlugin)
 
-    def galleria_id(self):
+    def galleria_picasauserandid(self):
+        if self.ptype == 'Link':
+            id_list = self.context.remote_url().split('/')
+            try:
+               if len(id_list) == 5 and id_list[2].find('picasaweb') >=0:
+                   galluserid,galleriaid = id_list[-2], id_list[-1]
+               elif len(id_list) == 6 and id_list[2].find('picasaweb') >=0:
+                   galluserid,galleriaid = id_list[-3], id_list[-2]
+               else:
+                    galluserid,galleriaid = (None,None)
+            except:
+                    galluserid,galleriaid = (None,None)
+
+            return (galluserid,galleriaid)
+
+    def galleria_flickrid(self):
         if self.ptype == 'Link':
             positionsets = int(str(self.context.remote_url()).find('sets'))
             id_list = self.context.remote_url()[positionsets:].split('/')
             try:
-               if len(id_list) == 3:
+               if len(id_list) == 3 and id_list[2].find('flickr'):
                    galleriaid = id_list[-2]
-               elif len(id_list) == 2:
+               elif len(id_list) == 2 and id_list[2].find('flickr'):
                    galleriaid = id_list[-1]
                else:
                     galleriaid = None
@@ -173,7 +188,7 @@ class Galleria(BrowserView):
                                               self.getThumbnails(),
                                               str(self.settings.debug).lower())
 
-        elif self.ptype == 'Link' and self.flickrplugin.flickr and self.galleria_id():
+        elif self.ptype == 'Link' and self.flickrplugin.flickr and self.galleria_flickrid():
             """ Load Flickr plugin """
             return """jQuery(document).ready(function(){
                           var flickr = new Galleria.Flickr();
@@ -201,9 +216,43 @@ class Galleria(BrowserView):
 
                           })
                       }) """ %(str(self.settings.selector),
-                               str(self.galleria_id()),
+                               str(self.galleria_flickrid()),
                                int(self.flickrplugin.flickr_max),
                                str(self.flickrplugin.flickr_desc).lower(),
+                               int(self.settings.gallery_width),
+                               int(self.settings.gallery_height),
+                               str(self.settings.autoplay).lower())
+        elif self.ptype == 'Link' and self.picasaplugin.picasa and self.galleria_picasauserandid()[0]:
+            """ Load Picasa plugin """
+            return """jQuery(document).ready(function(){
+                          var picasa = new Galleria.Picasa();
+                          var elem = jQuery('%s');
+
+                          picasa.setOptions({
+                              max: %s,
+                              description: %s,
+                          })
+
+                          picasa.useralbum( '%s', '%s',function(data) {
+                             if(jQuery('.galleria-container notouch').length){
+                                 Galleria.get(0).load(data);
+                             } else{
+                                 elem.galleria({
+                                     width: %s,
+                                     height: %s,
+                                     autoplay: %s,
+                                     dataSource: data,
+                                 });
+
+                                 Galleria.get(0).load(data);
+                             }
+
+                          })
+                      }) """ %(str(self.settings.selector),
+                               int(self.picasaplugin.picasa_max),
+                               str(self.picasaplugin.picasa_desc).lower(),
+                               str(self.galleria_picasauserandid()[0]),
+                               str(self.galleria_picasauserandid()[1]),
                                int(self.settings.gallery_width),
                                int(self.settings.gallery_height),
                                str(self.settings.autoplay).lower())

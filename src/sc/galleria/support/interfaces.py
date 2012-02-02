@@ -66,7 +66,10 @@ class IGalleria(Interface):
     def portal_url(self):
         """ """
 
-    def galleria_id(self):
+    def galleria_flickrid(self):
+        """ """
+
+    def galleria_picasauserandid(self):
         """ """
 
 class IGeneralSettings(Interface):
@@ -173,6 +176,15 @@ class IPicasaPlugin(Interface):
     picasa = schema.Bool(title=u"Enable picasa plugin",
                         description=u"",
                         default=False,)
+
+    picasa_max = schema.Int(title=u"Maximum number of photos.",
+                             description=u"Maximum number of photos to return (maximum value 100).",
+                             default=20,
+                             required=True,)
+
+    picasa_desc = schema.Bool(title=u"Show Description",
+                               description=u"The plugin fetches the title per default. If you also wish to fetch the description, set this option to true.",
+                               default=False)
 
 class IHistoryPlugin(Interface):
     """ Enable/Disable History plugin
