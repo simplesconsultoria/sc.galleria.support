@@ -1,8 +1,6 @@
 TODO
 ----
 
-* Enable plugins support
-    * Plugin configurations in Control Panel
 * Translations
 * Documentation
 * Tests
