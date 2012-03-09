@@ -1,0 +1,8 @@
+Contributors
+------------
+
+* Cleber J. Santos (cleber@simplesconsultoria.com.br)
+
+* Héctor Velarde (hector.velarde@gmail.com)
+
+Development sponsored by Simples Consultoria.
