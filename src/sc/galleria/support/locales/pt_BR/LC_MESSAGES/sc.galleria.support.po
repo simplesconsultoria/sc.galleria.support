@@ -1,0 +1,53 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"PO-Revision-Date: 2012-03-09 17:03-0300\n"
+"Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: sc/galleria/support/interfaces.py:42
+msgid "Don't show thumbnails"
+msgstr "Não mostrar thumbnails"
+
+#: sc/galleria/support/interfaces.py:33
+msgid "Fade"
+msgstr "Desvanecer"
+
+#: sc/galleria/support/interfaces.py:37
+msgid "FadeSlide"
+msgstr "Flash"
+
+#: sc/galleria/support/interfaces.py:34
+msgid "Flash"
+msgstr "Flash"
+
+#: sc/galleria/support/profiles/default/actionicons.xml
+#: sc/galleria/support/profiles/default/controlpanel.xml
+msgid "Galleria"
+msgstr "Galleria"
+
+#: sc/galleria/support/browser/galleria.py:40
+msgid "Galleria settings"
+msgstr "Configurações da Galleria"
+
+#: sc/galleria/support/interfaces.py:35
+msgid "Pulse"
+msgstr "Pulse"
+
+#: sc/galleria/support/interfaces.py:41
+msgid "Show thumbnails"
+msgstr "Mostrar thumbnails"
+
+#: sc/galleria/support/interfaces.py:36
+msgid "Slide"
+msgstr "Deslizar"
+

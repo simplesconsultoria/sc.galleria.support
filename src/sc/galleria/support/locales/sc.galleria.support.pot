@@ -1,0 +1,60 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2012-03-09 19:08+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: sc.galleria.support\n"
+
+#: sc/galleria/support/browser/galleria.py:41
+msgid ""
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:42
+msgid "Don't show thumbnails"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:33
+msgid "Fade"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:37
+msgid "FadeSlide"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:34
+msgid "Flash"
+msgstr ""
+
+#: sc/galleria/support/profiles/default/actionicons.xml
+#: sc/galleria/support/profiles/default/controlpanel.xml
+msgid "Galleria"
+msgstr ""
+
+#: sc/galleria/support/browser/galleria.py:40
+msgid "Galleria settings"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:35
+msgid "Pulse"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:41
+msgid "Show thumbnails"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:36
+msgid "Slide"
+msgstr ""
+
