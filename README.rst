@@ -1,6 +1,6 @@
-===============
+===================
 sc.galleria.support
-===============
+===================
 
 .. contents:: Table of Contents
    :depth: 2
@@ -63,7 +63,7 @@ In 'Site setup' below on 'Add-on Configuration' click on 'Galleria' option. In
 this section you can see several options wich are categorized in different
 types. Each type is visualized in a tab. You have options for 'Default',
 'Flickr Plugin', 'Picasa Plugin' and 'History Plugin'. To know how to setup this
-preferences in a way to go better to your needs see Funcionality_ section.
+preferences in a way to go better to your needs see `Functionality`_ section.
 
 Step 3: Seeing it in action
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -76,8 +76,8 @@ For the case that you want to fetch pictures located in flickr or picasa see
 `Flickr & Picasa Plugins`_. To activate Galleria in the Link just follow
 the same procedure with the display action.
 
-Funcionality
-------------
+Functionality
+--------------
 
 The next explanations about different options must be applied in the control panel of Galleria add-on. See `Step 2: Setting preferences`_.
 
@@ -172,7 +172,7 @@ Browser support includes Firefox 2+, IE6+, Opera and Chrome.
 You enable it with the **Enable history plugin** option.
 
 Uninstall
--------------
+---------
 
 Go to the 'Site Setup' page in the Plone interface and click on the
 'Add/Remove Products' link.
