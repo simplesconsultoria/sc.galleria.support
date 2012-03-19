@@ -83,6 +83,11 @@ class IGeneralSettings(Interface):
                            default=True,
                            required=True,)
 
+    gallery_wait = schema.Int(title=u"Gallery Wait",
+                              description=u"Sets how long Galleria should wait when trying to extract measurements.",
+                              default=5000,
+                              required=True,)
+
     showInf = schema.Bool(title=u"Show informations",
                           description=u"Toggles the caption.",
                           default=True,

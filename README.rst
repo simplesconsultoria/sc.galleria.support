@@ -124,6 +124,9 @@ galleria will look like.
 **Transition Speed:**
     The milliseconds used in the animation when applying the transition. The higher number, the slower transition.
 
+**Wait:**
+    Sets how long Galleria should wait when trying to extract measurements, before throwing an error. Default is 5000
+
 **Show image navigation:**
     Displays the image navigation (next/prev arrows).
 
