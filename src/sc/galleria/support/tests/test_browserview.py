@@ -61,6 +61,7 @@ class BrowserViewTest(unittest.TestCase):
             "height: ": str(IGeneralSettings.get('gallery_height').default),
             "autoplay: ":
                     str(IGeneralSettings.get('autoplay').default).lower(),
+            "wait: ": str(IGeneralSettings.get('gallery_wait').default),
             "showInfo: ": str(IGeneralSettings.get('showInf').default).lower(),
             "imagePosition: ": "'%s'" %
                     str(IGeneralSettings.get('imagePosition').default),
