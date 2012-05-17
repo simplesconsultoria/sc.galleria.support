@@ -2630,6 +2630,9 @@ Galleria.prototype = {
                 // add a new Picture instance
                 thumb = new Galleria.Picture(i);
 
+                // Fix image thumb for Plone
+                data.thumb = data.thumb.replace(/image_large/,'image_thumb');
+
                 // get source from thumb or image
                 src = data.thumb || data.image;
 
