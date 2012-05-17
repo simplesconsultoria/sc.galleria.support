@@ -35,7 +35,7 @@
                         <a tal:attributes="href string:${image/absolute_url}/view;
                                            title image/Description">
                             <span class="photoAlbumEntryWrapper">
-                            <img src="" alt="" tal:replace="structure python:image.tag(scale='thumb', title=image.Description())" />
+                            <img src="" alt="" tal:replace="structure python:image.tag(scale='large', title=image.Description())" />
                             </span>
                     <span class="photoAlbumEntryTitle"
                           tal:content="image/pretty_title_or_id"
@@ -58,7 +58,7 @@
                             <span class="photoAlbumEntryWrapper">
                                 <img src="" alt=""
                                      tal:condition="number_of_images"
-                                     tal:replace="structure python:random_image.tag(scale='thumb', title=album.Description)" />
+                                     tal:replace="structure python:random_image.tag(scale='large', title=album.Description)" />
                             </span>
                             <span class="photoAlbumEntryTitle">
                                <tal:title content="album/pretty_title_or_id"
