@@ -173,6 +173,7 @@ class Galleria(BrowserView):
                              swipe: %s,
                              dummy: '%s',
                              thumbnails: %s,
+                             thumbQuality: 'false',
                              debug: %s,}) }) """ %(str(self.settings.selector),
                                               int(self.settings.gallery_width),
                                               int(self.settings.gallery_height),
