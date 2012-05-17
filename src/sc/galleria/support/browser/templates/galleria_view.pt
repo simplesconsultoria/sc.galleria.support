@@ -99,7 +99,7 @@
 
        <script type="text/javascript">
          jQuery(document).ready(function(){
-             Galleria.loadTheme("++resource++galleria-themes/classic/galleria.classic.js");
+             Galleria.loadTheme("++resource++galleria-themes/classic/galleria.classic.min.js");
          })
        </script>
 
