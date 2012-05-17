@@ -140,7 +140,6 @@ class Galleria(BrowserView):
                 return cleaned_url
             elif plname == 'picasaweb':
                 if urllink['netloc'].find(plname) >= 0:
-                    import pdb; pdb.set_trace()
                     id_list = urllink['path'].split('/')
                     try:
                         if len(id_list) == 5:
