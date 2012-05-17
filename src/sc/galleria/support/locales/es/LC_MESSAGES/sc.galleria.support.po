@@ -14,9 +14,53 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+#: sc/galleria/support/interfaces.py:81
+msgid "Auto Play."
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:128
+msgid "Defines the speed of the transition."
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:122
+msgid "Defines what transition to use."
+msgstr ""
+
 #: sc/galleria/support/interfaces.py:42
 msgid "Don't show thumbnails"
 msgstr "No mostrar thumbnails"
+
+#: sc/galleria/support/interfaces.py:143
+msgid "Eg. '#content-core' or '#content' or '.galleria'. Do not change if you do not know what I mean."
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:107
+msgid "Eg. 'top right' or '20% 100%'"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:153
+msgid "Enable debug mode"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:163
+msgid "Enable flickr plugin"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:199
+msgid "Enable history plugin"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:111
+msgid "Enable lightbox"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:181
+msgid "Enable picasa plugin"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:138
+msgid "Enables a swipe movement for flicking through images on touch devices."
+msgstr ""
 
 #: sc/galleria/support/interfaces.py:33
 msgid "Fade"
@@ -30,6 +74,10 @@ msgstr "Flash"
 msgid "Flash"
 msgstr "Flash"
 
+#: sc/galleria/support/interfaces.py:207
+msgid "Flickr Plugin"
+msgstr ""
+
 #: sc/galleria/support/profiles/default/actionicons.xml
 #: sc/galleria/support/profiles/default/controlpanel.xml
 msgid "Galleria"
@@ -39,9 +87,85 @@ msgstr "Galleria"
 msgid "Galleria settings"
 msgstr "Configuraciones de Galleria"
 
+#: sc/galleria/support/interfaces.py:86
+msgid "Gallery Wait"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:101
+msgid "Gallery height"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:96
+msgid "Gallery width"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:215
+msgid "History Plugin"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:106
+msgid "Image css position"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:102
+msgid "Manually set a gallery height."
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:97
+msgid "Manually set a gallery width."
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:168
+msgid "Maximum number of photos to return (maximum value 100)."
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:167
+msgid "Maximum number of photos."
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:211
+msgid "Picasa Plugin"
+msgstr ""
+
 #: sc/galleria/support/interfaces.py:35
 msgid "Pulse"
 msgstr "Pulse"
+
+#: sc/galleria/support/interfaces.py:142
+msgid "Selector jQuery"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:154
+msgid "Set this to false to prevent debug messages."
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:82
+msgid "Sets Galleria to play slidehow when initialized."
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:87
+msgid "Sets how long Galleria should wait when trying to extract measurements."
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:148
+msgid "Sets the creation of thumbnails"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:172
+msgid "Show Description"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:147
+msgid "Show Thumbnails"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:116
+msgid "Show counting"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:91
+msgid "Show informations"
+msgstr ""
 
 #: sc/galleria/support/interfaces.py:41
 msgid "Show thumbnails"
@@ -50,4 +174,48 @@ msgstr "Mostrar thumbnails"
 #: sc/galleria/support/interfaces.py:36
 msgid "Slide"
 msgstr "Deslizar"
+
+#: sc/galleria/support/interfaces.py:173
+msgid "The plugin fetches the title per default. If you also wish to fetch the description, set this option to true."
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:92
+msgid "Toggles the caption."
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:117
+msgid "Toggles the counter."
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:127
+msgid "Transition Speed"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:121
+msgid "Transitions"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:108
+msgid "center"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:123
+msgid "fade"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:149
+msgid "show"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:132
+msgid "show image navigation"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:137
+msgid "swipe"
+msgstr ""
+
+#: sc/galleria/support/interfaces.py:133
+msgid "toggles the image navigation arrows."
+msgstr ""
 

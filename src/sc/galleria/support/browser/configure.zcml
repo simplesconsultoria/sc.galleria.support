@@ -53,6 +53,7 @@
     permission="zope.Public"
     template="templates/galleria_view.pt"
     layer="sc.galleria.support.interfaces.IGalleriaLayer"
+    i18n:attributes="title"
     />
 
   <browser:page
@@ -64,6 +65,7 @@
     permission="zope.Public"
     template="templates/galleria_view.pt"
     layer="sc.galleria.support.interfaces.IGalleriaLayer"
+    i18n:attributes="title"
     />
 
   <browser:page
@@ -75,6 +77,7 @@
     permission="zope.Public"
     template="templates/galleria_view.pt"
     layer="sc.galleria.support.interfaces.IGalleriaLayer"
+    i18n:attributes="title"
     />
 
 </configure>

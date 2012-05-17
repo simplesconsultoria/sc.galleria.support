@@ -78,80 +78,80 @@ class IGeneralSettings(Interface):
        Option informations: http://galleria.io/docs/1.2/options/
     """
 
-    autoplay = schema.Bool(title=u"Auto Play.",
-                           description=u"Sets Galleria to play slidehow when initialized.",
+    autoplay = schema.Bool(title=_(u"Auto Play."),
+                           description=_(u"Sets Galleria to play slidehow when initialized."),
                            default=True,
                            required=True,)
 
-    gallery_wait = schema.Int(title=u"Gallery Wait",
-                              description=u"Sets how long Galleria should wait when trying to extract measurements.",
+    gallery_wait = schema.Int(title=_(u"Gallery Wait"),
+                              description=_(u"Sets how long Galleria should wait when trying to extract measurements."),
                               default=5000,
                               required=True,)
 
-    showInf = schema.Bool(title=u"Show informations",
-                          description=u"Toggles the caption.",
+    showInf = schema.Bool(title=_(u"Show informations"),
+                          description=_(u"Toggles the caption."),
                           default=True,
                           required=True,)
 
-    gallery_width = schema.Int(title=u"Gallery width",
-                             description=u"Manually set a gallery width.",
+    gallery_width = schema.Int(title=_(u"Gallery width"),
+                             description=_(u"Manually set a gallery width."),
                              default=500,
                              required=True,)
 
-    gallery_height = schema.Int(title=u"Gallery height",
-                              description=u"Manually set a gallery height.",
+    gallery_height = schema.Int(title=_(u"Gallery height"),
+                              description=_(u"Manually set a gallery height."),
                               default=500,
                               required=True,)
 
-    imagePosition = schema.TextLine(title=u"Image css position",
-                                    description=u"Eg. 'top right' or '20% 100%'",
-                                    default=u'center',
+    imagePosition = schema.TextLine(title=_(u"Image css position"),
+                                    description=_(u"Eg. 'top right' or '20% 100%'"),
+                                    default=_(u'center'),
                                     required=True,)
 
-    lightbox = schema.Bool(title=u"Enable lightbox",
+    lightbox = schema.Bool(title=_(u"Enable lightbox"),
                                default=False,
                                required=True,)
 
 
-    showCounting = schema.Bool(title=u"Show counting",
-                               description=u"Toggles the counter.",
+    showCounting = schema.Bool(title=_(u"Show counting"),
+                               description=_(u"Toggles the counter."),
                                default=True,
                                required=True,)
 
-    transitions = schema.Choice(title=u"Transitions",
-                          description=u"Defines what transition to use.",
-                          default=u'fade',
+    transitions = schema.Choice(title=_(u"Transitions"),
+                          description=_(u"Defines what transition to use."),
+                          default=_(u'fade'),
                           vocabulary=transitionsvoc,
                           required=True,)
 
-    transitionSpeed = schema.Int(title=u"Transition Speed", 
-                                 description=u"Defines the speed of the transition.",
+    transitionSpeed = schema.Int(title=_(u"Transition Speed"),
+                                 description=_(u"Defines the speed of the transition."),
                                  default=400,
                                  required=True,)
 
-    showimagenav = schema.Bool(title=u"show image navigation",
-                               description=u"toggles the image navigation arrows.",
+    showimagenav = schema.Bool(title=_(u"show image navigation"),
+                               description=_(u"toggles the image navigation arrows."),
                                default=True,
                                required=True,)
 
-    swipe = schema.Bool(title=u"swipe",
-                               description=u"Enables a swipe movement for flicking through images on touch devices.",
-                               default=True,
+    swipe = schema.Bool(title=_(u"swipe"),
+                        description=_(u"Enables a swipe movement for flicking through images on touch devices."),
+                        default=True,
+                        required=True,)
+
+    selector = schema.TextLine(title=_(u"Selector jQuery"),
+                               description=_(u"Eg. '#content-core' or '#content' or '.galleria'. Do not change if you do not know what I mean."),
+                               default=u"#content",
                                required=True,)
 
-    selector = schema.TextLine(title=u"Selector jQuery",
-                                    description=u"Eg. '#content-core' or '#content' or '.galleria'. Do not change if you do not know what I mean.",
-                                    default=u"#content",
-                                    required=True,)
-
-    thumbnails = schema.Choice(title=u"Show Thumbnails",
-                               description=u"Sets the creation of thumbnails",
-                               default=u'show',
+    thumbnails = schema.Choice(title=_(u"Show Thumbnails"),
+                               description=_(u"Sets the creation of thumbnails"),
+                               default=_(u'show'),
                                vocabulary=thumbnailsvoc,
                                required=True,)
 
-    debug = schema.Bool(title=u"Enable debug mode",
-                        description=u"Set this to false to prevent debug messages.",
+    debug = schema.Bool(title=_(u"Enable debug mode"),
+                        description=_(u"Set this to false to prevent debug messages."),
                         default=False,
                         required=True,)
 
@@ -160,57 +160,57 @@ class IFlickrPlugin(Interface):
         http://galleria.io/docs/1.2/plugins/flickr/
     """
 
-    flickr = schema.Bool(title=u"Enable flickr plugin",
-                        description=u"",
+    flickr = schema.Bool(title=_(u"Enable flickr plugin"),
+                        description=_(u""),
                         default=False,)
 
-    flickr_max = schema.Int(title=u"Maximum number of photos.",
-                             description=u"Maximum number of photos to return (maximum value 100).",
-                             default=20,
-                             required=True,)
+    flickr_max = schema.Int(title=_(u"Maximum number of photos."),
+                            description=_(u"Maximum number of photos to return (maximum value 100)."),
+                            default=20,
+                            required=True,)
 
-    flickr_desc = schema.Bool(title=u"Show Description",
-                               description=u"The plugin fetches the title per default. If you also wish to fetch the description, set this option to true.",
-                               default=False)
+    flickr_desc = schema.Bool(title=_(u"Show Description"),
+                              description=_(u"The plugin fetches the title per default. If you also wish to fetch the description, set this option to true."),
+                              default=False)
 
 class IPicasaPlugin(Interface):
     """ Enable/Disable Picasa plugin
         http://galleria.io/docs/1.2/plugins/picasa/
     """
 
-    picasa = schema.Bool(title=u"Enable picasa plugin",
-                        description=u"",
+    picasa = schema.Bool(title=_(u"Enable picasa plugin"),
+                        description=_(u""),
                         default=False,)
 
-    picasa_max = schema.Int(title=u"Maximum number of photos.",
-                             description=u"Maximum number of photos to return (maximum value 100).",
-                             default=20,
-                             required=True,)
+    picasa_max = schema.Int(title=_(u"Maximum number of photos."),
+                            description=_(u"Maximum number of photos to return (maximum value 100)."),
+                            default=20,
+                            required=True,)
 
-    picasa_desc = schema.Bool(title=u"Show Description",
-                               description=u"The plugin fetches the title per default. If you also wish to fetch the description, set this option to true.",
-                               default=False)
+    picasa_desc = schema.Bool(title=_(u"Show Description"),
+                              description=_(u"The plugin fetches the title per default. If you also wish to fetch the description, set this option to true."),
+                              default=False)
 
 class IHistoryPlugin(Interface):
     """ Enable/Disable History plugin
         http://galleria.io/docs/1.2/plugins/picasa/
     """
 
-    history = schema.Bool(title=u"Enable history plugin",
-                        description=u"",
-                        default=False,)
+    history = schema.Bool(title=_(u"Enable history plugin"),
+                          description=_(u""),
+                          default=False,)
 
 class IGalleriaSettings(IGeneralSettings, IFlickrPlugin, IPicasaPlugin, IHistoryPlugin):
     """The form schema contains all settings."""
 
 class FormGroup1(group.Group):
-    label = u"Flickr Plugin"
+    label = _(u"Flickr Plugin")
     fields = field.Fields(IFlickrPlugin)
 
 class FormGroup2(group.Group):
-    label = u"Picasa Plugin"
+    label = _(u"Picasa Plugin")
     fields = field.Fields(IPicasaPlugin)
 
 class FormGroup3(group.Group):
-    label = u"History Plugin"
+    label = _(u"History Plugin")
     fields = field.Fields(IHistoryPlugin)
