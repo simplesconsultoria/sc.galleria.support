@@ -3,8 +3,10 @@ Contributors
 
 * Cleber J. Santos (cleber@simplesconsultoria.com.br)
 
-* Héctor Velarde (hector.velarde@gmail.com)
+* Héctor Velarde (hector@simplesconsultoria.com.br)
 
 * Gustavo Lepri (lepri@simplesconsultoria.com.br)
 
-Development sponsored by Simples Consultoria.
+* Aino (http://galleria.aino.se) - JavaScript galleria
+
+* Alejandro Pereira (alepereira86@gmail.com)

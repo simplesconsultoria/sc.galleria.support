@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <object name="portal_javascripts">
  <javascript 
-    id="++resource++galleria-scripts/galleria-1.2.6.min.js"
+    id="++resource++galleria-scripts/galleria-1.2.7.min.js"
     cacheable="True" compression="safe" cookable="True"/>
 </object>
