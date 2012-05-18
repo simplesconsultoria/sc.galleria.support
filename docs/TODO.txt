@@ -3,3 +3,4 @@ TODO
 
 * Translations
 * Topic template views
+* Support of installing new themes
