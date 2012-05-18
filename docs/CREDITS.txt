@@ -7,6 +7,7 @@ Contributors
 
 * Gustavo Lepri (lepri@simplesconsultoria.com.br)
 
+* Alejandro Pereira (alepereira86@gmail.com)
+
 * Aino (http://galleria.aino.se) - JavaScript galleria
 
-* Alejandro Pereira (alepereira86@gmail.com)
