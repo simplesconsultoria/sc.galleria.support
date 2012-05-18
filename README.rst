@@ -11,39 +11,6 @@ Overview
 
 **sc.galleria.support** is a Plone package (add-on) providing simple gallery integration for Plone.
 
-Requirements
-------------
-
-    - Plone 4.1.x (http://plone.org/products/plone)
-    - Plone 4.0.x (http://plone.org/products/plone)
-    - Plone 3.3.x (http://plone.org/products/plone)
-
-Installation
-------------
-
-To enable this product, on a buildout based installation:
-
-    1. Edit your buildout.cfg and add ``sc.galleria.support``
-       to the list of eggs to install ::
-
-        [buildout]
-
-        #If Plone 3.3.6, uncomment this line
-        #extends =
-        #    http://good-py.appspot.com/release/plone.app.registry/1.0b2?plone=3.3.6
-
-        ...
-        eggs =
-            sc.galleria.support
-
-
-
-.. note:: Since Plone 3.3 is not is necessary to explictly inform
-          plone.recipe.zope2instance recipe to install the ZCML slug
-
-After updating the configuration you need to run the ''bin/buildout'',
-which will take care of updating your system.
-
 Using in a Plone Site
 ----------------------
 
@@ -70,7 +37,9 @@ Step 3: Seeing it in action
 
 Galleria will be rendered through a set of the display action in a container
 content type. For example, if you have a folder named "My folder" and you are
-standing there, click on "Display" (you need permissions for the edit bar) and then in "Galleria". Of course, this will only have an effect if you have images inside that folder. If you do, you will see the images render with the Galleria plugin.
+standing there, click on "Display" (you need permissions for the edit bar) and then in "Galleria".
+Of course, this will only have an effect if you have images inside that folder. If you do, you will
+see the images render with the Galleria plugin.
 
 For the case that you want to fetch pictures located in flickr or picasa see
 `Flickr & Picasa Plugins`_. To activate Galleria in the Link just follow
@@ -79,7 +48,8 @@ the same procedure with the display action.
 Functionality
 --------------
 
-The next explanations about different options must be applied in the control panel of Galleria add-on. See `Step 2: Setting preferences`_.
+The next explanations about different options must be applied in the control panel of Galleria
+add-on. See `Step 2: Setting preferences`_.
 
 Default options
 ^^^^^^^^^^^^^^^
@@ -101,12 +71,15 @@ galleria will look like.
     You can use this option to set a gallery height manually. Default is 500 px.
 
 **Image css position:**
-    Positions the main image inside the stage container. Works like the CSS background-position property, f.ex ‘top right’ or ‘20% 100%’. You can use keywords, percents or pixels. The first value is the horizontal position and the second is the vertical.
+    Positions the main image inside the stage container. Works like the CSS background-position 
+    property, f.ex ‘top right’ or ‘20% 100%’. You can use keywords, percents or pixels. The first
+    value is the horizontal position and the second is the vertical.
 
      - Read more about positioning at http://www.w3.org/TR/REC-CSS1/#background-position
 
 **Enable lightbox:**
-    This option acts as a helper for attaching a lightbox when the user clicks on an image. If you have a link defined for the image, the link will take precedence.
+    This option acts as a helper for attaching a lightbox when the user clicks on an image. If you
+    have a link defined for the image, the link will take precedence.
 
 **Show counting:**
     Displays the counter.
@@ -140,7 +113,9 @@ galleria will look like.
     Sets the creation of thumbnails.
 
 **Enable debug mode:**
-    This option is for turning debug on/off. By default, Galleria displays errors by printing them out in the gallery container and sometimes throw exceptions. For deployment you can turn debug off to generate a more generic error message if a fatal error is raised.
+    This option is for turning debug on/off. By default, Galleria displays errors by printing them out in the
+    gallery container and sometimes throw exceptions. For deployment you can turn debug off to generate a more generic
+    error message if a fatal error is raised.
 
 
 YouTube, Vimeo & DailyMotion supported
@@ -186,15 +161,3 @@ gallery (index starts at 0).
 Browser support includes Firefox 2+, IE6+, Ipad, Opera and Chrome.
 
 You enable it with the **Enable history plugin** option.
-
-Uninstall
----------
-
-Go to the 'Site Setup' page in the Plone interface and click on the
-'Add/Remove Products' link.
-
-Choose the product **sc.galleria.support**, which should be under *Activated
-add-ons*, (check checkbox at its left side) and click the 'Deactivate' button.
-
-.. note:: You may have to empty your browser cache and save your resource
-          registries in order to see the effects of the product installation.
