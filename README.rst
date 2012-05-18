@@ -142,6 +142,19 @@ galleria will look like.
 **Enable debug mode:**
     This option is for turning debug on/off. By default, Galleria displays errors by printing them out in the gallery container and sometimes throw exceptions. For deployment you can turn debug off to generate a more generic error message if a fatal error is raised.
 
+
+YouTube, Vimeo & DailyMotion support
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To use this supports you have to create a 'Link' content type and in the 'url'
+field set the movie url.
+
+ - **YouTube:** Sets options for the YouTube player.
+
+ - **Vimeo:** Sets options for the Vimeo player.
+
+ - **DailyMotion** Adds player options for the Daliymotion video player.
+
 Flickr & Picasa Plugins
 ^^^^^^^^^^^^^^^^^^^^^^^
 
