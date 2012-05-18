@@ -1,7 +1,7 @@
 Changelog
 ----------
 
-1.0dev (unreleased)
+1.0b1 (2012-05-18)
 ^^^^^^^^^^^^^^^^^^^
 
  *  Package created using templer [cleberjsantos]
