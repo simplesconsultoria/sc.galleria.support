@@ -3147,7 +3147,6 @@ Galleria.prototype = {
 
         // check if the data is an array already
         if ( source.constructor === Array ) {
-            console.log(Galleria);
             if ( this.validate( source ) ) {
                 this._data = source;
                 this._parseData().trigger( Galleria.DATA );
