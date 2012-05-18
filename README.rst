@@ -143,8 +143,8 @@ galleria will look like.
     This option is for turning debug on/off. By default, Galleria displays errors by printing them out in the gallery container and sometimes throw exceptions. For deployment you can turn debug off to generate a more generic error message if a fatal error is raised.
 
 
-YouTube, Vimeo & DailyMotion support
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+YouTube, Vimeo & DailyMotion supported
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To use this supports you have to create a 'Link' content type and in the 'url'
 field set the movie url.
@@ -183,7 +183,7 @@ button. It also makes permalinks possible by simply bookmarking f.ex
 http://mygalleria.com/#/4 and the user will be shown the 5th image in the
 gallery (index starts at 0).
 
-Browser support includes Firefox 2+, IE6+, Opera and Chrome.
+Browser support includes Firefox 2+, IE6+, Ipad, Opera and Chrome.
 
 You enable it with the **Enable history plugin** option.
 
