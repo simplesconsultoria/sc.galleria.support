@@ -92,10 +92,12 @@
     <metal:subtopics use-macro="here/atct_topic_view/macros/folderlisting_macro" />
 
     <metal:galleriaslotjs define-slot="galleria_js">
+        <tal:valmovies tal:condition="not: view/isVideo">
+            <script tal:condition="view/historyplugin/history" src="++resource++galleria-plugins/historyplugin/galleria.history.min.js"></script>
+            <script tal:condition="view/flickrplugin/flickr" src="++resource++galleria-plugins/flickr/galleria.flickr.min.js"></script>
+            <script tal:condition="view/picasaplugin/picasa" src="++resource++galleria-plugins/picasa/galleria.picasa.min.js"></script>
+        </tal:valmovies>
 
-       <script tal:condition="view/historyplugin/history" src="++resource++galleria-plugins/historyplugin/galleria.history.min.js"></script>
-       <script tal:condition="view/flickrplugin/flickr" src="++resource++galleria-plugins/flickr/galleria.flickr.min.js"></script>
-       <script tal:condition="view/picasaplugin/picasa" src="++resource++galleria-plugins/picasa/galleria.picasa.min.js"></script>
 
        <script type="text/javascript">
          jQuery(document).ready(function(){
