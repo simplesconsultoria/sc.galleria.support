@@ -198,11 +198,3 @@ add-ons*, (check checkbox at its left side) and click the 'Deactivate' button.
 
 .. note:: You may have to empty your browser cache and save your resource
           registries in order to see the effects of the product installation.
-
-Credits
--------
-
-    * Cleber Santos (cleber at simplesconsultoria dot com dot br) - Idea and
-      implementation.
-
-    * Aino (http://galleria.aino.se) - JavaScript galleria
