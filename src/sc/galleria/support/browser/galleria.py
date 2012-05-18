@@ -115,8 +115,9 @@ class Galleria(BrowserView):
         self.flickrplugin = self.registry.forInterface(IFlickrPlugin)
         self.picasaplugin = self.registry.forInterface(IPicasaPlugin)
         self.historyplugin = self.registry.forInterface(IHistoryPlugin)
+        self.isVideo = self.plugins(plname='youtube') or self.plugins(plname='vimeo') or self.plugins(plname='dailymotion')
 
-    def plugins(self, plname):
+    def plugins(self, plname=''):
 
         if self.ptype == 'Link':
             urllink = urlparse(self.context.remote_url())
@@ -137,7 +138,7 @@ class Galleria(BrowserView):
                 if urllink['netloc'].find(plname) >= 0:
                     new_params = {'v': params['v'][0]}
                     cleaned_url = urlunparse((urllink['scheme'], urllink['netloc'], urllink['path'], None, urlencode(new_params), urllink['fragment']))
-                return cleaned_url
+                    return cleaned_url
             elif plname == 'picasaweb':
                 if urllink['netloc'].find(plname) >= 0:
                     id_list = urllink['path'].split('/')
@@ -164,17 +165,32 @@ class Galleria(BrowserView):
                 except:
                     galleriaid = None
                 return galleriaid
+            else:
+                cleaned_url = urlunparse((urllink['scheme'], urllink['netloc'], urllink['path'], None, urlencode(params), urllink['fragment']))
+                return cleaned_url
 
     def portal_url(self):
         portal_state = component.getMultiAdapter((self.context, self.request),
                                                  name="plone_portal_state")
         return portal_state.portal_url()
 
-    def getThumbnails(self):
-        if self.settings.thumbnails == 'show':
-            return str(True).lower()
-        else:
-            return "'%s'" %(self.settings.thumbnails)
+    def getThumbnails(self,videoval=[]):
+        if type(videoval) is types.IntType:
+            if videoval == 1:
+                if self.settings.thumbnails == 'show':
+                    return str(True).lower()
+                else:
+                    return "'%s'" %(self.settings.thumbnails)
+            else:
+                return 'false'
+        elif type(videoval) is types.ListType:
+            if len(videoval) == 0 or len(videoval) == 1:
+                return 'false'
+            else:
+                if self.settings.thumbnails == 'show':
+                    return str(True).lower()
+                else:
+                    return "'%s'" %(self.settings.thumbnails)
 
     def galleriajs(self):
         """ Load default gallery """
@@ -210,10 +226,10 @@ class Galleria(BrowserView):
                                               str(self.settings.showimagenav).lower(),
                                               str(self.settings.swipe).lower(),
                                               str(self.portal_url() + '/++resource++galleria-images/dummy.png'),
-                                              self.getThumbnails(),
+                                              self.getThumbnails(videoval=1),
                                               str(self.settings.debug).lower())
 
-        if self.ptype == 'Link' and self.flickrplugin.flickr and self.plugins('flickr'):
+        if self.ptype == 'Link' and self.flickrplugin.flickr and self.plugins(plname='flickr'):
             """ Load Flickr plugin """
             return """jQuery(document).ready(function(){
                           var flickr = new Galleria.Flickr();
@@ -247,7 +263,7 @@ class Galleria(BrowserView):
                                int(self.settings.gallery_width),
                                int(self.settings.gallery_height),
                                str(self.settings.autoplay).lower())
-        elif self.ptype == 'Link' and self.picasaplugin.picasa and self.plugins('picasaweb'):
+        elif self.ptype == 'Link' and self.picasaplugin.picasa and self.plugins(plname='picasaweb'):
             """ Load Picasa plugin """
             return """jQuery(document).ready(function(){
                           var picasa = new Galleria.Picasa();
@@ -281,7 +297,8 @@ class Galleria(BrowserView):
                                int(self.settings.gallery_width),
                                int(self.settings.gallery_height),
                                str(self.settings.autoplay).lower())
-        elif self.plugins('youtube'):
+        elif self.plugins(plname='youtube') or self.plugins(plname='vimeo') or self.plugins(plname='dailymotion'):
+            video_url = self.plugins(plname='youtube') or self.plugins(plname='vimeo') or self.plugins(plname='dailymotion')
             return """jQuery(document).ready(function(){
                          jQuery('%s').galleria({
                              width: %s,
@@ -292,13 +309,13 @@ class Galleria(BrowserView):
                              imagePosition: '%s',
                              transition: '%s',
                              transitionSpeed: %s,
-                             lightbox: %s,
                              showCounter: %s,
                              showImagenav: %s,
                              swipe: %s,
                              dummy: '%s',
                              thumbnails: %s,
                              thumbQuality: 'false',
+                             dataSource: [{ 'video': '%s' },],
                              debug: %s,}) }) """ %(str(self.settings.selector),
                                               int(self.settings.gallery_width),
                                               int(self.settings.gallery_height),
@@ -308,10 +325,10 @@ class Galleria(BrowserView):
                                               str(self.settings.imagePosition),
                                               self.settings.transitions,
                                               int(self.settings.transitionSpeed),
-                                              str(self.settings.lightbox).lower(),
                                               str(self.settings.showCounting).lower(),
                                               str(self.settings.showimagenav).lower(),
                                               str(self.settings.swipe).lower(),
                                               str(self.portal_url() + '/++resource++galleria-images/dummy.png'),
                                               self.getThumbnails(),
+                                              video_url,
                                               str(self.settings.debug).lower())
