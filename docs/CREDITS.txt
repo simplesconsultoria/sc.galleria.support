@@ -5,4 +5,6 @@ Contributors
 
 * Héctor Velarde (hector.velarde@gmail.com)
 
+* Gustavo Lepri (lepri@simplesconsultoria.com.br)
+
 Development sponsored by Simples Consultoria.
