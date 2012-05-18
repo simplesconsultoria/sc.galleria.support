@@ -1,23 +1,51 @@
 Installation
 ------------
 
-To enable this product in a buildout-based installation:
+To enable this product, on a buildout based installation.
 
-1. Edit your buildout.cfg and add ``sc.galleria.support`` to the list of eggs
-   to install ::
+Plone 3.3.x Buildout Installation:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To install ``sc.galleria.support``, the following code to your
+buildout.cfg::
+
+    [buildout]
+    ...
+    extends =
+        http://good-py.appspot.com/release/plone.app.registry/1.0b2?plone=3.3.6
+
+    ...
+    eggs =
+        sc.galleria.support
+
+
+Plone 4.x Buildout Installation:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To install ``sc.galleria.support``, the following code to your
+buildout.cfg::
 
     [buildout]
     ...
     eggs =
         sc.galleria.support
 
-After updating the configuration you need to run ''bin/buildout'', which will
-take care of updating your system.
+.. note:: Since Plone 3.3 is not is necessary to explictly inform
+          plone.recipe.zope2instance recipe to install the ZCML slug
+          
 
-Go to the 'Site Setup' page in a Plone site and click on the 'Add-ons' link.
+After updating the configuration you need to run the ''bin/buildout'',
+which will take care of updating your system.
 
-Check the box next to ''sc.galleria.support'' and click the 'Activate' button.
 
-Note: You may have to empty your browser cache and save your resource
-registries in order to see the effects of the product installation.
+Uninstall
+---------
 
+Go to the 'Site Setup' page in the Plone interface and click on the
+'Add/Remove Products' link.
+
+Choose the product **sc.galleria.support**, which should be under *Activated
+add-ons*, (check checkbox at its left side) and click the 'Deactivate' button.
+
+.. note:: You may have to empty your browser cache and save your resource
+          registries in order to see the effects of the product installation.
