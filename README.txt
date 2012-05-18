@@ -70,7 +70,9 @@ Step 3: Seeing it in action
 
 Galleria will be rendered through a set of the display action in a container
 content type. For example, if you have a folder named "My folder" and you are
-standing there, click on "Display" (you need permissions for the edit bar) and then in "Galleria". Of course, this will only have an effect if you have images inside that folder. If you do, you will see the images render with the Galleria plugin.
+standing there, click on "Display" (you need permissions for the edit bar) and then in "Galleria".
+Of course, this will only have an effect if you have images inside that folder. If you do, you will
+see the images render with the Galleria plugin.
 
 For the case that you want to fetch pictures located in flickr or picasa see
 `Flickr & Picasa Plugins`_. To activate Galleria in the Link just follow
@@ -79,7 +81,8 @@ the same procedure with the display action.
 Functionality
 --------------
 
-The next explanations about different options must be applied in the control panel of Galleria add-on. See `Step 2: Setting preferences`_.
+The next explanations about different options must be applied in the control panel of Galleria
+add-on. See `Step 2: Setting preferences`_.
 
 Default options
 ^^^^^^^^^^^^^^^
@@ -101,12 +104,15 @@ galleria will look like.
     You can use this option to set a gallery height manually. Default is 500 px.
 
 **Image css position:**
-    Positions the main image inside the stage container. Works like the CSS background-position property, f.ex ‘top right’ or ‘20% 100%’. You can use keywords, percents or pixels. The first value is the horizontal position and the second is the vertical.
+    Positions the main image inside the stage container. Works like the CSS background-position 
+    property, f.ex ‘top right’ or ‘20% 100%’. You can use keywords, percents or pixels. The first
+    value is the horizontal position and the second is the vertical.
 
      - Read more about positioning at http://www.w3.org/TR/REC-CSS1/#background-position
 
 **Enable lightbox:**
-    This option acts as a helper for attaching a lightbox when the user clicks on an image. If you have a link defined for the image, the link will take precedence.
+    This option acts as a helper for attaching a lightbox when the user clicks on an image. If you
+    have a link defined for the image, the link will take precedence.
 
 **Show counting:**
     Displays the counter.
@@ -140,7 +146,9 @@ galleria will look like.
     Sets the creation of thumbnails.
 
 **Enable debug mode:**
-    This option is for turning debug on/off. By default, Galleria displays errors by printing them out in the gallery container and sometimes throw exceptions. For deployment you can turn debug off to generate a more generic error message if a fatal error is raised.
+    This option is for turning debug on/off. By default, Galleria displays errors by printing them out in the
+    gallery container and sometimes throw exceptions. For deployment you can turn debug off to generate a more generic
+    error message if a fatal error is raised.
 
 
 YouTube, Vimeo & DailyMotion supported
