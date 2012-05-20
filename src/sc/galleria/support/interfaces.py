@@ -20,7 +20,7 @@ try:
     from Products.ATContentTypes.interfaces.image import IATImage as IImage
     from Products.ZCatalog.interfaces import ICatalogBrain
 except ImportError, e:
-    logger.info('switch to plone3 %s'%e)
+    logger.info('switch to plone3 %s' % e)
     #plone3
     from Products.ATContentTypes.interface import IATFolder as IFolder
     from Products.ATContentTypes.interface import IATLink   as ILink
@@ -39,19 +39,21 @@ transitionsvoc = SimpleVocabulary(
 
 thumbnailsvoc = SimpleVocabulary(
     [SimpleTerm(value='show', title=_(u"Show thumbnails")),
-     SimpleTerm(value='empty', title=_(u"Don't show thumbnails")),]
+     SimpleTerm(value='empty', title=_(u"Don't show thumbnails")), ]
     )
+
 
 class IGalleriaLayer(Interface):
     """
     Marker Default browser layer this product.
     """
 
+
 class IGalleria(Interface):
     """
     """
 
-    def __init__(self, context, request,*args,**kwargs):
+    def __init__(self, context, request, *args, **kwargs):
         """ """
 
     def galleriajs(self):
@@ -71,6 +73,7 @@ class IGalleria(Interface):
 
     def galleria_picasauserandid(self):
         """ """
+
 
 class IGeneralSettings(Interface):
     """Some general settings.
@@ -111,7 +114,6 @@ class IGeneralSettings(Interface):
     lightbox = schema.Bool(title=_(u"Enable lightbox"),
                                default=False,
                                required=True,)
-
 
     showCounting = schema.Bool(title=_(u"Show counting"),
                                description=_(u"Toggles the counter."),
@@ -155,6 +157,7 @@ class IGeneralSettings(Interface):
                         default=False,
                         required=True,)
 
+
 class IFlickrPlugin(Interface):
     """ Enable/Disable Flickr plugin
         http://galleria.io/docs/1.2/plugins/flickr/
@@ -172,6 +175,7 @@ class IFlickrPlugin(Interface):
     flickr_desc = schema.Bool(title=_(u"Show Description"),
                               description=_(u"The plugin fetches the title per default. If you also wish to fetch the description, set this option to true."),
                               default=False)
+
 
 class IPicasaPlugin(Interface):
     """ Enable/Disable Picasa plugin
@@ -191,6 +195,7 @@ class IPicasaPlugin(Interface):
                               description=_(u"The plugin fetches the title per default. If you also wish to fetch the description, set this option to true."),
                               default=False)
 
+
 class IHistoryPlugin(Interface):
     """ Enable/Disable History plugin
         http://galleria.io/docs/1.2/plugins/picasa/
@@ -200,16 +205,20 @@ class IHistoryPlugin(Interface):
                           description=_(u""),
                           default=False,)
 
+
 class IGalleriaSettings(IGeneralSettings, IFlickrPlugin, IPicasaPlugin, IHistoryPlugin):
     """The form schema contains all settings."""
+
 
 class FormGroup1(group.Group):
     label = _(u"Flickr Plugin")
     fields = field.Fields(IFlickrPlugin)
 
+
 class FormGroup2(group.Group):
     label = _(u"Picasa Plugin")
     fields = field.Fields(IPicasaPlugin)
+
 
 class FormGroup3(group.Group):
     label = _(u"History Plugin")

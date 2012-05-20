@@ -36,6 +36,7 @@ from cgi import parse_qs
 from urllib import urlencode
 import types
 
+
 class GalleriaSettingsEditForm(controlpanel.RegistryEditForm):
     """ Control Panel """
     schema = IGalleriaSettings
@@ -100,13 +101,14 @@ class AbstractRecordsProxy(object):
                proxies.setdefault(interface, self.__registry__.\
                                   forInterface(interface))
 
+
 class Galleria(BrowserView):
     """ Used by browser view
     """
     implements(IGalleria)
 
-    def __init__(self, context, request,*args,**kwargs):
-        super(Galleria, self).__init__(context, request,*args,**kwargs)
+    def __init__(self, context, request, *args, **kwargs):
+        super(Galleria, self).__init__(context, request, *args, **kwargs)
         context = aq_inner(context)
         self.context = context
         self.ptype = self.context.portal_type
@@ -143,10 +145,10 @@ class Galleria(BrowserView):
                 if urllink['netloc'].find(plname) >= 0:
                     id_list = urllink['path'].split('/')
                     try:
-                        if len(id_list) == 5:
-                            galluserid, galleriaid = id_list[-2], id_list[-1]
-                        elif len(id_list) == 6:
-                            galluserid, galleriaid = id_list[-3], id_list[-2]
+                        if len(id_list) == 3:
+                            galluserid, galleriaid = urllink['path'].split('/')[1], urllink['path'].split('/')[-1]
+                        elif len(id_list) == 4:
+                            galluserid, galleriaid = urllink['path'].split('/')[1], urllink['path'].split('/')[-2] 
                         else:
                             galluserid, galleriaid = (None, None)
                     except:
@@ -165,22 +167,25 @@ class Galleria(BrowserView):
                 except:
                     galleriaid = None
                 return galleriaid
-            else:
-                cleaned_url = urlunparse((urllink['scheme'], urllink['netloc'], urllink['path'], None, urlencode(params), urllink['fragment']))
-                return cleaned_url
+            elif plname == 'vimeo' or plname == 'dailymotion':
+                if urllink['netloc'].find(plname) >= 0:
+                    cleaned_url = urlunparse((urllink['scheme'], urllink['netloc'], urllink['path'], None, urlencode(params), urllink['fragment']))
+                    return cleaned_url
+                else:
+                    pass
 
     def portal_url(self):
         portal_state = component.getMultiAdapter((self.context, self.request),
                                                  name="plone_portal_state")
         return portal_state.portal_url()
 
-    def getThumbnails(self,videoval=[]):
+    def getThumbnails(self, videoval=[]):
         if type(videoval) is types.IntType:
             if videoval == 1:
                 if self.settings.thumbnails == 'show':
                     return str(True).lower()
                 else:
-                    return "'%s'" %(self.settings.thumbnails)
+                    return "'%s'" % (self.settings.thumbnails)
             else:
                 return 'false'
         elif type(videoval) is types.ListType:
@@ -190,7 +195,7 @@ class Galleria(BrowserView):
                 if self.settings.thumbnails == 'show':
                     return str(True).lower()
                 else:
-                    return "'%s'" %(self.settings.thumbnails)
+                    return "'%s'" % (self.settings.thumbnails)
 
     def galleriajs(self):
         """ Load default gallery """
@@ -212,7 +217,7 @@ class Galleria(BrowserView):
                              dummy: '%s',
                              thumbnails: %s,
                              thumbQuality: 'false',
-                             debug: %s,}) }) """ %(str(self.settings.selector),
+                             debug: %s,}) }) """ % (str(self.settings.selector),
                                               int(self.settings.gallery_width),
                                               int(self.settings.gallery_height),
                                               str(self.settings.autoplay).lower(),
@@ -256,8 +261,8 @@ class Galleria(BrowserView):
                              }
 
                           })
-                      }) """ %(str(self.settings.selector),
-                               str(self.galleria_flickrid()),
+                      }) """ % (str(self.settings.selector),
+                               str(self.plugins(plname='flickr')),
                                int(self.flickrplugin.flickr_max),
                                str(self.flickrplugin.flickr_desc).lower(),
                                int(self.settings.gallery_width),
@@ -289,11 +294,11 @@ class Galleria(BrowserView):
                              }
 
                           })
-                      }) """ %(str(self.settings.selector),
+                      }) """ % (str(self.settings.selector),
                                int(self.picasaplugin.picasa_max),
                                str(self.picasaplugin.picasa_desc).lower(),
-                               str(self.galleria_picasauserandid()[0]),
-                               str(self.galleria_picasauserandid()[1]),
+                               str(self.plugins(plname='picasaweb')[0]),
+                               str(self.plugins(plname='picasaweb')[1]),
                                int(self.settings.gallery_width),
                                int(self.settings.gallery_height),
                                str(self.settings.autoplay).lower())
@@ -316,7 +321,7 @@ class Galleria(BrowserView):
                              thumbnails: %s,
                              thumbQuality: 'false',
                              dataSource: [{ 'video': '%s' },],
-                             debug: %s,}) }) """ %(str(self.settings.selector),
+                             debug: %s,}) }) """ % (str(self.settings.selector),
                                               int(self.settings.gallery_width),
                                               int(self.settings.gallery_height),
                                               str(self.settings.autoplay).lower(),
