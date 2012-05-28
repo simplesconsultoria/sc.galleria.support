@@ -41,6 +41,7 @@ setup(name='sc.galleria.support',
       install_requires=[
         'setuptools',
         'plone.app.registry',
+        'plone.resource>=1.0',
         ],
       extras_require={
         'test': ['plone.app.testing'],

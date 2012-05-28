@@ -25,9 +25,11 @@ from sc.galleria.support.interfaces import IGalleria,\
                                             FormGroup1,\
                                             FormGroup2,\
                                             FormGroup3,\
+                                            FormGroup4,\
                                             IFlickrPlugin,\
                                             IPicasaPlugin,\
-                                            IHistoryPlugin
+                                            IHistoryPlugin,\
+                                            IGalleriaThemes
 
 from sc.galleria.support import MessageFactory as _
 
@@ -41,7 +43,7 @@ class GalleriaSettingsEditForm(controlpanel.RegistryEditForm):
     """ Control Panel """
     schema = IGalleriaSettings
     fields = field.Fields(IGeneralSettings)
-    groups = FormGroup1, FormGroup2, FormGroup3
+    groups = FormGroup1, FormGroup2, FormGroup3, FormGroup4
     label = _(u"Galleria settings")
     description = _(u"""""")
 

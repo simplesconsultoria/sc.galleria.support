@@ -206,7 +206,12 @@ class IHistoryPlugin(Interface):
                           default=False,)
 
 
-class IGalleriaSettings(IGeneralSettings, IFlickrPlugin, IPicasaPlugin, IHistoryPlugin):
+class IGalleriaThemes(Interface):
+    """ Choice galleria themes """
+
+
+class IGalleriaSettings(IGeneralSettings, IFlickrPlugin, IPicasaPlugin,
+        IHistoryPlugin, IGalleriaThemes):
     """The form schema contains all settings."""
 
 
@@ -223,3 +228,8 @@ class FormGroup2(group.Group):
 class FormGroup3(group.Group):
     label = _(u"History Plugin")
     fields = field.Fields(IHistoryPlugin)
+
+
+class FormGroup4(group.Group):
+    label = _(u"Choice of theme for the galleria")
+    fields = field.Fields(IGalleriaThemes)
