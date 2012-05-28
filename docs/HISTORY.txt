@@ -1,10 +1,11 @@
 Changelog
 ----------
 
-1.0b3 (unreleased)
+1.0b3 (2012-05-28)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+* Fixed issue #17: NameError: name 'test' is not defined
+  [cleberjsantos]
 
 
 1.0b2 (2012-05-19)
