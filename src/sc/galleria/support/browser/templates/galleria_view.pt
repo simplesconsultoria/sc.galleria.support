@@ -25,7 +25,7 @@
                      text python:has_text and here.getText() or ''"
          tal:condition="text"
          tal:attributes="class python:here.Format() in ('text/structured',
-         'text/x-rst', ) 'stx' + kss_class and 'plain' or kss_class">
+         'text/x-rst', ) and 'stx' + kss_class or 'plain' + kss_class">
         <div metal:define-slot="inside" tal:replace="structure text">The body</div>
     </div>
 
