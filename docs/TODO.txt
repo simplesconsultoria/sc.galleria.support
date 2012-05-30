@@ -1,5 +1,6 @@
 TODO
 ----
 
+* Topic template view
 * Support of installing new themes
 * Fullscreen themes support
