@@ -1,5 +1,7 @@
 TODO
 ----
 
-* Support of installing new themes
-* Fullscreen themes support
+* Topic template view.
+* Support of installing new themes.
+    * Use plone.resources
+* Fullscreen themes support.
