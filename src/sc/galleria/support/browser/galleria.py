@@ -18,6 +18,7 @@ from zope import component
 from zope.interface import Interface
 from zope.component._api import getUtility
 from zope.interface import alsoProvides
+from zope.component import queryMultiAdapter
 
 from sc.galleria.support.interfaces import IGalleria,\
                                             IGalleriaSettings,\
@@ -107,12 +108,13 @@ class AbstractRecordsProxy(object):
 class Galleria(BrowserView):
     """ Used by browser view
     """
-    implements(IGalleria)
+    implements(IGalleria, IGalleriaThemes)
 
     def __init__(self, context, request, *args, **kwargs):
         super(Galleria, self).__init__(context, request, *args, **kwargs)
         context = aq_inner(context)
         self.context = context
+        self.request = request
         self.ptype = self.context.portal_type
         self.registry = getUtility(IRegistry)
         self.settings = self.registry.forInterface(IGeneralSettings)
@@ -120,6 +122,21 @@ class Galleria(BrowserView):
         self.picasaplugin = self.registry.forInterface(IPicasaPlugin)
         self.historyplugin = self.registry.forInterface(IHistoryPlugin)
         self.isVideo = self.plugins(plname='youtube') or self.plugins(plname='vimeo') or self.plugins(plname='dailymotion')
+        self.theme_names = self.registry.forInterface(IGalleriaThemes)
+
+    def getThemes(self):
+
+        results = []
+        for theme_name in self.theme_names.galleria_themes:
+            theme = queryMultiAdapter((self.context, self.request),
+                interface=IGalleriaThemes,
+                name=theme_name,
+                default=None,
+            )
+            import pdb; pdb.set_trace()
+            if theme:
+                results.append(theme())
+        return '\n'.join(results)
 
     def plugins(self, plname=''):
 
