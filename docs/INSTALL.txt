@@ -18,9 +18,24 @@ buildout.cfg::
     eggs =
         sc.galleria.support
 
+Plone 4.0.x Buildout Installation:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Plone 4.x Buildout Installation:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To install ``sc.galleria.support``, the following code to your
+buildout.cfg::
+
+    [buildout]
+    ...
+    extends =
+        http://good-py.appspot.com/release/plone.app.registry/1.0b2?plone=4.0.2
+
+    ...
+    eggs =
+        sc.galleria.support
+
+
+Plone 4.1.x or greater Buildout Installation:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To install ``sc.galleria.support``, the following code to your
 buildout.cfg::
