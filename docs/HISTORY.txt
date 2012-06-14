@@ -4,6 +4,8 @@ Changelog
 1.0b4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Some tests were fixed and some others, refactored. [hvelarde]
+
 - Fixed package distribution and documentation. [hvelarde]
 
 

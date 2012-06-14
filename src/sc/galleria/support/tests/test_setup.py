@@ -11,11 +11,11 @@ from sc.galleria.support.config import PROJECTNAME
 from sc.galleria.support.testing import INTEGRATION_TESTING
 
 JS = [
-    '++resource++galleria-scripts/galleria-1.2.6.min.js',
+    '++resource++galleria-scripts/galleria-1.2.7.min.js',
     ]
 
 
-class InstallTest(unittest.TestCase):
+class InstallTestCase(unittest.TestCase):
 
     layer = INTEGRATION_TESTING
 
@@ -26,24 +26,18 @@ class InstallTest(unittest.TestCase):
     def test_installed(self):
         self.assertTrue(self.qi.isProductInstalled(PROJECTNAME))
 
-    def test_dependencies_installed(self):
-        packages = ['plone.app.registry']
-        for p in packages:
-            self.assertTrue(self.qi.isProductInstalled(p),
-                            '%s not installed' % p)
-
     def test_browserlayer(self):
         layers = [l.getName() for l in registered_layers()]
         self.assertTrue('IGalleriaLayer' in layers,
                         'browser layer not installed')
 
-    def test_javascript_registry(self):
-        portal_javascripts = self.portal.portal_javascripts
-        for js in JS:
-            self.assertTrue(js in portal_javascripts.getResourceIds())
+    def test_jsregistry(self):
+        resource_ids = self.portal.portal_javascripts.getResourceIds()
+        for id in JS:
+            self.assertTrue(id in resource_ids, '%s not installed' % id)
 
 
-class UninstallTest(unittest.TestCase):
+class UninstallTestCase(unittest.TestCase):
 
     layer = INTEGRATION_TESTING
 
@@ -61,11 +55,7 @@ class UninstallTest(unittest.TestCase):
         self.assertFalse('IGalleriaLayer' in layers,
                          'browser layer not removed')
 
-    def test_javascript_registry_removed(self):
-        portal_javascripts = self.portal.portal_javascripts
-        for js in JS:
-            self.assertTrue(js not in portal_javascripts.getResourceIds())
-
-
-def test_suite():
-    return unittest.defaultTestLoader.loadTestsFromName(__name__)
+    def test_jsregistry_removed(self):
+        resource_ids = self.portal.portal_javascripts.getResourceIds()
+        for id in JS:
+            self.assertTrue(id not in resource_ids, '%s not installed' % id)
