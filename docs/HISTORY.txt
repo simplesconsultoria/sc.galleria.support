@@ -4,31 +4,36 @@ Changelog
 1.0b4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Fixed package distribution and documentation. [hvelarde]
 
 
 1.0b3 (2012-05-28)
 ^^^^^^^^^^^^^^^^^^
 
-* Fixed issue #17: NameError: name 'test' is not defined
+* Fixed NameError: name 'test' is not defined (issue `#17`_).
   [cleberjsantos]
 
 
 1.0b2 (2012-05-19)
 ^^^^^^^^^^^^^^^^^^
 
- * Resolved bug in galleria.py(261)galleriajs() issue #11
+ * Fixed Picasa and Flickr plugins (issue `#11`_).
    [cleberjsantos]
 
- * Resolved issue #12: Added validation for vimeo and dailymotion. 
+ * Added validation for Vimeo and DailyMotion (issue `#12`_).
    [cleberjsantos]
 
- * issue #13 Patch for bug in picasa plugin. 
+ * Patch for bug in Picasa plugin (issue `#13`_).
    [cleberjsantos]
 
 
 1.0b1 (2012-05-18)
 ^^^^^^^^^^^^^^^^^^^
 
- *  Package created using templer 
-    [cleberjsantos]
+ *  Initial release.
+
+.. _`#11`: https://github.com/simplesconsultoria/sc.galleria.support/issues/11
+.. _`#12`: https://github.com/simplesconsultoria/sc.galleria.support/issues/12
+.. _`#13`: https://github.com/simplesconsultoria/sc.galleria.support/issues/13
+.. _`#17`: https://github.com/simplesconsultoria/sc.galleria.support/issues/17
+

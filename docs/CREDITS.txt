@@ -1,13 +1,10 @@
 Contributors
 ------------
 
-* Cleber J. Santos (cleber@simplesconsultoria.com.br)
-
-* Héctor Velarde (hector@simplesconsultoria.com.br)
-
-* Gustavo Lepri (lepri@simplesconsultoria.com.br)
-
-* Alejandro Pereira (alepereira86@gmail.com)
+- Cleber J. Santos
+- Héctor Velarde
+- Gustavo Lepri
+- Alejandro Pereira
 
 * Aino (http://galleria.aino.se) - JavaScript galleria
 
