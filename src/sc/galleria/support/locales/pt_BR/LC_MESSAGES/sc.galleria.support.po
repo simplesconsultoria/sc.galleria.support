@@ -219,3 +219,6 @@ msgstr "swipe"
 msgid "toggles the image navigation arrows."
 msgstr "alterna as setas de navegação de imagens."
 
+#: sc/galleria/support/interfaces.py:
+msgid "Choice of theme for the galleria"
+msgstr "Escolha do tema para a galleria"

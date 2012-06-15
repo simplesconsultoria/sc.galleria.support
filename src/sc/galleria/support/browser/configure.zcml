@@ -45,6 +45,15 @@
 
   <!-- Viewlets and Menu view methods -->
   <browser:page
+    name="galleriamacros"
+    for="*"
+    class=".galleria.Galleria"
+    permission="zope.Public"
+    template="templates/galleriamacros.pt"
+    layer="sc.galleria.support.interfaces.IGalleriaLayer"
+    />
+
+  <browser:page
     name="galleria_view"
     for="sc.galleria.support.interfaces.IFolder"
     class=".galleria.Galleria"

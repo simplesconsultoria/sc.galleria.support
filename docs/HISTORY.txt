@@ -4,16 +4,33 @@ Changelog
 1.0b4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Some tests were fixed and some others, refactored. [hvelarde]
+ * Added template with ZPT macro.
+   [cleberjsantos]
 
-- Fixed package distribution and documentation. [hvelarde]
+ * Updated documentation.
+   [cleberjsantos]
+
+ * Updated templates.
+   [cleberjsantos]
+
+ * Some tests were fixed and some others, refactored.
+   [hvelarde]
+
+ * Fixed package distribution and documentation.
+   [hvelarde]
 
 
 1.0b3 (2012-05-28)
 ^^^^^^^^^^^^^^^^^^
 
-* Fixed NameError: name 'test' is not defined (issue `#17`_).
+ * Fixed NameError: name 'test' is not defined (issue `#17`_).
   [cleberjsantos]
+
+ * PEP8.
+   [hvelarde]
+
+ * Portuguese translation updated.
+   [lepri]
 
 
 1.0b2 (2012-05-19)
@@ -27,6 +44,12 @@ Changelog
 
  * Patch for bug in Picasa plugin (issue `#13`_).
    [cleberjsantos]
+
+ * Added Tests.
+   [aleGpereira]
+
+ * Updated i18n and Brazilian Portuguese translation.
+   [hvelarde]
 
 
 1.0b1 (2012-05-18)
