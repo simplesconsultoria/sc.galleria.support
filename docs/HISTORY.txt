@@ -4,20 +4,35 @@ Changelog
 1.0b4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+ * Added template with ZPT macro.
+   [cleberjsantos]
+
+ * Updated documentation.
+   [cleberjsantos]
+
+ * Updated templates.
+   [cleberjsantos]
 
 
 1.0b3 (2012-05-28)
 ^^^^^^^^^^^^^^^^^^
 
-* Fixed issue #17: NameError: name 'test' is not defined
-  [cleberjsantos]
+ * Fixed issue #17: NameError: name 'test' is not defined.
+   [cleberjsantos]
 
+ * Tests fixed and some others, refactored.
+   [hvelarde]
+
+ * PEP8.
+   [hvelarde]
+
+ * Portuguese translation updated.
+   [lepri]
 
 1.0b2 (2012-05-19)
 ^^^^^^^^^^^^^^^^^^
 
- * Resolved bug in galleria.py(261)galleriajs() issue #11
+ * Resolved bug in galleria.py(261)galleriajs() issue #11.
    [cleberjsantos]
 
  * Resolved issue #12: Added validation for vimeo and dailymotion. 
@@ -26,6 +41,11 @@ Changelog
  * issue #13 Patch for bug in picasa plugin. 
    [cleberjsantos]
 
+ * Added Tests.
+   [aleGpereira]
+
+ * Updated i18n and Brazilian Portuguese translation.
+   [hvelarde]
 
 1.0b1 (2012-05-18)
 ^^^^^^^^^^^^^^^^^^^
