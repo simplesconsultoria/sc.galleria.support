@@ -109,7 +109,7 @@ class RecordsGeneralSettings(unittest.TestCase):
 
     def test_selector_record(self):
         self.assertTrue(hasattr(self.settings, 'selector'))
-        self.assertEqual(self.settings.selector, u"#content")
+        self.assertEqual(self.settings.selector, u"#content-galleria")
 
     def test_thumbnails_record(self):
         self.assertTrue(hasattr(self.settings, 'thumbnails'))
