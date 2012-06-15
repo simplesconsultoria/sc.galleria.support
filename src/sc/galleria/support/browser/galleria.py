@@ -111,6 +111,7 @@ class Galleria(BrowserView):
         super(Galleria, self).__init__(context, request, *args, **kwargs)
         context = aq_inner(context)
         self.context = context
+        self.request = request
         self.ptype = self.context.portal_type
         self.registry = getUtility(IRegistry)
         self.settings = self.registry.forInterface(IGeneralSettings)
