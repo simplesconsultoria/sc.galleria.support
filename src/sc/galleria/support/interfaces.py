@@ -143,7 +143,7 @@ class IGeneralSettings(Interface):
 
     selector = schema.TextLine(title=_(u"Selector jQuery"),
                                description=_(u"Eg. '#content-core' or '#content' or '.galleria'. Do not change if you do not know what I mean."),
-                               default=u"#content",
+                               default=u"#content-galleria",
                                required=True,)
 
     thumbnails = schema.Choice(title=_(u"Show Thumbnails"),

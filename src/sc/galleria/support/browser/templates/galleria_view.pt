@@ -29,7 +29,22 @@
         <div metal:define-slot="inside" tal:replace="structure text">The body</div>
     </div>
 
-    <tal:albumsimages tal:condition="python:albums or images">
+    <div tal:replace="structure provider:plone.abovecontenttitle" />
+    <metal:title define-slot="content-title">
+        <metal:comment tal:content="nothing">
+            If you write a custom title always use
+            <h1 class="documentFirstHeading"></h1> for it.
+        </metal:comment>
+        <h1 metal:use-macro="context/kss_generic_macros/macros/generic_title_view">
+            Generic KSS Title. Is rendered with class="documentFirstHeading".
+        </h1>
+    </metal:title>
+
+
+    <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+    <div id="content-galleria">
+      <tal:albumsimages tal:condition="python:albums or images">
         <tal:images tal:condition="images" tal:repeat="image images">
             <div class="photoAlbumEntry">
                         <a tal:attributes="href string:${image/absolute_url}/view;
@@ -71,8 +86,8 @@
         </div>
 
         <div class="visualClear"><!-- --></div>
-
-    </tal:albumsimages>
+      </tal:albumsimages>
+    </div>
 
     <p class="discreet"
        i18n:domain="atcontenttypes"
@@ -91,23 +106,7 @@
 
     <metal:subtopics use-macro="here/atct_topic_view/macros/folderlisting_macro" />
 
-    <metal:galleriaslotjs define-slot="galleria_js">
-        <tal:valmovies tal:condition="not: view/isVideo">
-            <script tal:condition="view/historyplugin/history" src="++resource++galleria-plugins/historyplugin/galleria.history.min.js"></script>
-            <script tal:condition="view/flickrplugin/flickr" src="++resource++galleria-plugins/flickr/galleria.flickr.min.js"></script>
-            <script tal:condition="view/picasaplugin/picasa" src="++resource++galleria-plugins/picasa/galleria.picasa.min.js"></script>
-        </tal:valmovies>
-
-
-       <script type="text/javascript">
-         jQuery(document).ready(function(){
-             Galleria.loadTheme("++resource++galleria-themes/classic/galleria.classic.min.js");
-         })
-       </script>
-
-       <script type="text/javascript" tal:content="view/galleriajs"></script>
-
-    </metal:galleriaslotjs>
+    <metal:galleria_macro use-macro="here/galleriamacros/macros/galleria_js" />
 
  </metal:main_macro>
 </metal:main>
