@@ -107,9 +107,6 @@
 
        <script type="text/javascript" tal:content="view/galleriajs"></script>
 
-       <!-- TESTING -->
-       <span tal:content="view/getThemes" />
-
     </metal:galleriaslotjs>
 
  </metal:main_macro>

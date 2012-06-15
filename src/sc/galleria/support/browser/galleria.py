@@ -18,7 +18,6 @@ from zope import component
 from zope.interface import Interface
 from zope.component._api import getUtility
 from zope.interface import alsoProvides
-from zope.component import queryMultiAdapter
 
 from sc.galleria.support.interfaces import IGalleria,\
                                             IGalleriaSettings,\
@@ -26,11 +25,9 @@ from sc.galleria.support.interfaces import IGalleria,\
                                             FormGroup1,\
                                             FormGroup2,\
                                             FormGroup3,\
-                                            FormGroup4,\
                                             IFlickrPlugin,\
                                             IPicasaPlugin,\
-                                            IHistoryPlugin,\
-                                            IGalleriaThemes
+                                            IHistoryPlugin
 
 from sc.galleria.support import MessageFactory as _
 
@@ -44,7 +41,7 @@ class GalleriaSettingsEditForm(controlpanel.RegistryEditForm):
     """ Control Panel """
     schema = IGalleriaSettings
     fields = field.Fields(IGeneralSettings)
-    groups = FormGroup1, FormGroup2, FormGroup3, FormGroup4
+    groups = FormGroup1, FormGroup2, FormGroup3
     label = _(u"Galleria settings")
     description = _(u"""""")
 
@@ -108,7 +105,7 @@ class AbstractRecordsProxy(object):
 class Galleria(BrowserView):
     """ Used by browser view
     """
-    implements(IGalleria, IGalleriaThemes)
+    implements(IGalleria)
 
     def __init__(self, context, request, *args, **kwargs):
         super(Galleria, self).__init__(context, request, *args, **kwargs)
@@ -122,21 +119,6 @@ class Galleria(BrowserView):
         self.picasaplugin = self.registry.forInterface(IPicasaPlugin)
         self.historyplugin = self.registry.forInterface(IHistoryPlugin)
         self.isVideo = self.plugins(plname='youtube') or self.plugins(plname='vimeo') or self.plugins(plname='dailymotion')
-        self.theme_names = self.registry.forInterface(IGalleriaThemes)
-
-    def getThemes(self):
-
-        results = []
-        for theme_name in self.theme_names.galleria_themes:
-            theme = queryMultiAdapter((self.context, self.request),
-                interface=IGalleriaThemes,
-                name=theme_name,
-                default=None,
-            )
-            import pdb; pdb.set_trace()
-            if theme:
-                results.append(theme())
-        return '\n'.join(results)
 
     def plugins(self, plname=''):
 

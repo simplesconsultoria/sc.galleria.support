@@ -42,10 +42,6 @@ thumbnailsvoc = SimpleVocabulary(
      SimpleTerm(value='empty', title=_(u"Don't show thumbnails")), ]
     )
 
-themelists = SimpleVocabulary(
-    [SimpleTerm(value='default', title=_(u'Default')), ]
-    )
-
 
 class IGalleriaLayer(Interface):
     """
@@ -210,18 +206,8 @@ class IHistoryPlugin(Interface):
                           default=False,)
 
 
-class IGalleriaThemes(Interface):
-    """ Choice galleria themes """
-
-    galleria_themes = schema.List(title=_(u"Themes"),
-                          description=_(u"List a themes."),
-                          value_type = schema.Choice(source=themelists),
-                          default=['default'],
-                          required=True,)
-
-
 class IGalleriaSettings(IGeneralSettings, IFlickrPlugin, IPicasaPlugin,
-        IHistoryPlugin, IGalleriaThemes):
+        IHistoryPlugin):
     """The form schema contains all settings."""
 
 
@@ -238,8 +224,3 @@ class FormGroup2(group.Group):
 class FormGroup3(group.Group):
     label = _(u"History Plugin")
     fields = field.Fields(IHistoryPlugin)
-
-
-class FormGroup4(group.Group):
-    label = _(u"Choice of theme for the galleria")
-    fields = field.Fields(IGalleriaThemes)

@@ -4,5 +4,4 @@
  <records interface="sc.galleria.support.interfaces.IFlickrPlugin" />
  <records interface="sc.galleria.support.interfaces.IPicasaPlugin" />
  <records interface="sc.galleria.support.interfaces.IHistoryPlugin" />
- <records interface="sc.galleria.support.interfaces.IGalleriaThemes" />
 </registry>
