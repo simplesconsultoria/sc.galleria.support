@@ -2,9 +2,14 @@
 
 import unittest2 as unittest
 
+from Products.ATContentTypes.content.link import ATLink
+
+from sc.galleria.support.browser.galleria import Galleria
+from sc.galleria.support.interfaces import IGeneralSettings
 from sc.galleria.support.testing import INTEGRATION_TESTING
 
 
+# TODO: refactor the whole thing
 class BrowserViewTest(unittest.TestCase):
 
     layer = INTEGRATION_TESTING
@@ -15,45 +20,37 @@ class BrowserViewTest(unittest.TestCase):
         self.user = self.portal['portal_membership'].getAuthenticatedMember()
 
     def test_galleria_picasauserandid_no_link(self):
-        from sc.galleria.support.browser.galleria import Galleria
         galleria = Galleria(self.user, self.request)
-        self.assertEquals(galleria.galleria_picasauserandid(), None)
+        self.assertEqual(galleria.galleria_picasauserandid(), None)
 
     def test_galleria_flickrid_no_link(self):
-        from sc.galleria.support.browser.galleria import Galleria
         galleria = Galleria(self.user, self.request)
-        self.assertEquals(galleria.galleria_flickrid(), None)
+        self.assertEqual(galleria.galleria_flickrid(), None)
 
     def test_galleria_picasauserandid_with_link(self):
-        from Products.ATContentTypes.content.link import ATLink
-        from sc.galleria.support.browser.galleria import Galleria
         link = ATLink(self.user)
         link.setRemoteUrl('https://picasaweb.google.com/user_id/galleria_id')
         galleria = Galleria(link, self.request)
-        self.assertEquals(galleria.galleria_picasauserandid(),
+        self.assertEqual(galleria.galleria_picasauserandid(),
                           ('user_id', 'galleria_id'))
 
     def test_galleria_flickrid_with_link(self):
-        from Products.ATContentTypes.content.link import ATLink
-        from sc.galleria.support.browser.galleria import Galleria
         link = ATLink(self.user)
         link.setRemoteUrl(
             'http://www.flickr.com/photos/user_id/sets/galleria_id/')
         galleria = Galleria(link, self.request)
-        self.assertEquals(galleria.galleria_flickrid(), 'galleria_id')
+        self.assertEqual(galleria.galleria_flickrid(), 'galleria_id')
 
     def test_portal_url(self):
-        from sc.galleria.support.browser.galleria import Galleria
         galleria = Galleria(self.user, self.request)
-        self.assertEquals(galleria.portal_url(), self.portal.absolute_url())
+        self.assertEqual(galleria.portal_url(), self.portal.absolute_url())
 
     def test_getThumbnails(self):
-        from sc.galleria.support.browser.galleria import Galleria
         galleria = Galleria(self.user, self.request)
-        self.assertEquals(galleria.getThumbnails(), 'true')
+        self.assertEqual(galleria.getThumbnails(), 'true')
 
     def js_values_no_link(self, view):
-        from sc.galleria.support.interfaces import IGeneralSettings
+        # XXX: it's a bad idea to put so much logic on tests
         result = {
             "jQuery": "('%s')" %
                     str(IGeneralSettings.get('selector').default),
@@ -84,7 +81,6 @@ class BrowserViewTest(unittest.TestCase):
         return result
 
     def test_galleriajs_no_link(self):
-        from sc.galleria.support.browser.galleria import Galleria
         galleria = Galleria(self.user, self.request)
         js = galleria.galleriajs()
         values = self.js_values_no_link(galleria)
@@ -92,7 +88,7 @@ class BrowserViewTest(unittest.TestCase):
             self.assertTrue(key + values[key] in js)
 
     def js_values_with_link_flickr(self, view):
-        from sc.galleria.support.interfaces import IGeneralSettings
+        # XXX: it's a bad idea to put so much logic on tests
         result = {
             "jQuery": "('%s')" %
                     str(IGeneralSettings.get('selector').default),
@@ -107,8 +103,6 @@ class BrowserViewTest(unittest.TestCase):
         return result
 
     def test_galleriajs_with_link_flickr(self):
-        from Products.ATContentTypes.content.link import ATLink
-        from sc.galleria.support.browser.galleria import Galleria
         link = ATLink(self.user)
         link.setRemoteUrl(
             'http://www.flickr.com/photos/user_id/sets/galleria_id/')
@@ -120,7 +114,7 @@ class BrowserViewTest(unittest.TestCase):
             self.assertTrue(key + values[key] in js)
 
     def js_values_with_link_picasa(self, view):
-        from sc.galleria.support.interfaces import IGeneralSettings
+        # XXX: it's a bad idea to put so much logic on tests
         result = {
             "jQuery": "('%s')" %
                     str(IGeneralSettings.get('selector').default),
@@ -137,8 +131,6 @@ class BrowserViewTest(unittest.TestCase):
         return result
 
     def test_galleriajs_with_link_picasa(self):
-        from Products.ATContentTypes.content.link import ATLink
-        from sc.galleria.support.browser.galleria import Galleria
         link = ATLink(self.user)
         link.setRemoteUrl('https://picasaweb.google.com/user_id/galleria_id')
         galleria = Galleria(link, self.request)
@@ -147,7 +139,3 @@ class BrowserViewTest(unittest.TestCase):
         values = self.js_values_with_link_picasa(galleria)
         for key in values.keys():
             self.assertTrue(key + values[key] in js)
-
-
-def test_suite():
-    return unittest.defaultTestLoader.loadTestsFromName(__name__)

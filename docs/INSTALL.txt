@@ -47,11 +47,10 @@ buildout.cfg::
 
 .. note:: Since Plone 3.3 is not is necessary to explictly inform
           plone.recipe.zope2instance recipe to install the ZCML slug
-          
+
 
 After updating the configuration you need to run the ''bin/buildout'',
 which will take care of updating your system.
-
 
 Uninstall
 ---------
@@ -64,3 +63,4 @@ add-ons*, (check checkbox at its left side) and click the 'Deactivate' button.
 
 .. note:: You may have to empty your browser cache and save your resource
           registries in order to see the effects of the product installation.
+
