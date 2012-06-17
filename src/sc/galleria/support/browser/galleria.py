@@ -202,7 +202,7 @@ class Galleria(BrowserView):
         """ Load default gallery """
         if self.ptype != 'Link':
             return """jQuery(document).ready(function(){
-                         jQuery('%s').galleria({
+                         Galleria.run('%s', {
                              width: %s,
                              height: %s,
                              autoplay: %s,
@@ -218,7 +218,13 @@ class Galleria(BrowserView):
                              dummy: '%s',
                              thumbnails: %s,
                              thumbQuality: 'false',
-                             debug: %s,}) }) """ % (str(self.settings.selector),
+                             debug: %s,
+                             dataConfig: function(img) {
+                                return {
+                                    title: jQuery(img).attr('alt'),
+                                    description: jQuery(img).attr('title'),
+                                };
+                             }}) }) """ % (str(self.settings.selector),
                                               int(self.settings.gallery_width),
                                               int(self.settings.gallery_height),
                                               str(self.settings.autoplay).lower(),
@@ -306,7 +312,7 @@ class Galleria(BrowserView):
         elif self.plugins(plname='youtube') or self.plugins(plname='vimeo') or self.plugins(plname='dailymotion'):
             video_url = self.plugins(plname='youtube') or self.plugins(plname='vimeo') or self.plugins(plname='dailymotion')
             return """jQuery(document).ready(function(){
-                         jQuery('%s').galleria({
+                         Galleria.run('%s',{
                              width: %s,
                              height: %s,
                              autoplay: %s,
@@ -322,7 +328,13 @@ class Galleria(BrowserView):
                              thumbnails: %s,
                              thumbQuality: 'false',
                              dataSource: [{ 'video': '%s' },],
-                             debug: %s,}) }) """ % (str(self.settings.selector),
+                             debug: %s,
+                             dataConfig: function(img) {
+                                return {
+                                    title: jQuery(img).attr('alt'),
+                                    description: jQuery(img).attr('title'),
+                                };
+                             }) }) """ % (str(self.settings.selector),
                                               int(self.settings.gallery_width),
                                               int(self.settings.gallery_height),
                                               str(self.settings.autoplay).lower(),

@@ -89,13 +89,6 @@
       </tal:albumsimages>
     </div>
 
-    <p class="discreet"
-       i18n:domain="atcontenttypes"
-       i18n:translate="text_no_albums_uploaded"
-       tal:condition="python:not (albums or images)">
-        No albums or photos uploaded yet.
-    </p>
-
     <tal:listing condition="otherContents"
                  define="folderContents otherContents">
         <metal:listing metal:use-macro="here/folder_listing/macros/listing">
