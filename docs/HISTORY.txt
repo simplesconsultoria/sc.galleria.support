@@ -4,6 +4,13 @@ Changelog
 1.0b4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+ * Fixed Title and Description data, modification 
+   of the method call.
+   [cleberjsantos]
+
+ * Resolves (issue `#25`_).
+   [cleberjsantos]
+
  * Added template with ZPT macro.
    [cleberjsantos]
 
@@ -61,4 +68,5 @@ Changelog
 .. _`#12`: https://github.com/simplesconsultoria/sc.galleria.support/issues/12
 .. _`#13`: https://github.com/simplesconsultoria/sc.galleria.support/issues/13
 .. _`#17`: https://github.com/simplesconsultoria/sc.galleria.support/issues/17
+.. _`#25`: https://github.com/simplesconsultoria/sc.galleria.support/issues/25
 

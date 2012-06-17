@@ -5031,13 +5031,13 @@ Galleria.utils = Utils;
 
 Galleria.log = (function() {
     if( 'console' in window && 'log' in window.console ) {
-        return window.console.log;
+        return window.console.log.apply(window.console, arguments); 
     } else {
         return function() {
             window.alert( Utils.array( arguments ).join(', ') );
         };
     }
-}());
+});
 
 /**
     A ready method for adding callbacks when a gallery is ready
