@@ -2,14 +2,18 @@
 
 import unittest2 as unittest
 
+from zope.component import getMultiAdapter
+
 from Products.ATContentTypes.content.link import ATLink
+
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
 
 from sc.galleria.support.browser.galleria import Galleria
 from sc.galleria.support.interfaces import IGeneralSettings
 from sc.galleria.support.testing import INTEGRATION_TESTING
 
 
-# TODO: refactor the whole thing
 class BrowserViewTest(unittest.TestCase):
 
     layer = INTEGRATION_TESTING
@@ -17,125 +21,100 @@ class BrowserViewTest(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.user = self.portal['portal_membership'].getAuthenticatedMember()
 
-    def test_galleria_picasauserandid_no_link(self):
-        galleria = Galleria(self.user, self.request)
-        self.assertEqual(galleria.galleria_picasauserandid(), None)
-
-    def test_galleria_flickrid_no_link(self):
-        galleria = Galleria(self.user, self.request)
-        self.assertEqual(galleria.galleria_flickrid(), None)
-
     def test_galleria_picasauserandid_with_link(self):
+        """ Check that gets the user id and picasa id in a tuple from
+            the picasa link.
+        """
         link = ATLink(self.user)
         link.setRemoteUrl('https://picasaweb.google.com/user_id/galleria_id')
         galleria = Galleria(link, self.request)
-        self.assertEqual(galleria.galleria_picasauserandid(),
+        self.assertEquals(galleria.plugins(plname='picasaweb'),
                           ('user_id', 'galleria_id'))
 
     def test_galleria_flickrid_with_link(self):
-        link = ATLink(self.user)
+        """ Check that gets the flickr id from the flickr link.
+        """
+        self.portal.invokeFactory('Link', 'flickr_link')
+        link = self.portal['flickr_link']
         link.setRemoteUrl(
             'http://www.flickr.com/photos/user_id/sets/galleria_id/')
         galleria = Galleria(link, self.request)
-        self.assertEqual(galleria.galleria_flickrid(), 'galleria_id')
+        self.assertEquals(galleria.plugins(plname='flickr'), 'galleria_id')
 
     def test_portal_url(self):
         galleria = Galleria(self.user, self.request)
-        self.assertEqual(galleria.portal_url(), self.portal.absolute_url())
-
-    def test_getThumbnails(self):
-        galleria = Galleria(self.user, self.request)
-        self.assertEqual(galleria.getThumbnails(), 'true')
-
-    def js_values_no_link(self, view):
-        # XXX: it's a bad idea to put so much logic on tests
-        result = {
-            "jQuery": "('%s')" %
-                    str(IGeneralSettings.get('selector').default),
-            "width: ": str(IGeneralSettings.get('gallery_width').default),
-            "height: ": str(IGeneralSettings.get('gallery_height').default),
-            "autoplay: ":
-                    str(IGeneralSettings.get('autoplay').default).lower(),
-            "wait: ": str(IGeneralSettings.get('gallery_wait').default),
-            "showInfo: ": str(IGeneralSettings.get('showInf').default).lower(),
-            "imagePosition: ": "'%s'" %
-                    str(IGeneralSettings.get('imagePosition').default),
-            "transition: ": "'%s'" %
-                    IGeneralSettings.get('transitions').default,
-            "transitionSpeed: ":
-                    str(IGeneralSettings.get('transitionSpeed').default),
-            "lightbox: ":
-                    str(IGeneralSettings.get('lightbox').default).lower(),
-            "showCounter: ":
-                    str(IGeneralSettings.get('showCounting').default).lower(),
-            "showImagenav: ":
-                    str(IGeneralSettings.get('showimagenav').default).lower(),
-            "swipe: ": str(IGeneralSettings.get('swipe').default).lower(),
-            "dummy: ": "'%s'" % (view.portal_url() + \
-                        '/++resource++galleria-images/dummy.png'),
-            "thumbnails: ": view.getThumbnails(),
-            "debug: ": str(IGeneralSettings.get('debug').default).lower(),
-            }
-        return result
+        self.assertEquals(galleria.portal_url(), self.portal.absolute_url())
 
     def test_galleriajs_no_link(self):
+        """ Check that galleriajs method render javascript code with
+            default values when context is not a link.
+        """
         galleria = Galleria(self.user, self.request)
         js = galleria.galleriajs()
-        values = self.js_values_no_link(galleria)
-        for key in values.keys():
-            self.assertTrue(key + values[key] in js)
-
-    def js_values_with_link_flickr(self, view):
-        # XXX: it's a bad idea to put so much logic on tests
         result = {
-            "jQuery": "('%s')" %
-                    str(IGeneralSettings.get('selector').default),
-            "set = ": "'%s'" % str(view.galleria_flickrid()),
-            "max: ": str(view.flickrplugin.flickr_max),
-            "description: ": str(view.flickrplugin.flickr_desc).lower(),
-            "width: ": str(IGeneralSettings.get('gallery_width').default),
-            "height: ": str(IGeneralSettings.get('gallery_height').default),
-            "autoplay: ":
-                    str(IGeneralSettings.get('autoplay').default).lower(),
+            "Galleria.run": "('#content-galleria'",
+            "width: ": '500',
+            "height: ": '500',
+            "autoplay: ": 'true',
+            "wait: ": '5000',
+            "showInfo: ": 'true',
+            "imagePosition: ": "'center'",
+            "transition: ": "'fade'",
+            "transitionSpeed: ": '400',
+            "lightbox: ": 'false',
+            "showCounter: ": 'true',
+            "showImagenav: ": 'true',
+            "swipe: ": 'true',
+            "dummy: ": "'%s'" % (self.portal.absolute_url() + \
+                        '/++resource++galleria-images/dummy.png'),
+            "thumbnails: ": 'true',
+            "debug: ": 'false',
             }
-        return result
+        for key in result.keys():
+            self.assertTrue(key + result[key] in js)
 
     def test_galleriajs_with_link_flickr(self):
+        """ Check that galleriajs method render javascript code with
+            default values when context is a flickr link .
+        """
         link = ATLink(self.user)
         link.setRemoteUrl(
             'http://www.flickr.com/photos/user_id/sets/galleria_id/')
         galleria = Galleria(link, self.request)
         galleria.flickrplugin.flickr = True
         js = galleria.galleriajs()
-        values = self.js_values_with_link_flickr(galleria)
-        for key in values.keys():
-            self.assertTrue(key + values[key] in js)
-
-    def js_values_with_link_picasa(self, view):
-        # XXX: it's a bad idea to put so much logic on tests
         result = {
-            "jQuery": "('%s')" %
-                    str(IGeneralSettings.get('selector').default),
-            "max: ": str(view.flickrplugin.flickr_max),
-            "description: ": str(view.flickrplugin.flickr_desc).lower(),
-            "picasa.useralbum": """( '%s', '%s',""" % \
-                            (str(view.galleria_picasauserandid()[0]),
-                                str(view.galleria_picasauserandid()[1])),
-            "width: ": str(IGeneralSettings.get('gallery_width').default),
-            "height: ": str(IGeneralSettings.get('gallery_height').default),
-            "autoplay: ":
-                    str(IGeneralSettings.get('autoplay').default).lower(),
+            "jQuery": "('#content-galleria')",
+            "set = ": "'galleria_id'",
+            "max: ": '20',
+            "description: ": 'false',
+            "width: ": '500',
+            "height: ": '500',
+            "autoplay: ": 'true',
             }
-        return result
+        for key in result.keys():
+            self.assertTrue(key + result[key] in js)
 
     def test_galleriajs_with_link_picasa(self):
+        """ Check that galleriajs method render javascript code with
+            default values when context is a picasa link.
+        """
         link = ATLink(self.user)
         link.setRemoteUrl('https://picasaweb.google.com/user_id/galleria_id')
         galleria = Galleria(link, self.request)
         galleria.picasaplugin.picasa = True
         js = galleria.galleriajs()
-        values = self.js_values_with_link_picasa(galleria)
-        for key in values.keys():
-            self.assertTrue(key + values[key] in js)
+        result = {
+            "jQuery": "('#content-galleria')",
+            "max: ": '20',
+            "description: ": 'false',
+            "picasa.useralbum": """( 'user_id', 'galleria_id',""",
+            "width: ": '500',
+            "height: ": '500',
+            "autoplay: ": 'true',
+            }
+        for key in result.keys():
+            self.assertTrue(key + result[key] in js)
