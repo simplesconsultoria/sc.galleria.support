@@ -248,46 +248,42 @@ class Galleria(BrowserView):
 
         if self.ptype == 'Link' and self.flickrplugin.flickr and self.plugins(plname='flickr'):
             """ Load Flickr plugin """
-            return """jQuery(document).ready(function(){
-                          var flickr = new Galleria.Flickr();
-                          var elem = jQuery('%s');
-                          var set = '%s';
+            return """var flickr = new Galleria.Flickr();
+                      var elem = jQuery('%s');
+                      var set = '%s';
 
-                          flickr.setOptions({
-                              max: %s,
-                              description: %s,
-                          })
+                      flickr.setOptions({
+                          max: %s,
+                          description: %s,
+                      })
 
-                          flickr.set(set, function(data) {
-                              elem.galleria({
-                                  dataSource: data,
-                              });
+                      flickr.set(set, function(data) {
+                          elem.galleria({
+                              dataSource: data,
+                          });
 
-                              Galleria.get(0).load(data);
-                          })
+                          Galleria.get(0).load(data);
                       }); """ % (str(self.settings.selector),
                                str(self.plugins(plname='flickr')),
                                int(self.flickrplugin.flickr_max),
                                str(self.flickrplugin.flickr_desc).lower())
         elif self.ptype == 'Link' and self.picasaplugin.picasa and self.plugins(plname='picasaweb'):
             """ Load Picasa plugin """
-            return """jQuery(document).ready(function(){
-                          var picasa = new Galleria.Picasa();
-                          var elem = jQuery('%s');
+            return """ var picasa = new Galleria.Picasa();
+                       var elem = jQuery('%s');
 
-                          picasa.setOptions({
-                              max: %s,
-                              description: %s,
-                          })
+                       picasa.setOptions({
+                           max: %s,
+                           description: %s,
+                       })
 
-                          picasa.useralbum( '%s', '%s',function(data) {
-                              elem.galleria({
-                                  dataSource: data,
-                              });
+                       picasa.useralbum( '%s', '%s',function(data) {
+                           elem.galleria({
+                               dataSource: data,
+                           });
 
-                              Galleria.get(0).load(data);
-                          })
-                      }); """ % (str(self.settings.selector),
+                           Galleria.get(0).load(data);
+                       }); """ % (str(self.settings.selector),
                                int(self.picasaplugin.picasa_max),
                                str(self.picasaplugin.picasa_desc).lower(),
                                str(self.plugins(plname='picasaweb')[0]),
