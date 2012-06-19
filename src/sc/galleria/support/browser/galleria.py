@@ -218,6 +218,7 @@ class Galleria(BrowserView):
                              thumbQuality: 'false',
                              debug: %s,
                              imageCrop: %s,
+                             fullscreenCrop: %s,
                              responsive: true,
                              });""" % (int(self.settings.gallery_width),
                                        int(self.settings.gallery_height),
@@ -234,6 +235,7 @@ class Galleria(BrowserView):
                                        str(self.portal_url() + '/++resource++galleria-images/dummy.png'),
                                        self.getThumbnails(videoval=1),
                                        str(self.settings.debug).lower(),
+                                       str(self.settings.imagecrop).lower(),
                                        str(self.settings.imagecrop).lower())
     def galleriajs(self):
         """ Load default gallery """
