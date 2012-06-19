@@ -7,13 +7,10 @@
         </tal:valmovies>
 
 
-       <script type="text/javascript">
-         jQuery(document).ready(function(){
-             Galleria.loadTheme("++resource++galleria-themes/classic/galleria.classic.min.js");
-         })
+       <script type="text/javascript" tal:content="python:'\n%s\n \n%s\n \n%s\n %s' %('''jQuery(document).ready(function(){
+             Galleria.loadTheme('++resource++galleria-themes/classic/galleria.classic.min.js');
+             ''',view.galleriaconf(),view.galleriajs(),'})')">
        </script>
-
-       <script type="text/javascript" tal:content="view/galleriajs"></script>
 
     </metal:galleriaslotjs>
 

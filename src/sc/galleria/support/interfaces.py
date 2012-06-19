@@ -152,6 +152,16 @@ class IGeneralSettings(Interface):
                                vocabulary=thumbnailsvoc,
                                required=True,)
 
+    imagecrop = schema.Bool(title=_(u"Enable image crop"),
+                        description=_(u"Defines how the main image will be cropped inside it is container."),
+                        default=True,
+                        required=True,)
+
+    responsive = schema.Bool(title=_(u"Sets Gallery in responsive mode"),
+                        description=_(u"Means that it will resize the entire container in dynamic proportions added in your CSS."),
+                        default=True,
+                        required=True,)
+
     debug = schema.Bool(title=_(u"Enable debug mode"),
                         description=_(u"Set this to false to prevent debug messages."),
                         default=False,
