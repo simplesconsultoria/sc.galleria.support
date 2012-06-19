@@ -115,6 +115,14 @@ class RecordsGeneralSettings(unittest.TestCase):
         self.assertTrue(hasattr(self.settings, 'thumbnails'))
         self.assertEqual(self.settings.thumbnails, u'show')
 
+    def test_imagecrop_record(self):
+        self.assertTrue(hasattr(self.settings, 'imagecrop'))
+        self.assertEqual(self.settings.imagecrop, True)
+
+    def test_responsive_record(self):
+        self.assertTrue(hasattr(self.settings, 'responsive'))
+        self.assertEqual(self.settings.responsive, True)
+
     def test_debug_record(self):
         self.assertTrue(hasattr(self.settings, 'debug'))
         self.assertEqual(self.settings.debug, False)
