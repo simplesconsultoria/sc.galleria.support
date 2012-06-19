@@ -40,8 +40,18 @@
         </h1>
     </metal:title>
 
+    <div tal:content="structure provider:plone.belowcontenttitle" tal:condition="not:ajax_load" />
 
-    <div tal:replace="structure provider:plone.belowcontenttitle" />
+    <metal:description define-slot="content-description">
+        <metal:comment tal:content="nothing">
+            If you write a custom description always use
+            <div class="documentDescription"></div> for it
+        </metal:comment>
+        <div metal:use-macro="context/kss_generic_macros/macros/generic_description_view">
+            Generic KSS Description. Is rendered with class="documentDescription".
+        </div>
+    </metal:description>
+
 
     <div id="content-galleria">
       <tal:albumsimages tal:condition="python:albums or images">
