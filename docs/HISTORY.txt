@@ -4,6 +4,15 @@ Changelog
 1.0b4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+ * Added image crop and responsive options.
+   [cleberjsantos]
+
+ * Refactored and optimized code.
+   [cleberjsantos]
+
+ * Refactoring browser test cases.
+   [aleGpereira]
+
  * Fixed Title and Description data, modification 
    of the method call.
    [cleberjsantos]

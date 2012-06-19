@@ -198,11 +198,9 @@ class Galleria(BrowserView):
                 else:
                     return "'%s'" % (self.settings.thumbnails)
 
-    def galleriajs(self):
-        """ Load default gallery """
-        if self.ptype != 'Link':
-            return """jQuery(document).ready(function(){
-                         Galleria.run('%s', {
+    def galleriaconf(self):
+        """ Galleria configuration """
+        return """Galleria.configure({
                              width: %s,
                              height: %s,
                              autoplay: %s,
@@ -219,134 +217,85 @@ class Galleria(BrowserView):
                              thumbnails: %s,
                              thumbQuality: 'false',
                              debug: %s,
+                             imageCrop: %s,
+                             responsive: true,
+                             });""" % (int(self.settings.gallery_width),
+                                       int(self.settings.gallery_height),
+                                       str(self.settings.autoplay).lower(),
+                                       int(self.settings.gallery_wait),
+                                       str(self.settings.showInf).lower(),
+                                       str(self.settings.imagePosition),
+                                       self.settings.transitions,
+                                       int(self.settings.transitionSpeed),
+                                       str(self.settings.lightbox).lower(),
+                                       str(self.settings.showCounting).lower(),
+                                       str(self.settings.showimagenav).lower(),
+                                       str(self.settings.swipe).lower(),
+                                       str(self.portal_url() + '/++resource++galleria-images/dummy.png'),
+                                       self.getThumbnails(videoval=1),
+                                       str(self.settings.debug).lower(),
+                                       str(self.settings.imagecrop).lower())
+    def galleriajs(self):
+        """ Load default gallery """
+        if self.ptype != 'Link':
+            return """Galleria.run('%s', {
                              dataConfig: function(img) {
                                 return {
                                     title: jQuery(img).attr('alt'),
                                     description: jQuery(img).attr('title'),
                                 };
-                             }}) }) """ % (str(self.settings.selector),
-                                              int(self.settings.gallery_width),
-                                              int(self.settings.gallery_height),
-                                              str(self.settings.autoplay).lower(),
-                                              int(self.settings.gallery_wait),
-                                              str(self.settings.showInf).lower(),
-                                              str(self.settings.imagePosition),
-                                              self.settings.transitions,
-                                              int(self.settings.transitionSpeed),
-                                              str(self.settings.lightbox).lower(),
-                                              str(self.settings.showCounting).lower(),
-                                              str(self.settings.showimagenav).lower(),
-                                              str(self.settings.swipe).lower(),
-                                              str(self.portal_url() + '/++resource++galleria-images/dummy.png'),
-                                              self.getThumbnails(videoval=1),
-                                              str(self.settings.debug).lower())
+                             }});""" % (str(self.settings.selector))
 
         if self.ptype == 'Link' and self.flickrplugin.flickr and self.plugins(plname='flickr'):
             """ Load Flickr plugin """
-            return """jQuery(document).ready(function(){
-                          var flickr = new Galleria.Flickr();
-                          var elem = jQuery('%s');
-                          var set = '%s';
+            return """var flickr = new Galleria.Flickr();
+                      var elem = jQuery('%s');
+                      var set = '%s';
 
-                          flickr.setOptions({
-                              max: %s,
-                              description: %s,
-                          })
+                      flickr.setOptions({
+                          max: %s,
+                          description: %s,
+                      })
 
-                          flickr.set(set, function(data) {
-                             if(jQuery('.galleria-container notouch').length){
-                                 Galleria.get(0).load(data);
-                             } else{
-                                 elem.galleria({
-                                     width: %s,
-                                     height: %s,
-                                     autoplay: %s,
-                                     dataSource: data,
-                                 });
+                      flickr.set(set, function(data) {
+                          elem.galleria({
+                              dataSource: data,
+                          });
 
-                                 Galleria.get(0).load(data);
-                             }
-
-                          })
-                      }) """ % (str(self.settings.selector),
+                          Galleria.get(0).load(data);
+                      }); """ % (str(self.settings.selector),
                                str(self.plugins(plname='flickr')),
                                int(self.flickrplugin.flickr_max),
-                               str(self.flickrplugin.flickr_desc).lower(),
-                               int(self.settings.gallery_width),
-                               int(self.settings.gallery_height),
-                               str(self.settings.autoplay).lower())
+                               str(self.flickrplugin.flickr_desc).lower())
         elif self.ptype == 'Link' and self.picasaplugin.picasa and self.plugins(plname='picasaweb'):
             """ Load Picasa plugin """
-            return """jQuery(document).ready(function(){
-                          var picasa = new Galleria.Picasa();
-                          var elem = jQuery('%s');
+            return """ var picasa = new Galleria.Picasa();
+                       var elem = jQuery('%s');
 
-                          picasa.setOptions({
-                              max: %s,
-                              description: %s,
-                          })
+                       picasa.setOptions({
+                           max: %s,
+                           description: %s,
+                       })
 
-                          picasa.useralbum( '%s', '%s',function(data) {
-                             if(jQuery('.galleria-container notouch').length){
-                                 Galleria.get(0).load(data);
-                             } else{
-                                 elem.galleria({
-                                     width: %s,
-                                     height: %s,
-                                     autoplay: %s,
-                                     dataSource: data,
-                                 });
+                       picasa.useralbum( '%s', '%s',function(data) {
+                           elem.galleria({
+                               dataSource: data,
+                           });
 
-                                 Galleria.get(0).load(data);
-                             }
-
-                          })
-                      }) """ % (str(self.settings.selector),
+                           Galleria.get(0).load(data);
+                       }); """ % (str(self.settings.selector),
                                int(self.picasaplugin.picasa_max),
                                str(self.picasaplugin.picasa_desc).lower(),
                                str(self.plugins(plname='picasaweb')[0]),
-                               str(self.plugins(plname='picasaweb')[1]),
-                               int(self.settings.gallery_width),
-                               int(self.settings.gallery_height),
-                               str(self.settings.autoplay).lower())
+                               str(self.plugins(plname='picasaweb')[1]))
+
         elif self.plugins(plname='youtube') or self.plugins(plname='vimeo') or self.plugins(plname='dailymotion'):
             video_url = self.plugins(plname='youtube') or self.plugins(plname='vimeo') or self.plugins(plname='dailymotion')
-            return """jQuery(document).ready(function(){
-                         Galleria.run('%s',{
-                             width: %s,
-                             height: %s,
-                             autoplay: %s,
-                             wait: %s,
-                             showInfo: %s,
-                             imagePosition: '%s',
-                             transition: '%s',
-                             transitionSpeed: %s,
-                             showCounter: %s,
-                             showImagenav: %s,
-                             swipe: %s,
-                             dummy: '%s',
-                             thumbnails: %s,
-                             thumbQuality: 'false',
+            return """Galleria.run('%s',{
                              dataSource: [{ 'video': '%s' },],
-                             debug: %s,
                              dataConfig: function(img) {
                                 return {
                                     title: jQuery(img).attr('alt'),
                                     description: jQuery(img).attr('title'),
                                 };
-                             }) }) """ % (str(self.settings.selector),
-                                              int(self.settings.gallery_width),
-                                              int(self.settings.gallery_height),
-                                              str(self.settings.autoplay).lower(),
-                                              int(self.settings.gallery_wait),
-                                              str(self.settings.showInf).lower(),
-                                              str(self.settings.imagePosition),
-                                              self.settings.transitions,
-                                              int(self.settings.transitionSpeed),
-                                              str(self.settings.showCounting).lower(),
-                                              str(self.settings.showimagenav).lower(),
-                                              str(self.settings.swipe).lower(),
-                                              str(self.portal_url() + '/++resource++galleria-images/dummy.png'),
-                                              self.getThumbnails(),
-                                              video_url,
-                                              str(self.settings.debug).lower())
+                             }});""" % (str(self.settings.selector), video_url)
