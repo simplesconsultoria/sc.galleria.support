@@ -1,7 +1,7 @@
 Changelog
 ----------
 
-1.0b4 (unreleased)
+1.0b4 (2012-06-21)
 ^^^^^^^^^^^^^^^^^^
 
  * Added image crop and responsive options.
