@@ -13,8 +13,7 @@ Changelog
  * Refactoring browser test cases.
    [aleGpereira]
 
- * Fixed Title and Description data, modification 
-   of the method call.
+ * Fixed Title and Description data, modification of the method call.
    [cleberjsantos]
 
  * Resolves (issue `#25`_).
@@ -40,9 +39,9 @@ Changelog
 ^^^^^^^^^^^^^^^^^^
 
  * Fixed NameError: name 'test' is not defined (issue `#17`_).
-  [cleberjsantos]
+   [cleberjsantos]
 
- * PEP8.
+ * PEP 8.
    [hvelarde]
 
  * Portuguese translation updated.
@@ -61,7 +60,7 @@ Changelog
  * Patch for bug in Picasa plugin (issue `#13`_).
    [cleberjsantos]
 
- * Added Tests.
+ * Added tests.
    [aleGpereira]
 
  * Updated i18n and Brazilian Portuguese translation.
