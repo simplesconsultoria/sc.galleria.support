@@ -24,11 +24,12 @@ class BrowserViewTest(unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.user = self.portal['portal_membership'].getAuthenticatedMember()
 
-    def test_galleria_picasauserandid_with_link(self):
+    def test_galleria_picasauserandid(self):
         """ Check that gets the user id and picasa id in a tuple from
             the picasa link.
         """
-        link = ATLink(self.user)
+        self.portal.invokeFactory('Link', 'picassa_link')
+        link = self.portal['picassa_link']
         link.setRemoteUrl('https://picasaweb.google.com/user_id/galleria_id')
         galleria = Galleria(link, self.request)
         self.assertEquals(galleria.plugins(plname='picasaweb'),
@@ -48,14 +49,13 @@ class BrowserViewTest(unittest.TestCase):
         galleria = Galleria(self.user, self.request)
         self.assertEquals(galleria.portal_url(), self.portal.absolute_url())
 
-    def test_galleriajs_no_link(self):
-        """ Check that galleriajs method render javascript code with
-            default values when context is not a link.
+    def test_galleriajs_configuration(self):
+        """ Check that galleriaconf method render javascript code with
+            default values.
         """
         galleria = Galleria(self.user, self.request)
-        js = galleria.galleriajs()
+        js = galleria.galleriaconf()
         result = {
-            "Galleria.run": "('#content-galleria'",
             "width: ": '500',
             "height: ": '500',
             "autoplay: ": 'true',
@@ -71,16 +71,20 @@ class BrowserViewTest(unittest.TestCase):
             "dummy: ": "'%s'" % (self.portal.absolute_url() + \
                         '/++resource++galleria-images/dummy.png'),
             "thumbnails: ": 'true',
+            "thumbQuality: ": "'false'",
             "debug: ": 'false',
+            "imageCrop: ": 'true',
+            "responsive: ": 'true',
             }
         for key in result.keys():
             self.assertTrue(key + result[key] in js)
 
-    def test_galleriajs_with_link_flickr(self):
+    def test_galleriajs_with_flickr(self):
         """ Check that galleriajs method render javascript code with
             default values when context is a flickr link .
         """
-        link = ATLink(self.user)
+        self.portal.invokeFactory('Link', 'flickr_link')
+        link = self.portal['flickr_link']
         link.setRemoteUrl(
             'http://www.flickr.com/photos/user_id/sets/galleria_id/')
         galleria = Galleria(link, self.request)
@@ -91,18 +95,16 @@ class BrowserViewTest(unittest.TestCase):
             "set = ": "'galleria_id'",
             "max: ": '20',
             "description: ": 'false',
-            "width: ": '500',
-            "height: ": '500',
-            "autoplay: ": 'true',
             }
         for key in result.keys():
             self.assertTrue(key + result[key] in js)
 
-    def test_galleriajs_with_link_picasa(self):
+    def test_galleriajs_with_picasa(self):
         """ Check that galleriajs method render javascript code with
             default values when context is a picasa link.
         """
-        link = ATLink(self.user)
+        self.portal.invokeFactory('Link', 'picassa_link')
+        link = self.portal['picassa_link']
         link.setRemoteUrl('https://picasaweb.google.com/user_id/galleria_id')
         galleria = Galleria(link, self.request)
         galleria.picasaplugin.picasa = True
@@ -112,9 +114,6 @@ class BrowserViewTest(unittest.TestCase):
             "max: ": '20',
             "description: ": 'false',
             "picasa.useralbum": """( 'user_id', 'galleria_id',""",
-            "width: ": '500',
-            "height: ": '500',
-            "autoplay: ": 'true',
             }
         for key in result.keys():
             self.assertTrue(key + result[key] in js)
