@@ -38,7 +38,7 @@ msgstr "Ex:  '#content-core' ou '#content' ou '.galleria'. Não mexa se você n�
 msgid "Eg. 'top right' or '20% 100%'"
 msgstr "Ex. 'top right' ou '20% 100%'"
 
-#: sc/galleria/support/interfaces.py:153
+#: sc/galleria/support/interfaces.py:165
 msgid "Enable debug mode"
 msgstr "Habilitar modo debug"
 
@@ -135,7 +135,7 @@ msgstr "Pulse"
 msgid "Selector jQuery"
 msgstr "Seletor jQuery"
 
-#: sc/galleria/support/interfaces.py:154
+#: sc/galleria/support/interfaces.py:166
 msgid "Set this to false to prevent debug messages."
 msgstr "Defina esta opção para false para evitar mensagens de depuração."
 
@@ -151,19 +151,19 @@ msgstr "Define quanto tempo a Galleria deverá aguardar quando tentar extrair me
 msgid "Sets the creation of thumbnails"
 msgstr "Define a criação de thumbnails"
 
-#: sc/galleria/support/interfaces.py:172
+#: sc/galleria/support/interfaces.py:185
 msgid "Show Description"
 msgstr "Exibir Descrição"
 
-#: sc/galleria/support/interfaces.py:147
+#: sc/galleria/support/interfaces.py:149
 msgid "Show Thumbnails"
 msgstr "Exibir Thumbnails"
 
-#: sc/galleria/support/interfaces.py:116
+#: sc/galleria/support/interfaces.py:118
 msgid "Show counting"
 msgstr "Exibir a contagem"
 
-#: sc/galleria/support/interfaces.py:91
+#: sc/galleria/support/interfaces.py:94
 msgid "Show informations"
 msgstr "Exibir informações"
 
@@ -175,46 +175,63 @@ msgstr "Exibir thumbnails"
 msgid "Slide"
 msgstr "Deslizar"
 
-#: sc/galleria/support/interfaces.py:173
+#: sc/galleria/support/interfaces.py:186
 msgid "The plugin fetches the title per default. If you also wish to fetch the description, set this option to true."
 msgstr "O plugin busca o título por padrão. Se você também deseja buscar a descrição, defina esta opção como true."
 
-#: sc/galleria/support/interfaces.py:92
+#: sc/galleria/support/interfaces.py:95
 msgid "Toggles the caption."
 msgstr "Alterna a legenda."
 
-#: sc/galleria/support/interfaces.py:117
+#: sc/galleria/support/interfaces.py:119
 msgid "Toggles the counter."
 msgstr "Alterna o contador."
 
-#: sc/galleria/support/interfaces.py:127
+#: sc/galleria/support/interfaces.py:129
 msgid "Transition Speed"
 msgstr "Velocidade da Transição"
 
-#: sc/galleria/support/interfaces.py:121
+#: sc/galleria/support/interfaces.py:123
 msgid "Transitions"
 msgstr "Transições"
 
-#: sc/galleria/support/interfaces.py:108
+#: sc/galleria/support/interfaces.py:111
 msgid "center"
 msgstr "centro"
 
-#: sc/galleria/support/interfaces.py:123
+#: sc/galleria/support/interfaces.py:125
 msgid "fade"
 msgstr "desvanecer"
 
-#: sc/galleria/support/interfaces.py:149
+#: sc/galleria/support/interfaces.py:151
 msgid "show"
 msgstr "exibir"
 
-#: sc/galleria/support/interfaces.py:132
+#: sc/galleria/support/interfaces.py:134
 msgid "show image navigation"
 msgstr "exibir navegação de imagem"
 
-#: sc/galleria/support/interfaces.py:137
+#: sc/galleria/support/interfaces.py:139
 msgid "swipe"
 msgstr "swipe"
 
-#: sc/galleria/support/interfaces.py:133
+#: sc/galleria/support/interfaces.py:135
 msgid "toggles the image navigation arrows."
 msgstr "alterna as setas de navegação de imagens."
+
+#: sc/galleria/support/interfaces.py:155
+msgid "Enable image crop"
+msgstr "Habilitar recorte de imagem"
+
+#: sc/galleria/support/interfaces.py:156
+msgid "Defines how the main image will be cropped inside it is container."
+msgstr "Define como a imagem principal será cortada dentro do recipiente."
+
+#: sc/galleria/support/interfaces.py:160
+msgid "Sets Gallery in responsive mode"
+msgstr "Habilitando Gallery no modo responsivo."
+
+#: sc/galleria/support/interfaces.py:160
+msgid "Means that it will resize the entire container in dynamic proportions added in your CSS."
+msgstr "Significa que ele vai redimensionar todo o recipiente em proporções dinâmicas adicionadas no seu CSS."
+
