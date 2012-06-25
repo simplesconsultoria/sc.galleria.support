@@ -218,23 +218,35 @@ class Galleria(BrowserView):
                              thumbQuality: 'false',
                              debug: %s,
                              imageCrop: %s,
+                             fullscreenCrop: %s,
                              responsive: true,
-                             });""" % (int(self.settings.gallery_width),
-                                       int(self.settings.gallery_height),
-                                       str(self.settings.autoplay).lower(),
-                                       int(self.settings.gallery_wait),
-                                       str(self.settings.showInf).lower(),
-                                       str(self.settings.imagePosition),
-                                       self.settings.transitions,
-                                       int(self.settings.transitionSpeed),
-                                       str(self.settings.lightbox).lower(),
-                                       str(self.settings.showCounting).lower(),
-                                       str(self.settings.showimagenav).lower(),
-                                       str(self.settings.swipe).lower(),
-                                       str(self.portal_url() + '/++resource++galleria-images/dummy.png'),
-                                       self.getThumbnails(videoval=1),
-                                       str(self.settings.debug).lower(),
-                                       str(self.settings.imagecrop).lower())
+                             extend: function(options) {
+                                var gallery = this;
+                                this.bind('image', function(e) {
+                                $(e.imageTarget).unbind('click').click(function() {
+                                    gallery.toggleFullscreen();
+                                });
+                             });
+                             },
+
+                            });""" % (int(self.settings.gallery_width),
+                                      int(self.settings.gallery_height),
+                                      str(self.settings.autoplay).lower(),
+                                      int(self.settings.gallery_wait),
+                                      str(self.settings.showInf).lower(),
+                                      str(self.settings.imagePosition),
+                                      self.settings.transitions,
+                                      int(self.settings.transitionSpeed),
+                                      str(self.settings.lightbox).lower(),
+                                      str(self.settings.showCounting).lower(),
+                                      str(self.settings.showimagenav).lower(),
+                                      str(self.settings.swipe).lower(),
+                                      str(self.portal_url() + '/++resource++galleria-images/dummy.png'),
+                                      self.getThumbnails(videoval=1),
+                                      str(self.settings.debug).lower(),
+                                      str(self.settings.imagecrop).lower(),
+                                      str(self.settings.imagecrop).lower())
+
     def galleriajs(self):
         """ Load default gallery """
         if self.ptype != 'Link':
