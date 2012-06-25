@@ -75,6 +75,8 @@ class BrowserViewTest(unittest.TestCase):
             "debug: ": 'false',
             "imageCrop: ": 'true',
             "responsive: ": 'true',
+            "extend: ": "function(options)",
+            "var gallery = ": "this;",
             }
         for key in result.keys():
             self.assertTrue(key + result[key] in js)
