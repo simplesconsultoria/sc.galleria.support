@@ -2,9 +2,5 @@ TODO
 ----
 
 * Topic template view.
-* Support of installing new themes.
-    * Use plone.resources
-* Fullscreen themes support.
-* Refactor browser test cases.
 * Facebook plugin
 * Debug plugin
