@@ -25,6 +25,8 @@ from sc.galleria.support.interfaces import IGalleria,\
                                             FormGroup1,\
                                             FormGroup2,\
                                             FormGroup3,\
+                                            FormGroup4,\
+                                            IFaceBookPlugin,\
                                             IFlickrPlugin,\
                                             IPicasaPlugin,\
                                             IHistoryPlugin
@@ -41,7 +43,7 @@ class GalleriaSettingsEditForm(controlpanel.RegistryEditForm):
     """ Control Panel """
     schema = IGalleriaSettings
     fields = field.Fields(IGeneralSettings)
-    groups = FormGroup1, FormGroup2, FormGroup3
+    groups = FormGroup1, FormGroup2, FormGroup3, FormGroup4
     label = _(u"Galleria settings")
     description = _(u"""""")
 
@@ -115,6 +117,7 @@ class Galleria(BrowserView):
         self.ptype = self.context.portal_type
         self.registry = getUtility(IRegistry)
         self.settings = self.registry.forInterface(IGeneralSettings)
+        self.facebookplugin = self.registry.forInterface(IFaceBookPlugin)
         self.flickrplugin = self.registry.forInterface(IFlickrPlugin)
         self.picasaplugin = self.registry.forInterface(IPicasaPlugin)
         self.historyplugin = self.registry.forInterface(IHistoryPlugin)
@@ -155,6 +158,17 @@ class Galleria(BrowserView):
                     except:
                             galluserid, galleriaid = (None, None)
                     return (galluserid, galleriaid)
+            elif plname == 'facebook':
+                positionset = int(urllink['query'].find('set=a'))
+                id_list = urllink['query'][positionset:].split('.')
+                try:
+                    if len(id_list) >= 2:
+                        galleriaid = id_list[1]
+                    else:
+                        galleriaid = None
+                except:
+                    galleriaid = None
+                return galleriaid
             elif plname == 'flickr':
                 positionsets = int(urllink['path'].find('sets'))
                 id_list = urllink['path'][positionsets:].split('/')
@@ -223,7 +237,7 @@ class Galleria(BrowserView):
                              extend: function(options) {
                                 var gallery = this;
                                 this.bind('image', function(e) {
-                                $(e.imageTarget).unbind('click').click(function() {
+                                jQuery(e.imageTarget).unbind('click').click(function() {
                                     gallery.toggleFullscreen();
                                 });
                              });
@@ -258,7 +272,29 @@ class Galleria(BrowserView):
                                 };
                              }});""" % (str(self.settings.selector))
 
-        if self.ptype == 'Link' and self.flickrplugin.flickr and self.plugins(plname='flickr'):
+        if self.ptype == 'Link' and self.facebookplugin.facebook and self.plugins(plname='facebook'):
+            """ Load FaceBook plugin """
+            return """var facebook = new Galleria.Facebook();
+                      var elem = jQuery('%s');
+                      var album_id = '%s';
+
+                      facebook.setOptions({
+                          facebook: 'album:' + album_id,
+                          max: %s,
+                          description: %s,
+                      });
+
+                      facebook.album(album_id,function(data) {
+                          elem.galleria({
+                              dataSource: data,
+                          });
+
+                          Galleria.get(0).load(data);
+                      }); """ % (str(self.settings.selector),
+                               str(self.plugins(plname='facebook')),
+                               int(self.facebookplugin.facebook_max),
+                               str(self.facebookplugin.facebook_desc).lower())
+        elif self.ptype == 'Link' and self.flickrplugin.flickr and self.plugins(plname='flickr'):
             """ Load Flickr plugin """
             return """var flickr = new Galleria.Flickr();
                       var elem = jQuery('%s');
