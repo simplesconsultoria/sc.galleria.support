@@ -98,11 +98,11 @@ Galleria.Facebook.prototype = {
         switch(size) {
 
             case 'thumb':
-                img = photo.url_t;
+                img = photo.images[7].source;
                 break;
 
             case 'small':
-                img = photo.url_s;
+                img = photo.images[6].source;
                 break;
 
             case 'big':
@@ -110,7 +110,7 @@ Galleria.Facebook.prototype = {
                 break;
 
             case 'original':
-                img = photo.url_o ? photo.url_o : this._getBig( photo );
+                img = photo.source ? photo.source : this._getBig( photo );
                 break;
 
             default:
@@ -157,7 +157,7 @@ Galleria.Facebook.prototype = {
 
 				
                 gallery.push({
-					thumb: photo[this.options.thumbSize],
+                    thumb: this._getSize( photo, this.options.thumbSize),
 					image: photo[this.options.imageSize],
 					big: this._getBig( photo ),
                     title: photo.name,
