@@ -282,6 +282,7 @@ class Galleria(BrowserView):
                           facebook: 'album:' + album_id,
                           max: %s,
                           description: %s,
+                          thumbSize:'small',
                       });
 
                       facebook.album(album_id,function(data) {
