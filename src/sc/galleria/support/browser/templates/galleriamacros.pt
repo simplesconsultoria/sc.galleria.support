@@ -4,6 +4,7 @@
             <script tal:condition="view/historyplugin/history" src="++resource++galleria-plugins/historyplugin/galleria.history.min.js"></script>
             <script tal:condition="view/flickrplugin/flickr" src="++resource++galleria-plugins/flickr/galleria.flickr.min.js"></script>
             <script tal:condition="view/picasaplugin/picasa" src="++resource++galleria-plugins/picasa/galleria.picasa.min.js"></script>
+            <script tal:condition="view/facebookplugin/facebook" src="++resource++galleria-plugins/facebook/galleria.facebook.min.js"></script>
         </tal:valmovies>
 
 
