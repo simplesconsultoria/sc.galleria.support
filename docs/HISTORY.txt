@@ -7,9 +7,6 @@ Changelog
  * Added toggle full screen.
   [cleberjsantos]
 
- * Refactoring browser test with fullscreen.
-  [cleberjsantos]
-
  * Added FaceBook Plugins.
   [cleberjsantos]
 
@@ -17,6 +14,12 @@ Changelog
   [cleberjsantos]
 
  * Refactoring tests.
+  [cleberjsantos]
+
+ * Corrected thumb and image generation.
+  [cleberjsantos]
+
+ * Added Galleria template to new collection.
   [cleberjsantos]
 
 

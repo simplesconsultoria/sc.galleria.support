@@ -1,0 +1,78 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:use-macro="here/main_template/macros/master"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+
+<body>
+
+<metal:main fill-slot="main">
+ <metal:main_macro define-macro="main"
+     tal:define="kssClassesView context/@@kss_field_decorator_view;
+                 getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;
+                 templateId template/getId;">
+
+    <div metal:define-macro="text-field-view"
+         id="parent-fieldname-text" class="stx"
+         tal:define="kss_class python:getKssClasses('text',
+                     templateId=templateId, macro='text-field-view');
+                     has_text exists:context/aq_explicit/getText;
+                     text python:has_text and here.getText() or ''"
+         tal:condition="text"
+         tal:attributes="class python:here.Format() in ('text/structured',
+         'text/x-rst', ) and 'stx' + kss_class or 'plain' + kss_class">
+        <div metal:define-slot="inside" tal:replace="structure text">The body</div>
+    </div>
+
+    <div tal:replace="structure provider:plone.abovecontenttitle" />
+    <metal:title define-slot="content-title">
+        <metal:comment tal:content="nothing">
+            If you write a custom title always use
+            <h1 class="documentFirstHeading"></h1> for it.
+        </metal:comment>
+        <h1 metal:use-macro="context/kss_generic_macros/macros/generic_title_view">
+            Generic KSS Title. Is rendered with class="documentFirstHeading".
+        </h1>
+    </metal:title>
+
+    <div tal:content="structure provider:plone.belowcontenttitle" tal:condition="not:ajax_load" />
+
+    <metal:description define-slot="content-description">
+        <metal:comment tal:content="nothing">
+            If you write a custom description always use
+            <div class="documentDescription"></div> for it
+        </metal:comment>
+        <div metal:use-macro="context/kss_generic_macros/macros/generic_description_view">
+            Generic KSS Description. Is rendered with class="documentDescription".
+        </div>
+    </metal:description>
+
+
+    <div id="content-galleria">
+        <metal:content-core fill-slot="content-core">
+            <metal:block use-macro="context/standard_view/macros/content-core">
+
+                <metal:entries fill-slot="entries">
+                    <metal:block use-macro="context/standard_view/macros/entries">
+                        <metal:entry fill-slot="entry">
+                        <img tal:attributes="src string:${item_url}/image_large;
+                                            title item_description;
+                                            alt item/Title;">
+                        </metal:entry>
+                    </metal:block>
+                </metal:entries>
+
+            </metal:block>
+        </metal:content-core>
+    </div>
+
+
+    <metal:galleria_macro use-macro="here/galleriamacros/macros/galleria_js" />
+
+ </metal:main_macro>
+</metal:main>
+
+</body>
+
+</html>
