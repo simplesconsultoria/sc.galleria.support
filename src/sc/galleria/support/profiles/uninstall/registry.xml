@@ -4,4 +4,5 @@
  <records interface="sc.galleria.support.interfaces.IFlickrPlugin" remove="True"/>
  <records interface="sc.galleria.support.interfaces.IPicasaPlugin" remove="True"/>
  <records interface="sc.galleria.support.interfaces.IHistoryPlugin" remove="True"/>
+ <records interface="sc.galleria.support.interfaces.IFaceBookPlugin" remove="True" />
 </registry>

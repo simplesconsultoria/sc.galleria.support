@@ -168,6 +168,24 @@ class IGeneralSettings(Interface):
                         required=True,)
 
 
+class IFaceBookPlugin(Interface):
+    """ Enable/Disable FaceBook plugin
+    """
+
+    facebook = schema.Bool(title=_(u"Enable facebook plugin"),
+                        description=_(u""),
+                        default=False,)
+
+    facebook_max = schema.Int(title=_(u"Maximum number of photos."),
+                            description=_(u"Maximum number of photos to return (maximum value 100)."),
+                            default=20,
+                            required=True,)
+
+    facebook_desc = schema.Bool(title=_(u"Show Description"),
+                              description=_(u"The plugin fetches the title per default. If you also wish to fetch the description, set this option to true."),
+                              default=False)
+
+
 class IFlickrPlugin(Interface):
     """ Enable/Disable Flickr plugin
         http://galleria.io/docs/1.2/plugins/flickr/
@@ -217,7 +235,7 @@ class IHistoryPlugin(Interface):
 
 
 class IGalleriaSettings(IGeneralSettings, IFlickrPlugin, IPicasaPlugin,
-        IHistoryPlugin):
+        IHistoryPlugin, IFaceBookPlugin):
     """The form schema contains all settings."""
 
 
@@ -234,3 +252,8 @@ class FormGroup2(group.Group):
 class FormGroup3(group.Group):
     label = _(u"History Plugin")
     fields = field.Fields(IHistoryPlugin)
+
+
+class FormGroup4(group.Group):
+    label = _(u"FaceBook Plugin")
+    fields = field.Fields(IFaceBookPlugin)

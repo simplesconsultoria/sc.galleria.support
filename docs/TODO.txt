@@ -2,5 +2,4 @@ TODO
 ----
 
 * Topic template view.
-* Facebook plugin
 * Debug plugin
