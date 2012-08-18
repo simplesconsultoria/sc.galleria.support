@@ -191,3 +191,4 @@ Mostly Harmless
 
 Have an idea? Found a bug? Let us know by `opening a support ticket`_.
 
+.. _`opening a support ticket`: https://github.com/simplesconsultoria/sc.galleria.support/issues
