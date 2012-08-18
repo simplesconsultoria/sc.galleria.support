@@ -27,9 +27,9 @@ Step 2: Setting preferences
 In 'Site setup' below on 'Add-on Configuration' click on 'Galleria' option. In
 this section you can see several options wich are categorized in different
 types. Each type is visualized in a tab. You have options for 'Default',
-'Flickr Plugin', 'Picasa Plugin' and 'History Plugin'. To know how to setup
-this preferences in a way to go better to your needs see `Functionality`_
-section.
+'Flickr Plugin', 'Picasa Plugin', 'FaceBook Plugin' and 'History Plugin'.
+To know how to setup this preferences in a way to go better to your needs see
+`Functionality`_ section.
 
 Step 3: Seeing it in action
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -42,7 +42,7 @@ images inside that folder. If you do, you will see the images render with the
 Galleria plugin.
 
 For the case that you want to fetch pictures located in flickr or picasa see
-`Flickr & Picasa Plugins`_. To activate Galleria in the Link just follow the
+`Flickr, Picasa & Facebook Plugins`_. To activate Galleria in the Link just follow the
 same procedure with the display action.
 
 Functionality
@@ -149,8 +149,8 @@ field set the movie url.
 
  - **DailyMotion** Adds player options for the Daliymotion video player.
 
-Flickr & Picasa Plugins
-^^^^^^^^^^^^^^^^^^^^^^^
+Flickr, Picasa & Facebook Plugins
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To use this plugins you have to create a 'Link' content type and in the 'url'
 field set the galleria url that looks something like:
@@ -158,6 +158,8 @@ field set the galleria url that looks something like:
  - **Flickr:** 'http://www.flickr.com/photos/user_id/sets/galleria_id/'
 
  - **Picasa:** 'https://picasaweb.google.com/user_id/galleria_id'
+
+ - **FaceBook:** 'http://www.facebook.com/media/set/?set=a.album_id'
 
 **Enable plugin:** activate this function.
 
