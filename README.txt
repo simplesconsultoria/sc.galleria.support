@@ -183,3 +183,11 @@ Browser support includes Firefox 2+, IE6+, Ipad, Opera and Chrome.
 
 You enable it with the **Enable history plugin** option.
 
+Mostly Harmless
+---------------
+
+.. image:: https://secure.travis-ci.org/simplesconsultoria/sc.galleria.support.png
+    :target: http://travis-ci.org/simplesconsultoria/sc.galleria.support
+
+Have an idea? Found a bug? Let us know by `opening a support ticket`_.
+
