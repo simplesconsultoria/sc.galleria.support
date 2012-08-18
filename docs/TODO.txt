@@ -1,5 +1,4 @@
 TODO
 ----
 
-* Topic template view.
 * Debug plugin

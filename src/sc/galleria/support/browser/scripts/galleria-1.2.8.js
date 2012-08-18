@@ -2998,6 +2998,9 @@ Galleria.prototype = {
 
             data = this._data[ i ];
 
+            // Fix image thumb for Plone
+            data.thumb = data.thumb.replace(/image_(large|preview|mini|view_fullscreen)/g,'image_thumb');
+
             // get source from thumb or image
             src = data.thumb || data.image;
 
@@ -3005,9 +3008,6 @@ Galleria.prototype = {
 
                 // add a new Picture instance
                 thumb = new Galleria.Picture(i);
-
-                // Fix image thumb for Plone
-                data.thumb = data.thumb.replace(/image_large/,'image_thumb');
 
                 // save the index
                 thumb.index = i;
@@ -5525,7 +5525,6 @@ Galleria.Picture.prototype = {
     */
 
     load: function(src, size, callback) {
-
         if ( typeof size == 'function' ) {
             callback = size;
             size = null;
@@ -5561,6 +5560,9 @@ Galleria.Picture.prototype = {
         }
 
         this.image = new Image();
+
+        // Fix Plone
+        src = src.replace(/image_(preview|view_fullscreen)/g,'image_large');
 
         var i = 0,
             reload = false,

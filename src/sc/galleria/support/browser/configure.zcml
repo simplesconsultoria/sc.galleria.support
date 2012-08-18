@@ -67,6 +67,19 @@
 
   <browser:page
     name="galleria_view"
+    for="sc.galleria.support.interfaces.ILink"
+    class=".galleria.Galleria"
+    menu="plone_displayviews"
+    title="Galleria"
+    permission="zope.Public"
+    template="templates/galleria_view.pt"
+    layer="sc.galleria.support.interfaces.IGalleriaLayer"
+    i18n:attributes="title"
+    />
+
+  <!-- Collection (old-style) -->
+  <browser:page
+    name="galleria_view"
     for="sc.galleria.support.interfaces.ITopic"
     class=".galleria.Galleria"
     menu="plone_displayviews"
@@ -77,14 +90,17 @@
     i18n:attributes="title"
     />
 
+  <!-- Collection (new-style) -->
+
   <browser:page
+    zcml:condition="installed plone.app.collection"
     name="galleria_view"
-    for="sc.galleria.support.interfaces.ILink"
+    for="plone.app.collection.interfaces.ICollection"
     class=".galleria.Galleria"
     menu="plone_displayviews"
     title="Galleria"
     permission="zope.Public"
-    template="templates/galleria_view.pt"
+    template="templates/galleriacollection_view.pt"
     layer="sc.galleria.support.interfaces.IGalleriaLayer"
     i18n:attributes="title"
     />
