@@ -16,6 +16,9 @@ Changelog
  * Galleria upgrade version to 1.2.8 and templates fixes.
   [cleberjsantos]
 
+ * Refactoring tests.
+  [cleberjsantos]
+
 
 1.0b4 (2012-06-21)
 ^^^^^^^^^^^^^^^^^^
