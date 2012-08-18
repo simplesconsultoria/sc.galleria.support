@@ -53,7 +53,7 @@ class BrowserViewTest(unittest.TestCase):
         link.setRemoteUrl(
             'http://www.facebook.com/media/set/?set=a.album_id')
         galleria = Galleria(link, self.request)
-        self.assertEquals(galleria.plugins(plname='faceook'), 'galleria_id')
+        self.assertEquals(galleria.plugins(plname='facebook'), 'galleria_id')
 
     def test_portal_url(self):
         galleria = Galleria(self.user, self.request)
