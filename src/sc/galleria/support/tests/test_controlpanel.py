@@ -15,6 +15,7 @@ from sc.galleria.support.interfaces import IFlickrPlugin
 from sc.galleria.support.interfaces import IGeneralSettings
 from sc.galleria.support.interfaces import IHistoryPlugin
 from sc.galleria.support.interfaces import IPicasaPlugin
+from sc.galleria.support.interfaces import IFaceBookPlugin
 from sc.galleria.support.testing import INTEGRATION_TESTING
 
 
@@ -170,6 +171,28 @@ class RecordsPicasaPlugin(unittest.TestCase):
     def test_picasa_desc_record(self):
         self.assertTrue(hasattr(self.settings, 'picasa_desc'))
         self.assertEqual(self.settings.picasa_desc, False)
+
+
+class RecordsFaceBookPlugin(unittest.TestCase):
+
+    layer = INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
+        self.registry = getUtility(IRegistry)
+        self.settings = self.registry.forInterface(IFaceBookPlugin)
+
+    def test_facebook_record(self):
+        self.assertTrue(hasattr(self.settings, 'facebook'))
+        self.assertEqual(self.settings.facebook, False)
+
+    def test_facebook_max_record(self):
+        self.assertTrue(hasattr(self.settings, 'picasa_max'))
+        self.assertEqual(self.settings.facebook_max, 20)
+
+    def test_facebook_desc_record(self):
+        self.assertTrue(hasattr(self.settings, 'picasa_desc'))
+        self.assertEqual(self.settings.facebook_desc, False)
 
 
 class RecordsHistoryPlugin(unittest.TestCase):

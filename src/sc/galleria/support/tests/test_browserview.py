@@ -45,6 +45,16 @@ class BrowserViewTest(unittest.TestCase):
         galleria = Galleria(link, self.request)
         self.assertEquals(galleria.plugins(plname='flickr'), 'galleria_id')
 
+    def test_galleria_facebookid_with_link(self):
+        """ Check that gets the facebook id from the facebook link.
+        """
+        self.portal.invokeFactory('Link', 'facebook_link')
+        link = self.portal['facebook_link']
+        link.setRemoteUrl(
+            'http://www.facebook.com/media/set/?set=a.album_id')
+        galleria = Galleria(link, self.request)
+        self.assertEquals(galleria.plugins(plname='faceook'), 'galleria_id')
+
     def test_portal_url(self):
         galleria = Galleria(self.user, self.request)
         self.assertEquals(galleria.portal_url(), self.portal.absolute_url())
@@ -95,6 +105,26 @@ class BrowserViewTest(unittest.TestCase):
         result = {
             "jQuery": "('#content-galleria')",
             "set = ": "'galleria_id'",
+            "max: ": '20',
+            "description: ": 'false',
+            }
+        for key in result.keys():
+            self.assertTrue(key + result[key] in js)
+
+    def test_galleriajs_with_facebook(self):
+        """ Check that galleriajs method render javascript code with
+            default values when context is a facebook link .
+        """
+        self.portal.invokeFactory('Link', 'facebook_link')
+        link = self.portal['facebook_link']
+        link.setRemoteUrl(
+            'http://www.facebook.com/media/set/?set=a.album_id')
+        galleria = Galleria(link, self.request)
+        galleria.facebookplugin.facebook = True
+        js = galleria.galleriajs()
+        result = {
+            "jQuery": "('#content-galleria')",
+            "album_id = ": "'album_id'",
             "max: ": '20',
             "description: ": 'false',
             }
