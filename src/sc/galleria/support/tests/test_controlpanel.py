@@ -187,11 +187,11 @@ class RecordsFaceBookPlugin(unittest.TestCase):
         self.assertEqual(self.settings.facebook, False)
 
     def test_facebook_max_record(self):
-        self.assertTrue(hasattr(self.settings, 'picasa_max'))
+        self.assertTrue(hasattr(self.settings, 'facebook_max'))
         self.assertEqual(self.settings.facebook_max, 20)
 
     def test_facebook_desc_record(self):
-        self.assertTrue(hasattr(self.settings, 'picasa_desc'))
+        self.assertTrue(hasattr(self.settings, 'facebook_desc'))
         self.assertEqual(self.settings.facebook_desc, False)
 
 
