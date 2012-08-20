@@ -22,6 +22,9 @@ Changelog
  * Added Galleria template to new collection.
   [cleberjsantos]
 
+ * Upgrade Picasa, Flickr and History Plugins.
+  [cleberjsantos]
+
 
 1.0b4 (2012-06-21)
 ^^^^^^^^^^^^^^^^^^
