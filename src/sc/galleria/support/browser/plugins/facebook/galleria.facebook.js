@@ -6,11 +6,12 @@
  * Licensed under the MIT license.
  */
 
+
+(function($) {
+
 /*global jQuery, Galleria, window */
 
 Galleria.requires(1.25, 'The Facebook Plugin requires Galleria version 1.2.5 or later.');
-
-(function($) {
 
 // The script path
 var PATH = Galleria.utils.getScriptPath();
@@ -125,7 +126,7 @@ Galleria.Facebook.prototype = {
     _call: function( params, callback ) {
 		
         var url = 'http://graph.api.facebook.com/' + params['album_id'] + '/photos' + '&callback=?' + '&limit=' + this.options.max;
-		
+
         var scope = this;
 	
         $.getJSON(url, function(data) {
