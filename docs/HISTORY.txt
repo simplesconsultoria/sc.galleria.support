@@ -1,105 +1,110 @@
 Changelog
 ----------
 
-1.0rc1 (unreleased)
+1.0rc2 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
- * Added toggle full screen.
+- Nothing changed yet.
+
+
+1.0rc1 (2012-09-07)
+^^^^^^^^^^^^^^^^^^^
+
+* Added toggle full screen.
   [cleberjsantos]
 
- * Added FaceBook Plugins.
+* Added FaceBook Plugins.
   [cleberjsantos]
 
- * Galleria upgrade version to 1.2.8 and templates fixes.
+* Galleria upgrade version to 1.2.8 and templates fixes.
   [cleberjsantos]
 
- * Refactoring tests.
+* Refactoring tests.
   [cleberjsantos]
 
- * Corrected thumb and image generation.
+* Corrected thumb and image generation.
   [cleberjsantos]
 
- * Added Galleria template to new collection.
+* Added Galleria template to new collection.
   [cleberjsantos]
 
- * Upgrade Picasa, Flickr and History Plugins.
+* Upgrade Picasa, Flickr and History Plugins.
   [cleberjsantos]
 
 
 1.0b4 (2012-06-21)
 ^^^^^^^^^^^^^^^^^^
 
- * Added image crop and responsive options.
-   [cleberjsantos]
+* Added image crop and responsive options.
+  [cleberjsantos]
 
- * Refactored and optimized code.
-   [cleberjsantos]
+* Refactored and optimized code.
+  [cleberjsantos]
 
- * Refactoring browser test cases.
-   [aleGpereira]
+* Refactoring browser test cases.
+  [aleGpereira]
 
- * Fixed Title and Description data, modification of the method call.
-   [cleberjsantos]
+* Fixed Title and Description data, modification of the method call.
+  [cleberjsantos]
 
- * Resolves (issue `#25`_).
-   [cleberjsantos]
+* Resolves (issue `#25`_).
+  [cleberjsantos]
 
- * Added template with ZPT macro.
-   [cleberjsantos]
+* Added template with ZPT macro.
+  [cleberjsantos]
 
- * Updated documentation.
-   [cleberjsantos]
+* Updated documentation.
+  [cleberjsantos]
 
- * Updated templates.
-   [cleberjsantos]
+* Updated templates.
+  [cleberjsantos]
 
- * Some tests were fixed and some others, refactored.
-   [hvelarde]
+* Some tests were fixed and some others, refactored.
+  [hvelarde]
 
- * Fixed package distribution and documentation.
-   [hvelarde]
+* Fixed package distribution and documentation.
+  [hvelarde]
 
 
 1.0b3 (2012-05-28)
 ^^^^^^^^^^^^^^^^^^
 
- * Fixed NameError: name 'test' is not defined (issue `#17`_).
-   [cleberjsantos]
+* Fixed NameError: name 'test' is not defined (issue `#17`_).
+  [cleberjsantos]
 
- * PEP 8.
-   [hvelarde]
+* PEP 8.
+  [hvelarde]
 
- * Portuguese translation updated.
-   [lepri]
+* Portuguese translation updated.
+  [lepri]
 
 
 1.0b2 (2012-05-19)
 ^^^^^^^^^^^^^^^^^^
 
- * Fixed Picasa and Flickr plugins (issue `#11`_).
-   [cleberjsantos]
+* Fixed Picasa and Flickr plugins (issue `#11`_).
+  [cleberjsantos]
 
- * Added validation for Vimeo and DailyMotion (issue `#12`_).
-   [cleberjsantos]
+* Added validation for Vimeo and DailyMotion (issue `#12`_).
+  [cleberjsantos]
 
- * Patch for bug in Picasa plugin (issue `#13`_).
-   [cleberjsantos]
+* Patch for bug in Picasa plugin (issue `#13`_).
+  [cleberjsantos]
 
- * Added tests.
-   [aleGpereira]
+* Added tests.
+  [aleGpereira]
 
- * Updated i18n and Brazilian Portuguese translation.
-   [hvelarde]
+* Updated i18n and Brazilian Portuguese translation.
+  [hvelarde]
 
 
 1.0b1 (2012-05-18)
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
- *  Initial release.
+*  Initial release.
 
 .. _`#11`: https://github.com/simplesconsultoria/sc.galleria.support/issues/11
 .. _`#12`: https://github.com/simplesconsultoria/sc.galleria.support/issues/12
 .. _`#13`: https://github.com/simplesconsultoria/sc.galleria.support/issues/13
 .. _`#17`: https://github.com/simplesconsultoria/sc.galleria.support/issues/17
 .. _`#25`: https://github.com/simplesconsultoria/sc.galleria.support/issues/25
-
