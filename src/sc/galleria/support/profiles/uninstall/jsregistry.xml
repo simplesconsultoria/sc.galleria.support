@@ -1,4 +1,4 @@
 <?xml version="1.0"?>
 <object name="portal_javascripts">
- <javascript id="++resource++galleria-scripts/galleria-1.2.8.min.js" remove="True"/>
+ <javascript id="++resource++galleria.js" remove="True"/>
 </object>
