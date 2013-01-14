@@ -10,6 +10,18 @@
 
   <!-- Resources -->
 
+  <browser:resource
+    name="galleria.js"
+    file="scripts/galleria-1.2.9.js"
+    layer="sc.galleria.support.interfaces.IGalleriaLayer"
+    />
+
+  <browser:resource
+    name="galleria.min.js"
+    file="scripts/galleria-1.2.9.min.js"
+    layer="sc.galleria.support.interfaces.IGalleriaLayer"
+    />
+
   <browser:resourceDirectory
     name="galleria-images"
     directory="images"
