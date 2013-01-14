@@ -152,7 +152,7 @@ class Galleria(BrowserView):
                         if len(id_list) == 3:
                             galluserid, galleriaid = urllink['path'].split('/')[1], urllink['path'].split('/')[-1]
                         elif len(id_list) == 4:
-                            galluserid, galleriaid = urllink['path'].split('/')[1], urllink['path'].split('/')[-2] 
+                            galluserid, galleriaid = urllink['path'].split('/')[1], urllink['path'].split('/')[-2]
                         else:
                             galluserid, galleriaid = (None, None)
                     except:
