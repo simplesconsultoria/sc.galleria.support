@@ -7,6 +7,9 @@ Changelog
 * Fix FaceBook plugin.
   [cleberjsantos]
 
+* Galleria upgrade version to 1.2.9.
+  [cleberjsantos]
+
 
 1.0rc1 (2012-09-07)
 ^^^^^^^^^^^^^^^^^^^
