@@ -233,14 +233,17 @@ class Galleria(BrowserView):
                              debug: %s,
                              imageCrop: %s,
                              fullscreenCrop: %s,
-                             responsive: true,
+                             responsive: %s,
                              extend: function(options) {
                                 var gallery = this;
-                                this.bind('image', function(e) {
-                                jQuery(e.imageTarget).unbind('click').click(function() {
-                                    gallery.toggleFullscreen();
-                                });
-                             });
+                                var gallery_lightbox = %s;
+                                if (gallery_lightbox === false){
+                                    this.bind('image', function(e) {
+                                        jQuery(e.imageTarget).unbind('click').click(function() {
+                                            gallery.toggleFullscreen();
+                                        });
+                                    });
+                                };
                              },
 
                             });""" % (int(self.settings.gallery_width),
@@ -259,7 +262,9 @@ class Galleria(BrowserView):
                                       self.getThumbnails(videoval=1),
                                       str(self.settings.debug).lower(),
                                       str(self.settings.imagecrop).lower(),
-                                      str(self.settings.imagecrop).lower())
+                                      str(self.settings.imagecrop).lower(),
+                                      str(self.settings.responsive).lower(),
+                                      str(self.settings.lightbox).lower())
 
     def galleriajs(self):
         """ Load default gallery """
