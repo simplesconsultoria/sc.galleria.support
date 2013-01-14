@@ -11,7 +11,7 @@ from sc.galleria.support.config import PROJECTNAME
 from sc.galleria.support.testing import INTEGRATION_TESTING
 
 JS = [
-    '++resource++galleria-scripts/galleria-1.2.8.min.js',
+    '++resource++galleria.js',
     ]
 
 
