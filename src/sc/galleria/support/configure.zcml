@@ -31,8 +31,15 @@
         name="sc.galleria.support-upgrades"
         title="sc.galleria.support: Upgrades"
         description="Run available upgrades for this package."
-        handler="sc.galleria.support.setuphandlers.run_upgrades">
-    </genericsetup:importStep>
+        handler="sc.galleria.support.setuphandlers.run_upgrades" />
+
+  <genericsetup:upgradeStep
+      title="Add galleria js"
+      description=""
+      source="*"
+      destination="1002"
+      handler="sc.galleria.support.setuphandlers.add_galleria_js"
+      profile="sc.galleria.support:default" />
 
     <include package=".upgrades" />
     <include package=".browser"/>

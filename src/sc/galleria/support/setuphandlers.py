@@ -42,6 +42,7 @@ def run_upgrades(context):
             setup_tool.setLastVersionForProfile(_PROFILE_ID, oStep.dest)
             logger.info(msg)
 
+
 def uninstall(context):
     ''' Run uninstall steps
     '''
@@ -52,3 +53,16 @@ def uninstall(context):
     portal = context.getSite()
     portal_conf = getToolByName(portal, 'portal_controlpanel')
     portal_conf.unregisterConfiglet('@@galleria-settings')
+
+
+def add_galleria_js(context, logger=None):
+    """
+    """
+    if logger is None:
+        # Called as upgrade step: define our own logger
+        logger = logging.getLogger(_PROJECT)
+
+    profile = 'profile-collective.js.galleria:default'
+    portal = context.getSite()
+    setup = getToolByName(portal, 'portal_setup')
+    setup.runAllImportStepsFromProfile(profile)
