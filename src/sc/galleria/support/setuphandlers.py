@@ -2,9 +2,7 @@
 import logging
 
 from Products.CMFCore.utils import getToolByName
-
 from Products.GenericSetup.upgrade import listUpgradeSteps
-
 
 _PROJECT = 'sc.galleria.support'
 _PROFILE_ID = 'sc.galleria.support:default'
@@ -27,8 +25,7 @@ def run_upgrades(context):
     if context.readDataFile('sc.galleria.support_default.txt') is None:
         return
     logger = logging.getLogger(_PROJECT)
-    site = context.getSite()
-    setup_tool = getToolByName(site, 'portal_setup')
+    setup_tool = getToolByName(context, 'portal_setup')
     version = setup_tool.getLastVersionForProfile(_PROFILE_ID)
     upgradeSteps = listUpgradeSteps(setup_tool, _PROFILE_ID, version)
     sorted(upgradeSteps, key=lambda step: step['sortkey'])
@@ -50,8 +47,7 @@ def uninstall(context):
     if context.readDataFile('sc.galleria.support_uninstall.txt') is None:
         return
 
-    portal = context.getSite()
-    portal_conf = getToolByName(portal, 'portal_controlpanel')
+    portal_conf = getToolByName(context, 'portal_controlpanel')
     portal_conf.unregisterConfiglet('@@galleria-settings')
 
 
@@ -63,6 +59,5 @@ def add_galleria_js(context, logger=None):
         logger = logging.getLogger(_PROJECT)
 
     profile = 'profile-collective.js.galleria:default'
-    portal = context.getSite()
-    setup = getToolByName(portal, 'portal_setup')
+    setup = getToolByName(context, 'portal_setup')
     setup.runAllImportStepsFromProfile(profile)

@@ -7,9 +7,9 @@
             <script tal:condition="view/facebookplugin/facebook" src="++resource++galleria-plugins/facebook/galleria.facebook.min.js"></script>
         </tal:valmovies>
 
-
+       <link rel="stylesheet" type="text/css" tal:attributes="href string:${view/portal_url}/++resource++collective.galleria.classic.css"/>
        <script type="text/javascript" tal:content="python:'\n%s\n \n%s\n \n%s\n %s' %('''jQuery(document).ready(function(){
-             Galleria.loadTheme('++resource++galleria-themes/classic/galleria.classic.min.js');
+             Galleria.loadTheme('++resource++collective.galleria.classic.js');
              ''',view.galleriaconf(),view.galleriajs(),'})')">
        </script>
 
