@@ -57,8 +57,9 @@
       <tal:albumsimages tal:condition="python:albums or images">
         <tal:images tal:condition="images" tal:repeat="image images">
             <div class="photoAlbumEntry">
-                <a tal:define="item_data python:{'data-title': image.Title, 'data-description': image.Description}" tal:attributes="href python:image.absolute_url() + '/image_large'">
-                    <img tal:replace="structure python:image.tag(scale='thumb', css_class='media-image', **item_data)" />
+                <a tal:define="item_data python:{'alt': image.Title(),
+                    'title': image.Description()}" tal:attributes="href python:image.absolute_url() + '/image_large'">
+                    <img tal:replace="structure python:image.tag(scale='thumb', css_class='media-image', **item_data)" />-->
                 </a>
             </div>
         </tal:images>
@@ -72,7 +73,8 @@
                              random_image python:number_of_images and random.choice(image_brains_in_album).getObject() or None">
                 <tal:images tal:repeat="image image_brains_in_album">
                     <tal:def tal:define="item_obj image/getObject">
-                        <a tal:define="item_data python:{'data-title': image.Title, 'data-description': image.Description}" tal:attributes="href python:item_obj.absolute_url() + '/image_large'">
+                        <a tal:define="item_data python:{'alt':item_obj.Title(),
+                            'title': item_obj.Description()}" tal:attributes="href python:item_obj.absolute_url() + '/image_large'">
                             <img tal:replace="structure python:item_obj.getImage().tag(scale='thumb', css_class='media-image', **item_data)" />
                         </a>
                     </tal:def>
