@@ -10,10 +10,6 @@ from plone.browserlayer.utils import registered_layers
 from sc.galleria.support.config import PROJECTNAME
 from sc.galleria.support.testing import INTEGRATION_TESTING
 
-JS = [
-    '++resource++galleria.js',
-    ]
-
 
 class InstallTestCase(unittest.TestCase):
 
@@ -32,9 +28,8 @@ class InstallTestCase(unittest.TestCase):
                         'browser layer not installed')
 
     def test_jsregistry(self):
-        resource_ids = self.portal.portal_javascripts.getResourceIds()
-        for id in JS:
-            self.assertTrue(id in resource_ids, '%s not installed' % id)
+        resources = self.portal.portal_javascripts.getResourceIds()
+        self.assertTrue('++resource++collective.galleria.js' in resources)
 
 
 class UninstallTestCase(unittest.TestCase):
@@ -54,8 +49,3 @@ class UninstallTestCase(unittest.TestCase):
         layers = [l.getName() for l in registered_layers()]
         self.assertFalse('IGalleriaLayer' in layers,
                          'browser layer not removed')
-
-    def test_jsregistry_removed(self):
-        resource_ids = self.portal.portal_javascripts.getResourceIds()
-        for id in JS:
-            self.assertTrue(id not in resource_ids, '%s not installed' % id)
