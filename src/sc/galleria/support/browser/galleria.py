@@ -23,7 +23,6 @@ from sc.galleria.support import MessageFactory as _
 from urlparse import urlparse, urlunparse
 from cgi import parse_qs
 from urllib import urlencode
-import types
 
 
 class GalleriaSettingsEditForm(controlpanel.RegistryEditForm):
@@ -113,7 +112,7 @@ class Galleria(BrowserView):
         if self.ptype == 'Link':
             urllink = urlparse(self.context.remote_url())
 
-            if type(urllink) is types.TupleType:
+            if isinstance(urllink, tuple):
                 params = parse_qs(urllink[4])
             else:
                 params = parse_qs(urllink[4])
@@ -180,7 +179,7 @@ class Galleria(BrowserView):
         return portal_state.portal_url()
 
     def getThumbnails(self, videoval=[]):
-        if type(videoval) is types.IntType:
+        if isinstance(videoval, int):
             if videoval == 1:
                 if self.settings.thumbnails == 'show':
                     return str(True).lower()
@@ -188,7 +187,7 @@ class Galleria(BrowserView):
                     return "'%s'" % (self.settings.thumbnails)
             else:
                 return 'false'
-        elif type(videoval) is types.ListType:
+        elif isinstance(videoval, list):
             if len(videoval) == 0 or len(videoval) == 1:
                 return 'false'
             else:
