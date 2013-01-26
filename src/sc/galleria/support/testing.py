@@ -24,8 +24,8 @@ FIXTURE = Fixture()
 INTEGRATION_TESTING = IntegrationTesting(
     bases=(FIXTURE,),
     name='sc.galleria.support:Integration',
-    )
+)
 FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(FIXTURE,),
     name='sc.galleria.support:Functional',
-    )
+)
