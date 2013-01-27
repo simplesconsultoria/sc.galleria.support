@@ -27,14 +27,21 @@
         i18n:attributes="title; description"
         />
 
-    <genericsetup:importStep
-        name="sc.galleria.support-upgrades"
-        title="sc.galleria.support: Upgrades"
-        description="Run available upgrades for this package."
-        handler="sc.galleria.support.setuphandlers.run_upgrades">
-    </genericsetup:importStep>
+  <genericsetup:importStep
+       name="sc.galleria.support"
+       title="sc.galleria.support: Miscellaneous import steps for install package"
+       description=""
+       handler="sc.galleria.support.setuphandlers.install"
+       />
 
-    <include package=".upgrades" />
+  <genericsetup:importStep
+       name="sc.galleria.support uninstall"
+       title="sc.galleria.support: Step for Uninstall package"
+       description=""
+       handler="sc.galleria.support.setuphandlers.uninstall"
+       />
+
+    <include file="upgrades.zcml" />
     <include package=".browser"/>
 
     <adapter

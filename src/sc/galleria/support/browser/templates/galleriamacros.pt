@@ -1,15 +1,20 @@
 <metal:galleriaslotjsmacros define-macro="galleria_js">
     <metal:galleriaslotjs define-slot="galleria_js">
         <tal:valmovies tal:condition="not: view/isVideo">
-            <script tal:condition="view/historyplugin/history" src="++resource++galleria-plugins/historyplugin/galleria.history.min.js"></script>
-            <script tal:condition="view/flickrplugin/flickr" src="++resource++galleria-plugins/flickr/galleria.flickr.min.js"></script>
-            <script tal:condition="view/picasaplugin/picasa" src="++resource++galleria-plugins/picasa/galleria.picasa.min.js"></script>
+            <script tal:condition="view/historyplugin/history"
+                tal:attributes="src
+                string:${view/portal_url}/++resource++collective.galleria.plugins/history/galleria.history.min.js"></script>
+            <script tal:condition="view/flickrplugin/flickr" tal:attributes="src
+                string:${view/portal_url}/++resource++collective.galleria.plugins/flickr/galleria.flickr.min.js"></script>
+            <script tal:condition="view/picasaplugin/picasa" tal:attributes="src
+                string:${view/portal_url}/++resource++collective.galleria.plugins/picasa/galleria.picasa.min.js"></script>
             <script tal:condition="view/facebookplugin/facebook" src="++resource++galleria-plugins/facebook/galleria.facebook.min.js"></script>
         </tal:valmovies>
 
 
+       <link rel="stylesheet" type="text/css" tal:attributes="href string:${view/portal_url}/++resource++collective.galleria.classic.css"/>
        <script type="text/javascript" tal:content="python:'\n%s\n \n%s\n \n%s\n %s' %('''jQuery(document).ready(function(){
-             Galleria.loadTheme('++resource++galleria-themes/classic/galleria.classic.min.js');
+             Galleria.loadTheme('++resource++collective.galleria.classic.js');
              ''',view.galleriaconf(),view.galleriajs(),'})')">
        </script>
 

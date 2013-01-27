@@ -1,17 +1,14 @@
 # -*- coding: utf-8 -*-
 
-import unittest2 as unittest
-
-from zope.component import getMultiAdapter
-
-from Products.ATContentTypes.content.link import ATLink
-
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 
+from Products.ATContentTypes.content.link import ATLink
+
 from sc.galleria.support.browser.galleria import Galleria
-from sc.galleria.support.interfaces import IGeneralSettings
 from sc.galleria.support.testing import INTEGRATION_TESTING
+
+import unittest2 as unittest
 
 
 class BrowserViewTest(unittest.TestCase):
@@ -78,8 +75,7 @@ class BrowserViewTest(unittest.TestCase):
             "showCounter: ": 'true',
             "showImagenav: ": 'true',
             "swipe: ": 'true',
-            "dummy: ": "'%s'" % (self.portal.absolute_url() + \
-                        '/++resource++galleria-images/dummy.png'),
+            "dummy: ": "'%s'" % (self.portal.absolute_url() + '/++resource++galleria-images/dummy.png'),
             "thumbnails: ": 'true',
             "thumbQuality: ": "'false'",
             "debug: ": 'false',
@@ -87,7 +83,7 @@ class BrowserViewTest(unittest.TestCase):
             "responsive: ": 'true',
             "extend: ": "function(options)",
             "var gallery = ": "this;",
-            }
+        }
         for key in result.keys():
             self.assertTrue(key + result[key] in js)
 
@@ -107,7 +103,7 @@ class BrowserViewTest(unittest.TestCase):
             "set = ": "'galleria_id'",
             "max: ": '20',
             "description: ": 'false',
-            }
+        }
         for key in result.keys():
             self.assertTrue(key + result[key] in js)
 
@@ -127,7 +123,7 @@ class BrowserViewTest(unittest.TestCase):
             "album_id = ": "'album_id'",
             "max: ": '20',
             "description: ": 'false',
-            }
+        }
         for key in result.keys():
             self.assertTrue(key + result[key] in js)
 
@@ -146,6 +142,6 @@ class BrowserViewTest(unittest.TestCase):
             "max: ": '20',
             "description: ": 'false',
             "picasa.useralbum": """( 'user_id', 'galleria_id',""",
-            }
+        }
         for key in result.keys():
             self.assertTrue(key + result[key] in js)

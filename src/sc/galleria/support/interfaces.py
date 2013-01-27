@@ -1,6 +1,5 @@
 from zope.interface import Interface
 from zope import schema
-import os
 
 from z3c.form import field
 from z3c.form import group
@@ -18,14 +17,13 @@ try:
     from Products.ATContentTypes.interfaces.link import IATLink as ILink
     from Products.ATContentTypes.interfaces.topic import IATTopic as ITopic
     from Products.ATContentTypes.interfaces.image import IATImage as IImage
-    from Products.ZCatalog.interfaces import ICatalogBrain
 except ImportError, e:
     logger.info('switch to plone3 %s' % e)
     #plone3
     from Products.ATContentTypes.interface import IATFolder as IFolder
-    from Products.ATContentTypes.interface import IATLink   as ILink
-    from Products.ATContentTypes.interface import IATTopic  as ITopic
-    from Products.ATContentTypes.interface import IATImage  as IImage
+    from Products.ATContentTypes.interface import IATLink as ILink
+    from Products.ATContentTypes.interface import IATTopic as ITopic
+    from Products.ATContentTypes.interface import IATImage as IImage
 
 from sc.galleria.support import MessageFactory as _
 
@@ -35,12 +33,12 @@ transitionsvoc = SimpleVocabulary(
      SimpleTerm(value='pulse', title=_(u'Pulse')),
      SimpleTerm(value='slide', title=_(u'Slide')),
      SimpleTerm(value='fadeslide', title=_(u'FadeSlide')), ]
-    )
+)
 
 thumbnailsvoc = SimpleVocabulary(
     [SimpleTerm(value='show', title=_(u"Show thumbnails")),
      SimpleTerm(value='empty', title=_(u"Don't show thumbnails")), ]
-    )
+)
 
 
 class IGalleriaLayer(Interface):
@@ -97,14 +95,14 @@ class IGeneralSettings(Interface):
                           required=True,)
 
     gallery_width = schema.Int(title=_(u"Gallery width"),
-                             description=_(u"Manually set a gallery width."),
-                             default=500,
-                             required=True,)
+                               description=_(u"Manually set a gallery width."),
+                               default=500,
+                               required=True,)
 
     gallery_height = schema.Int(title=_(u"Gallery height"),
-                              description=_(u"Manually set a gallery height."),
-                              default=500,
-                              required=True,)
+                                description=_(u"Manually set a gallery height."),
+                                default=500,
+                                required=True,)
 
     imagePosition = schema.TextLine(title=_(u"Image css position"),
                                     description=_(u"Eg. 'top right' or '20% 100%'"),
@@ -112,8 +110,8 @@ class IGeneralSettings(Interface):
                                     required=True,)
 
     lightbox = schema.Bool(title=_(u"Enable lightbox"),
-                               default=False,
-                               required=True,)
+                           default=False,
+                           required=True,)
 
     showCounting = schema.Bool(title=_(u"Show counting"),
                                description=_(u"Toggles the counter."),
@@ -121,10 +119,10 @@ class IGeneralSettings(Interface):
                                required=True,)
 
     transitions = schema.Choice(title=_(u"Transitions"),
-                          description=_(u"Defines what transition to use."),
-                          default=_(u'fade'),
-                          vocabulary=transitionsvoc,
-                          required=True,)
+                                description=_(u"Defines what transition to use."),
+                                default=_(u'fade'),
+                                vocabulary=transitionsvoc,
+                                required=True,)
 
     transitionSpeed = schema.Int(title=_(u"Transition Speed"),
                                  description=_(u"Defines the speed of the transition."),
@@ -153,14 +151,14 @@ class IGeneralSettings(Interface):
                                required=True,)
 
     imagecrop = schema.Bool(title=_(u"Enable image crop"),
-                        description=_(u"Defines how the main image will be cropped inside it is container."),
-                        default=True,
-                        required=True,)
+                            description=_(u"Defines how the main image will be cropped inside it is container."),
+                            default=True,
+                            required=True,)
 
     responsive = schema.Bool(title=_(u"Sets Gallery in responsive mode"),
-                        description=_(u"Means that it will resize the entire container in dynamic proportions added in your CSS."),
-                        default=True,
-                        required=True,)
+                             description=_(u"Means that it will resize the entire container in dynamic proportions added in your CSS."),
+                             default=True,
+                             required=True,)
 
     debug = schema.Bool(title=_(u"Enable debug mode"),
                         description=_(u"Set this to false to prevent debug messages."),
@@ -173,17 +171,17 @@ class IFaceBookPlugin(Interface):
     """
 
     facebook = schema.Bool(title=_(u"Enable facebook plugin"),
-                        description=_(u""),
-                        default=False,)
+                           description=_(u""),
+                           default=False,)
 
     facebook_max = schema.Int(title=_(u"Maximum number of photos."),
-                            description=_(u"Maximum number of photos to return (maximum value 100)."),
-                            default=20,
-                            required=True,)
+                              description=_(u"Maximum number of photos to return (maximum value 100)."),
+                              default=20,
+                              required=True,)
 
     facebook_desc = schema.Bool(title=_(u"Show Description"),
-                              description=_(u"The plugin fetches the title per default. If you also wish to fetch the description, set this option to true."),
-                              default=False)
+                                description=_(u"The plugin fetches the title per default. If you also wish to fetch the description, set this option to true."),
+                                default=False)
 
 
 class IFlickrPlugin(Interface):
@@ -192,8 +190,8 @@ class IFlickrPlugin(Interface):
     """
 
     flickr = schema.Bool(title=_(u"Enable flickr plugin"),
-                        description=_(u""),
-                        default=False,)
+                         description=_(u""),
+                         default=False,)
 
     flickr_max = schema.Int(title=_(u"Maximum number of photos."),
                             description=_(u"Maximum number of photos to return (maximum value 100)."),
@@ -211,8 +209,8 @@ class IPicasaPlugin(Interface):
     """
 
     picasa = schema.Bool(title=_(u"Enable picasa plugin"),
-                        description=_(u""),
-                        default=False,)
+                         description=_(u""),
+                         default=False,)
 
     picasa_max = schema.Int(title=_(u"Maximum number of photos."),
                             description=_(u"Maximum number of photos to return (maximum value 100)."),
@@ -235,7 +233,7 @@ class IHistoryPlugin(Interface):
 
 
 class IGalleriaSettings(IGeneralSettings, IFlickrPlugin, IPicasaPlugin,
-        IHistoryPlugin, IFaceBookPlugin):
+                        IHistoryPlugin, IFaceBookPlugin):
     """The form schema contains all settings."""
 
 

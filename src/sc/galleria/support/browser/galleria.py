@@ -4,39 +4,25 @@ from Acquisition import aq_inner
 
 from plone.app.registry.browser import controlpanel
 from plone.registry.interfaces import IRegistry
-from plone.registry import Registry
-
-from plone.z3cform import layout
 
 from z3c.form import field
 
 from Products.Five import BrowserView
-from Products.CMFCore.utils import getToolByName
 
 from zope.interface import implements
 from zope import component
-from zope.interface import Interface
 from zope.component._api import getUtility
 from zope.interface import alsoProvides
 
-from sc.galleria.support.interfaces import IGalleria,\
-                                            IGalleriaSettings,\
-                                            IGeneralSettings,\
-                                            FormGroup1,\
-                                            FormGroup2,\
-                                            FormGroup3,\
-                                            FormGroup4,\
-                                            IFaceBookPlugin,\
-                                            IFlickrPlugin,\
-                                            IPicasaPlugin,\
-                                            IHistoryPlugin
+from sc.galleria.support.interfaces import IGalleria, IGalleriaSettings, IGeneralSettings
+from sc.galleria.support.interfaces import FormGroup1, FormGroup2, FormGroup3, FormGroup4
+from sc.galleria.support.interfaces import IFaceBookPlugin, IFlickrPlugin, IPicasaPlugin, IHistoryPlugin
 
 from sc.galleria.support import MessageFactory as _
 
 from urlparse import urlparse, urlunparse
 from cgi import parse_qs
 from urllib import urlencode
-import types
 
 
 class GalleriaSettingsEditForm(controlpanel.RegistryEditForm):
@@ -99,9 +85,7 @@ class AbstractRecordsProxy(object):
 
     def _get_proxy(self, interface):
         proxies = self.__proxies__
-        return proxies.get(interface) or \
-               proxies.setdefault(interface, self.__registry__.\
-                                  forInterface(interface))
+        return proxies.get(interface) or proxies.setdefault(interface, self.__registry__.forInterface(interface))
 
 
 class Galleria(BrowserView):
@@ -128,17 +112,17 @@ class Galleria(BrowserView):
         if self.ptype == 'Link':
             urllink = urlparse(self.context.remote_url())
 
-            if type(urllink) is types.TupleType:
+            if isinstance(urllink, tuple):
                 params = parse_qs(urllink[4])
             else:
                 params = parse_qs(urllink[4])
 
             urllink = {'scheme': urllink[0],
-                         'netloc': urllink[1],
-                         'path': urllink[2],
-                         'params': urllink[3],
-                         'query': urllink[4],
-                         'fragment': urllink[5]}
+                       'netloc': urllink[1],
+                       'path': urllink[2],
+                       'params': urllink[3],
+                       'query': urllink[4],
+                       'fragment': urllink[5]}
 
             if plname == 'youtube':
                 if urllink['netloc'].find(plname) >= 0:
@@ -195,7 +179,7 @@ class Galleria(BrowserView):
         return portal_state.portal_url()
 
     def getThumbnails(self, videoval=[]):
-        if type(videoval) is types.IntType:
+        if isinstance(videoval, int):
             if videoval == 1:
                 if self.settings.thumbnails == 'show':
                     return str(True).lower()
@@ -203,7 +187,7 @@ class Galleria(BrowserView):
                     return "'%s'" % (self.settings.thumbnails)
             else:
                 return 'false'
-        elif type(videoval) is types.ListType:
+        elif isinstance(videoval, list):
             if len(videoval) == 0 or len(videoval) == 1:
                 return 'false'
             else:
@@ -297,9 +281,9 @@ class Galleria(BrowserView):
 
                           Galleria.get(0).load(data);
                       }); """ % (str(self.settings.selector),
-                               str(self.plugins(plname='facebook')),
-                               int(self.facebookplugin.facebook_max),
-                               str(self.facebookplugin.facebook_desc).lower())
+                                 str(self.plugins(plname='facebook')),
+                                 int(self.facebookplugin.facebook_max),
+                                 str(self.facebookplugin.facebook_desc).lower())
         elif self.ptype == 'Link' and self.flickrplugin.flickr and self.plugins(plname='flickr'):
             """ Load Flickr plugin """
             return """var flickr = new Galleria.Flickr();
@@ -318,9 +302,9 @@ class Galleria(BrowserView):
 
                           Galleria.get(0).load(data);
                       }); """ % (str(self.settings.selector),
-                               str(self.plugins(plname='flickr')),
-                               int(self.flickrplugin.flickr_max),
-                               str(self.flickrplugin.flickr_desc).lower())
+                                 str(self.plugins(plname='flickr')),
+                                 int(self.flickrplugin.flickr_max),
+                                 str(self.flickrplugin.flickr_desc).lower())
         elif self.ptype == 'Link' and self.picasaplugin.picasa and self.plugins(plname='picasaweb'):
             """ Load Picasa plugin """
             return """ var picasa = new Galleria.Picasa();
@@ -338,10 +322,10 @@ class Galleria(BrowserView):
 
                            Galleria.get(0).load(data);
                        }); """ % (str(self.settings.selector),
-                               int(self.picasaplugin.picasa_max),
-                               str(self.picasaplugin.picasa_desc).lower(),
-                               str(self.plugins(plname='picasaweb')[0]),
-                               str(self.plugins(plname='picasaweb')[1]))
+                                  int(self.picasaplugin.picasa_max),
+                                  str(self.picasaplugin.picasa_desc).lower(),
+                                  str(self.plugins(plname='picasaweb')[0]),
+                                  str(self.plugins(plname='picasaweb')[1]))
 
         elif self.plugins(plname='youtube') or self.plugins(plname='vimeo') or self.plugins(plname='dailymotion'):
             video_url = self.plugins(plname='youtube') or self.plugins(plname='vimeo') or self.plugins(plname='dailymotion')
