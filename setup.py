@@ -43,9 +43,12 @@ setup(name='sc.galleria.support',
       install_requires=[
         'setuptools',
         'plone.app.registry',
+        'collective.js.galleria',
         ],
       extras_require={
-        'test': ['plone.app.testing'],
+        'test': [
+          'plone.app.testing',
+          ],
         },
       entry_points="""
       [z3c.autoinclude.plugin]
