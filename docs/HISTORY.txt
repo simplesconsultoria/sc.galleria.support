@@ -1,13 +1,19 @@
 Changelog
 ----------
 
-1.0rc2 (unreleased)
+1.0 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
-* Fix FaceBook plugin.
+* Refactor travis-ci integration and tests.
+  [cleberjsantos] 
+
+* Add upgrade steps.
   [cleberjsantos]
 
-* Galleria upgrade version to 1.2.9.
+* Refactor to integration of collective.js.galleria.
+  [cleberjsantos]
+
+* Fix FaceBook plugin.
   [cleberjsantos]
 
 
