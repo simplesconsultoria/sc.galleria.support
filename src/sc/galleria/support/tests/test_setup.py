@@ -8,6 +8,8 @@ from plone.browserlayer.utils import registered_layers
 from sc.galleria.support.config import PROJECTNAME
 from sc.galleria.support.testing import INTEGRATION_TESTING
 
+from Products.CMFCore.utils import getToolByName
+
 from zope.component import getMultiAdapter
 import unittest2 as unittest
 
@@ -74,8 +76,18 @@ class UninstallTestCase(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        self.qi = self.portal['portal_quickinstaller']
+
+        self.types = getToolByName(self.portal, 'portal_types')
+        self.types.Collection.immediate_view = 'galleria_view'
+        self.types.Folder.default_view = 'galleria_view'
+
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
+
+        self.portal.invokeFactory('Link', 'picassa_link')
+        self.link = self.portal['picassa_link']
+        self.link.setLayout('galleria_view')
+
+        self.qi = self.portal['portal_quickinstaller']
         self.qi.uninstallProducts(products=[PROJECTNAME])
 
     def test_uninstalled(self):
@@ -85,3 +97,12 @@ class UninstallTestCase(unittest.TestCase):
         layers = [l.getName() for l in registered_layers()]
         self.assertFalse('IGalleriaLayer' in layers,
                          'browser layer not removed')
+
+    def test_immediate_view(self):
+        self.assertNotEqual(self.types.Collection.immediate_view, 'galleria_view')
+
+    def test_default_view(self):
+        self.assertNotEqual(self.types.Folder.default_view, 'galleria_view')
+
+    def test_object_layout(self):
+        self.assertNotEqual(self.link.getLayout(), 'galleria_view')
