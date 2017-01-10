@@ -4,7 +4,8 @@ Changelog
 1.1 (unreleased)
 ^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Fix package uninstall procedure.
+  [rodfersou]
 
 
 1.0 (2013-01-27)
