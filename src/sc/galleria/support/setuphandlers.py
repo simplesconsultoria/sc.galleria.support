@@ -2,7 +2,6 @@
 import logging
 
 from Products.CMFCore.utils import getToolByName
-from Products.GenericSetup.upgrade import listUpgradeSteps
 
 _PROJECT = 'sc.galleria.support'
 _PROFILE_ID = 'sc.galleria.support:default'
@@ -17,16 +16,6 @@ def install(context):
     '''
     if context.readDataFile('sc.galleria.support_default.txt') is None:
         return
-
-
-def uninstall(context):
-    ''' Run uninstall steps
-    '''
-    if context.readDataFile('sc.galleria.support_uninstall.txt') is None:
-        return
-
-    portal_conf = getToolByName(context, 'portal_controlpanel')
-    portal_conf.unregisterConfiglet('@@galleria-settings')
 
 
 def add_galleria_js(context, logger=None):
