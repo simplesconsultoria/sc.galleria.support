@@ -4,15 +4,15 @@ Changelog
 1.1 (unreleased)
 ^^^^^^^^^^^^^^^^
 
-- Fix package uninstall procedure.
-  [rodfersou]
+- Fix package uninstall.
+  [rodfersou, hvelarde]
 
 
 1.0 (2013-01-27)
 ^^^^^^^^^^^^^^^^^^^
 
 * Refactor travis-ci integration and tests.
-  [cleberjsantos] 
+  [cleberjsantos]
 
 * Add upgrade steps.
   [cleberjsantos]

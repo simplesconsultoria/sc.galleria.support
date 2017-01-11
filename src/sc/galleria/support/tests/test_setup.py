@@ -1,16 +1,10 @@
 # -*- coding: utf-8 -*-
-
-from plone.app.testing import logout
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.browserlayer.utils import registered_layers
-
 from sc.galleria.support.config import PROJECTNAME
 from sc.galleria.support.testing import INTEGRATION_TESTING
 
-from Products.CMFCore.utils import getToolByName
-
-from zope.component import getMultiAdapter
 import unittest2 as unittest
 
 
@@ -31,32 +25,13 @@ class InstallTestCase(unittest.TestCase):
         self.assertTrue('IGalleriaLayer' in layers,
                         'browser layer not installed')
 
-    def test_controlpanel_has_view(self):
-        view = getMultiAdapter((self.portal, self.portal.REQUEST),
-                               name='galleria-settings')
-        view = view.__of__(self.portal)
-        self.assertTrue(view())
-
-    def test_controlpanel_view_is_protected(self):
-        from AccessControl import Unauthorized
-        logout()
-        self.assertRaises(Unauthorized,
-                          self.portal.restrictedTraverse,
-                          '@@galleria-settings')
-
-    def test_controlpanel_installed(self):
-        actions = [a.getAction(self)['id']
-                   for a in self.controlpanel.listActions()]
-        self.assertTrue('galleria' in actions,
-                        'control panel was not installed')
-
-    def test_controlpanel_removed_on_uninstall(self):
-        qi = self.portal['portal_quickinstaller']
-        qi.uninstallProducts(products=[PROJECTNAME])
-        actions = [a.getAction(self)['id']
-                   for a in self.controlpanel.listActions()]
-        self.assertTrue('galleria' not in actions,
-                        'control panel was not removed')
+    def test_view_methods(self):
+        types = self.portal['portal_types']
+        galleria_view = 'galleria_view'
+        self.assertIn(galleria_view, types['Collection'].view_methods)
+        self.assertIn(galleria_view, types['Folder'].view_methods)
+        self.assertIn(galleria_view, types['Link'].view_methods)
+        self.assertIn(galleria_view, types['Topic'].view_methods)
 
     def test_upgrade_javascript_registry(self):
         portal_javascripts = self.portal.portal_javascripts
@@ -76,18 +51,8 @@ class UninstallTestCase(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-
-        self.types = getToolByName(self.portal, 'portal_types')
-        self.types.Collection.immediate_view = 'galleria_view'
-        self.types.Folder.default_view = 'galleria_view'
-
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
-
-        self.portal.invokeFactory('Link', 'picassa_link')
-        self.link = self.portal['picassa_link']
-        self.link.setLayout('galleria_view')
-
         self.qi = self.portal['portal_quickinstaller']
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.qi.uninstallProducts(products=[PROJECTNAME])
 
     def test_uninstalled(self):
@@ -98,11 +63,10 @@ class UninstallTestCase(unittest.TestCase):
         self.assertFalse('IGalleriaLayer' in layers,
                          'browser layer not removed')
 
-    def test_immediate_view(self):
-        self.assertNotEqual(self.types.Collection.immediate_view, 'galleria_view')
-
-    def test_default_view(self):
-        self.assertNotEqual(self.types.Folder.default_view, 'galleria_view')
-
-    def test_object_layout(self):
-        self.assertNotEqual(self.link.getLayout(), 'galleria_view')
+    def test_view_methods(self):
+        types = self.portal['portal_types']
+        galleria_view = 'galleria_view'
+        self.assertNotIn(galleria_view, types['Collection'].view_methods)
+        self.assertNotIn(galleria_view, types['Folder'].view_methods)
+        self.assertNotIn(galleria_view, types['Link'].view_methods)
+        self.assertNotIn(galleria_view, types['Topic'].view_methods)

@@ -1,8 +1,35 @@
 <?xml version="1.0"?>
 <registry>
- <records interface="sc.galleria.support.interfaces.IGeneralSettings" remove="True"/>
- <records interface="sc.galleria.support.interfaces.IFlickrPlugin" remove="True"/>
- <records interface="sc.galleria.support.interfaces.IPicasaPlugin" remove="True"/>
- <records interface="sc.galleria.support.interfaces.IHistoryPlugin" remove="True"/>
- <records interface="sc.galleria.support.interfaces.IFaceBookPlugin" remove="True" />
+  <records interface="sc.galleria.support.interfaces.IFaceBookPlugin" remove="true" />
+  <records interface="sc.galleria.support.interfaces.IFlickrPlugin" remove="true" />
+  <records interface="sc.galleria.support.interfaces.IGeneralSettings" remove="true" />
+  <records interface="sc.galleria.support.interfaces.IHistoryPlugin" remove="true" />
+  <records interface="sc.galleria.support.interfaces.IPicasaPlugin" remove="true" />
+  <!-- BBB: compatibility with Plone 4.2 (plone.app.registry <1.2) -->
+  <record name="sc.galleria.support.interfaces.IFaceBookPlugin.facebook" delete="true" />
+  <record name="sc.galleria.support.interfaces.IFaceBookPlugin.facebook_desc" delete="true" />
+  <record name="sc.galleria.support.interfaces.IFaceBookPlugin.facebook_max" delete="true" />
+  <record name="sc.galleria.support.interfaces.IFlickrPlugin.flickr" delete="true" />
+  <record name="sc.galleria.support.interfaces.IFlickrPlugin.flickr_desc" delete="true" />
+  <record name="sc.galleria.support.interfaces.IFlickrPlugin.flickr_max" delete="true" />
+  <record name="sc.galleria.support.interfaces.IGeneralSettings.autoplay" delete="true" />
+  <record name="sc.galleria.support.interfaces.IGeneralSettings.debug" delete="true" />
+  <record name="sc.galleria.support.interfaces.IGeneralSettings.gallery_height" delete="true" />
+  <record name="sc.galleria.support.interfaces.IGeneralSettings.gallery_width" delete="true" />
+  <record name="sc.galleria.support.interfaces.IGeneralSettings.imagecrop" delete="true" />
+  <record name="sc.galleria.support.interfaces.IGeneralSettings.imagePosition" delete="true" />
+  <record name="sc.galleria.support.interfaces.IGeneralSettings.lightbox" delete="true" />
+  <record name="sc.galleria.support.interfaces.IGeneralSettings.responsive" delete="true" />
+  <record name="sc.galleria.support.interfaces.IGeneralSettings.selector" delete="true" />
+  <record name="sc.galleria.support.interfaces.IGeneralSettings.showCounting" delete="true" />
+  <record name="sc.galleria.support.interfaces.IGeneralSettings.showimagenav" delete="true" />
+  <record name="sc.galleria.support.interfaces.IGeneralSettings.showInf" delete="true" />
+  <record name="sc.galleria.support.interfaces.IGeneralSettings.swipe" delete="true" />
+  <record name="sc.galleria.support.interfaces.IGeneralSettings.thumbnails" delete="true" />
+  <record name="sc.galleria.support.interfaces.IGeneralSettings.transitions" delete="true" />
+  <record name="sc.galleria.support.interfaces.IGeneralSettings.transitionSpeed" delete="true" />
+  <record name="sc.galleria.support.interfaces.IHistoryPlugin.history" delete="true" />
+  <record name="sc.galleria.support.interfaces.IPicasaPlugin.picasa" delete="true" />
+  <record name="sc.galleria.support.interfaces.IPicasaPlugin.picasa_desc" delete="true" />
+  <record name="sc.galleria.support.interfaces.IPicasaPlugin.picasa_max" delete="true" />
 </registry>

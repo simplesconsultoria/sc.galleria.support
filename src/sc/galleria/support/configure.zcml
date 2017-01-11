@@ -34,13 +34,6 @@
        handler="sc.galleria.support.setuphandlers.install"
        />
 
-  <genericsetup:importStep
-       name="sc.galleria.support uninstall"
-       title="sc.galleria.support: Step for Uninstall package"
-       description=""
-       handler="sc.galleria.support.setuphandlers.uninstall"
-       />
-
     <include file="upgrades.zcml" />
     <include package=".browser"/>
 

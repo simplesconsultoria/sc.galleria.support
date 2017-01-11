@@ -128,6 +128,33 @@ class RecordsGeneralSettings(unittest.TestCase):
         self.assertTrue(hasattr(self.settings, 'debug'))
         self.assertEqual(self.settings.debug, False)
 
+    def test_records_removed_on_uninstall(self):
+        qi = self.portal['portal_quickinstaller']
+        qi.uninstallProducts(products=[PROJECTNAME])
+
+        BASE_REGISTRY = IGeneralSettings.__identifier__ + '.'
+        records = [
+            BASE_REGISTRY + 'autoplay',
+            BASE_REGISTRY + 'showInf',
+            BASE_REGISTRY + 'gallery_width',
+            BASE_REGISTRY + 'gallery_height',
+            BASE_REGISTRY + 'imagePosition',
+            BASE_REGISTRY + 'lightbox',
+            BASE_REGISTRY + 'showCounting',
+            BASE_REGISTRY + 'transitions',
+            BASE_REGISTRY + 'transitionSpeed',
+            BASE_REGISTRY + 'showimagenav',
+            BASE_REGISTRY + 'swipe',
+            BASE_REGISTRY + 'selector',
+            BASE_REGISTRY + 'thumbnails',
+            BASE_REGISTRY + 'imagecrop',
+            BASE_REGISTRY + 'responsive',
+            BASE_REGISTRY + 'debug',
+        ]
+
+        for r in records:
+            self.assertNotIn(r, self.registry)
+
 
 class RecordsFlickrPlugin(unittest.TestCase):
 
@@ -149,6 +176,20 @@ class RecordsFlickrPlugin(unittest.TestCase):
     def test_flickr_desc_record(self):
         self.assertTrue(hasattr(self.settings, 'flickr_desc'))
         self.assertEqual(self.settings.flickr_desc, False)
+
+    def test_records_removed_on_uninstall(self):
+        qi = self.portal['portal_quickinstaller']
+        qi.uninstallProducts(products=[PROJECTNAME])
+
+        BASE_REGISTRY = IFlickrPlugin.__identifier__ + '.'
+        records = [
+            BASE_REGISTRY + 'flickr',
+            BASE_REGISTRY + 'flickr_max',
+            BASE_REGISTRY + 'flickr_desc',
+        ]
+
+        for r in records:
+            self.assertNotIn(r, self.registry)
 
 
 class RecordsPicasaPlugin(unittest.TestCase):
@@ -172,6 +213,20 @@ class RecordsPicasaPlugin(unittest.TestCase):
         self.assertTrue(hasattr(self.settings, 'picasa_desc'))
         self.assertEqual(self.settings.picasa_desc, False)
 
+    def test_records_removed_on_uninstall(self):
+        qi = self.portal['portal_quickinstaller']
+        qi.uninstallProducts(products=[PROJECTNAME])
+
+        BASE_REGISTRY = IPicasaPlugin.__identifier__ + '.'
+        records = [
+            BASE_REGISTRY + 'picasa',
+            BASE_REGISTRY + 'picasa_max',
+            BASE_REGISTRY + 'picasa_desc',
+        ]
+
+        for r in records:
+            self.assertNotIn(r, self.registry)
+
 
 class RecordsFaceBookPlugin(unittest.TestCase):
 
@@ -194,6 +249,20 @@ class RecordsFaceBookPlugin(unittest.TestCase):
         self.assertTrue(hasattr(self.settings, 'facebook_desc'))
         self.assertEqual(self.settings.facebook_desc, False)
 
+    def test_records_removed_on_uninstall(self):
+        qi = self.portal['portal_quickinstaller']
+        qi.uninstallProducts(products=[PROJECTNAME])
+
+        BASE_REGISTRY = IFaceBookPlugin.__identifier__ + '.'
+        records = [
+            BASE_REGISTRY + 'facebook',
+            BASE_REGISTRY + 'facebook_max',
+            BASE_REGISTRY + 'facebook_desc',
+        ]
+
+        for r in records:
+            self.assertNotIn(r, self.registry)
+
 
 class RecordsHistoryPlugin(unittest.TestCase):
 
@@ -207,3 +276,15 @@ class RecordsHistoryPlugin(unittest.TestCase):
     def test_history_record(self):
         self.assertTrue(hasattr(self.settings, 'history'))
         self.assertEqual(self.settings.history, False)
+
+    def test_records_removed_on_uninstall(self):
+        qi = self.portal['portal_quickinstaller']
+        qi.uninstallProducts(products=[PROJECTNAME])
+
+        BASE_REGISTRY = IHistoryPlugin.__identifier__ + '.'
+        records = [
+            BASE_REGISTRY + 'history',
+        ]
+
+        for r in records:
+            self.assertNotIn(r, self.registry)
