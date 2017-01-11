@@ -1,8 +1,11 @@
 Changelog
 ----------
 
-1.1 (unreleased)
-^^^^^^^^^^^^^^^^
+1.0.1 (unreleased)
+^^^^^^^^^^^^^^^^^^
+
+- Deprecate package.
+  [hvelarde]
 
 - Fix package uninstall.
   [rodfersou, hvelarde]
